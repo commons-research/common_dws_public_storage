@@ -67,27 +67,30 @@
 	With $P$ the phenotype between two species, $E$ an environment factor between two species and $M$ the TODO 
 
 \section{DAG scratch}
+We assume that the probability of having a molecule in a species is the average presence of that molecule across all species $\mu_m$ plus a normally distributed error that depends on certain parameters $\alpha, \beta, \ldots$. 
+
+From there, the LOTUS database and any result of MS depends on the set of molecules present in a species $\overrightarrow{\boldmath{x_s}}$. However we still have to take into account the fact that there can be an error of analysis on the MS $\epsilon_{m/z}$ that where $\epsilon_{m/z} = f(\epsilon_{01}, \epsilon_{10})$. 
+
+Could we assume that as $j \rightarrow \infty$, then $d_{sj} \rightarrow \overrightarrow{\boldmath{x_s}}$ ?  TODO
+
+According to Pierre-Marie LOTUS database is highly dependent on the research effort accorded to the specific molecule. He also said that error rate of LOTUS database is very low since most data is an actual isolation of the specific compound. Error rate of LOTUS database should then have little effect on the model. \\
+
 	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
 		\node[main] (1) {$d_{sj}$}; 
-		\node[main] (2) [above left of=1] {$\epsilon_{MS}$};
-		\node[main] (3) [above right of=1] {$R_{sm}$}; 
-		\node[main] (4) [above of=1] {$\overrightarrow{\boldmath{x_s}}$};
+		\node[main] (2) [above left of=1] {$\epsilon_{m/z}$};
+		\node[main] (7) [below right of=1] {Lotus};
+		\node[main] (3) [above right of=7] {$R_{sm}$}; 
+		\node[main] (4) [above right of=1] {$\overrightarrow{\boldmath{x_s}}$};
 		\node[main] (5) [above left of=4] {$\mu_m$}; 
 		\node[main] (6) [above right of=4] {$\alpha, \beta$};
-		\node[main] (7) [below of=1] {Lotus DB};
-		\node[main] (8) [above right of=3] {$n_m$};
-		\node[main] (9) [ right of=3] {$n_s$};
-		\node[main] (10) [below right of=3] {$n_t$};
 		
 		\draw[->] (5) -- (4);
 		\draw[->] (6) -- (4);
 		\draw[->] (4) -- (1);
 		\draw[->] (2) -- (1);
-		\draw[->] (3) -- (1);
-		\draw[->] (1) -- (7);
-		\draw[->] (8) -- (3);
-		\draw[->] (9) -- (3);
-		\draw[->] (10) -- (3);
+		\draw[->] (4) -- (7);
+		\draw[->] (3) -- (7);
+
 	\end{tikzpicture} 
 
 \section{Ideas scratch}

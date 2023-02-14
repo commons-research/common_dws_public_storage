@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.1)  14 FEB 2023 11:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.1)  14 FEB 2023 17:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,6 +581,34 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Warning: No \author given.
 
 
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 72.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 72.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 72.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 72.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 72.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 72.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 72.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 72.
+
+
+
 LaTeX Font Warning: Command \boldmath invalid in math mode on input line 74.
 
 
@@ -607,19 +635,52 @@ LaTeX Font Warning: Command \boldmath invalid in math mode on input line 74.
 
 LaTeX Font Warning: Command \mathversion invalid in math mode on input line 74.
 
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
 
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 83.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 83.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 83.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 83.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 83.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 83.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 83.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 83.
+
+
 [2] (./Metabolites.aux) ) 
 Here is how much of TeX's memory you used:
- 13086 strings out of 492649
- 254900 string characters out of 6129623
- 303976 words of memory out of 5000000
- 16708 multiletter control sequences out of 15000+600000
+ 13065 strings out of 492649
+ 254628 string characters out of 6129623
+ 302976 words of memory out of 5000000
+ 16687 multiletter control sequences out of 15000+600000
  13645 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,54p,508b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,54p,508b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
@@ -635,7 +696,7 @@ y10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 5.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
 pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
 m10.pfb>
-Output written on Metabolites.pdf (2 pages, 132001 bytes).
+Output written on Metabolites.pdf (2 pages, 134114 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  51 compressed objects within 1 object stream
