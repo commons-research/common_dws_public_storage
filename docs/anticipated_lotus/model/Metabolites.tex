@@ -127,8 +127,26 @@ This is for one molecule. If we want to have for all the molecules we would have
 Where do we go from here ? We search the probability of a molecule in a species give the data. We thus have $P(x|d) = \frac{P(x, d)}{P(d)}$. 
 
 Where do we use Lotus DB ? Should it be our prior probability $P(x|d)$ ? 
-\subsubsection{Lotus DB}
 
+\subsubsection{Error rate of MS}
+We could have either a false positive meaning that the MS detects something that is not truly present in the species $0\rightarrow 1$ or a false negative meaning that a molecule is present in the sample but is not present in the data $1 \rightarrow 0$. 
+
+Could this be viewed as a birth and death process ? If yes, this could be modelled with Kolmogorov forward- master equation: 
+\begin{equation}
+	\frac{dP_{ij}(t)}{dt} = \lambda_{j-1}P_{ij-1}(t) + \mu_{j+1}P_{ij+1}(t) - (\lambda_j + \mu_j)P_{ij}(t)
+\end{equation}
+
+\begin{itemize}
+	\item With a Poisson process for birth ($0\rightarrow 1$) TODO ...
+	\item HMM process ? 
+\end{itemize}
+
+
+
+\subsubsection{Error on Lotus DB}
+Since the Lotus DB supposedly contains little to "no" errors, maybe we should also model as a Poisson process since error might occur but on rare occasions. 
+
+The fact that Lotus doesn't contain many error is that each molecule present in the database, was isolated and analysed with either NMR or X-ray crystallography. Moreover, the latter techniques need to have a high amount of chemical extract so the probability that a compound is not present in the organism is close to 0 if not 0. However, not all entries in the database are made with these techniques so that is why we still need to account for that error in the model. 
 
 \section{Ideas scratch}
 	\begin{blockarray}{cccc}
@@ -141,4 +159,33 @@ Where do we use Lotus DB ? Should it be our prior probability $P(x|d)$ ?
 
 
 	With $x_{sm}$ a molecule truly present or not present in a specific species. $L_{sm}$ the presence or absence of a molecule in a species that is present or not in the Lotus database. Finally, $R_{sm}$ the research effort made for that specific molecule. $R_{sm}$ being a function of the number of papers made on a specific molecule or species : $f(n_s, n_m)$. 
+
+
+\section{Formulation}
+We seek to infer the presence or absence of $M$ metabolites in tissue $T$ in $S$ species. We denote by $x_{smt}$ whether metabolite $m=1,\ldots,M$ is present ($x_{smt}=1$) or absent ($x_{smt}=0$) in tissue $t = 1, \ldots T$ species $s=1,\ldots,S$. We denote $\overrightarrow{x_{st}} = (x_{st1}, \ldots, x_{stM})$ the vector of molecules present in a tissue $T$ of a specific species $S$. 
+
+Let us further denote $\overrightarrow{x_s} = (\overrightarrow{x_{s1}}, \ldots , \overrightarrow{x_{sT}}) = (x_{s11}, \ldots, x_{s1M}, x_{s21}, \ldots, x_{sTM})$ the vector of presence/absence of all molecules across all tissues for species $s$. 
+
+We have two origins of data, mass spectrometry data and Lotus database. We denote $d_{sj}$ the $j^{ \text th}$ mass spectrometry run for species $s$. We further denote $\overrightarrow{L_s}$ all molecules assigned to species $s$ in the LOTUS database. Finally we define $R$, a function representing the research effort produced for either a species $s$ or a specific molecule $m$. We also define $\overrightarrow{\epsilon_j}$ a vector of error that is specific for a mass-spectrometry run. 
+
+\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+	\node[main] (1) {$\overrightarrow{\boldmath{x_s}}$};
+	\node[main] (2) [above left of=1] {$\overrightarrow{\mu}$};
+	\node[main] (3) [above right of=1] {$\overrightarrow{\alpha}$};
+	\node[draw, thick] (4) [below right of=1] {$d_{sj}$};
+	\node[draw] (5) [below left of=1] {$\overrightarrow{L_s}$};
+	\node[main] (6) [above right of=4] {$\overrightarrow{\epsilon_j}$};
+	\node[main] (7) [above left of=5] {$R$};
+	
+	\draw[->] (2) -- (1);
+	\draw[->] (3) -- (1);
+	\draw[->] (1) -- (4);
+	\draw[->] (1) -- (5);
+	\draw[->] (6) -- (4);
+	\draw[->] (7) -- (5);
+\end{tikzpicture} 
+
+
+
+
 \end{document}

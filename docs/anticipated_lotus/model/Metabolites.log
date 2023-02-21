@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.1)  17 FEB 2023 15:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.1)  21 FEB 2023 17:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,15 +700,52 @@ LaTeX Font Warning: Command \boldmath invalid in math mode on input line 102.
 LaTeX Font Warning: Command \mathversion invalid in math mode on input line 102
 .
 
-[2] [3] (./Metabolites.aux) ) 
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
+
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 172.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 172
+.
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 172.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 172
+.
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 172.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 172
+.
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 172.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 172
+.
+
+[3] [4] (./Metabolites.aux) ) 
 Here is how much of TeX's memory you used:
- 13070 strings out of 492649
- 254732 string characters out of 6129623
- 302976 words of memory out of 5000000
- 16692 multiletter control sequences out of 15000+600000
+ 13096 strings out of 492649
+ 255207 string characters out of 6129623
+ 306976 words of memory out of 5000000
+ 16715 multiletter control sequences out of 15000+600000
  13952 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,54p,508b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,54p,522b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
@@ -725,10 +762,10 @@ cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy5.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb>
-Output written on Metabolites.pdf (3 pages, 150648 bytes).
+Output written on Metabolites.pdf (4 pages, 160278 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
