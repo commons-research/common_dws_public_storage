@@ -2,9 +2,12 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
+\usepackage{url}
 \usepackage[paper=a4paper,marginparwidth=0mm,marginparsep=0mm,margin=20.5mm,includemp]{geometry}
 \usepackage{tikz}
 \usepackage{blkarray}
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,menucolor=blue,runcolor=blue,urlcolor=black]{hyperref} % For hyperlinks in the PDF
+\usepackage[capitalise, noabbrev]{cleveref}
 
 %Math symbols
 \DeclareMathOperator{\Poisson}{Poisson}
@@ -24,7 +27,6 @@
 
 
 \linespread{1.25}
-
 
 
 %opening
@@ -70,9 +72,9 @@
 \subsection{Test 1}
 We assume that the probability of having a molecule in a species is the average presence of that molecule across all species $\mu_m$ plus a normally distributed error that depends on certain parameters $\alpha, \beta, \ldots$. 
 
-From there, the LOTUS database and any result of MS depends on the set of molecules present in a species $\overrightarrow{\boldmath{x_s}}$. However we still have to take into account the fact that there can be an error of analysis on the MS $\epsilon_{m/z}$ that where $\epsilon_{m/z} = f(\epsilon_{01}, \epsilon_{10})$. 
+From there, the LOTUS database and any result of MS depends on the set of molecules present in a species $\vec{\boldmath{x_s}}$. However we still have to take into account the fact that there can be an error of analysis on the MS $\epsilon_{m/z}$ that where $\epsilon_{m/z} = f(\epsilon_{01}, \epsilon_{10})$. 
 
-Could we assume that as $j \rightarrow \infty$, then $d_{sj} \rightarrow \overrightarrow{\boldmath{x_s}}$ ?  TODO
+Could we assume that as $j \rightarrow \infty$, then $d_{sj} \rightarrow \vec{\boldmath{x_s}}$ ?  TODO
 
 According to Pierre-Marie LOTUS database is highly dependent on the research effort accorded to the specific molecule. He also said that error rate in the majority of LOTUS database is very low since most data is an actual isolation of the specific compound. Error rate of LOTUS database should then have little effect on the model. \\
 
@@ -81,7 +83,7 @@ According to Pierre-Marie LOTUS database is highly dependent on the research eff
 		\node[main] (2) [above left of=1] {$\epsilon_{m/z}$};
 		\node[main] (7) [below right of=1] {Lotus};
 		\node[main] (3) [above right of=7] {$R_{sm}$}; 
-		\node[main] (4) [above right of=1] {$\overrightarrow{\boldmath{x_s}}$};
+		\node[main] (4) [above right of=1] {$\vec{\boldmath{x_s}}$};
 		\node[main] (5) [above left of=4] {$\mu_m$}; 
 		\node[main] (6) [above right of=4] {$\alpha, \beta$};
 		
@@ -99,7 +101,7 @@ According to Pierre-Marie LOTUS database is highly dependent on the research eff
 \subsubsection{MS data}
 
 \begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-	\node[main] (1) {$\overrightarrow{\boldmath{x_s}}$};
+	\node[main] (1) {$\vec{\boldmath{x_s}}$};
 	\node[main] (2) [above left of=1] {$\mu_m$};
 	\node[main] (3) [above right of=1] {$\alpha, \beta, \ldots$};
 	\node[main] (4) [below of=1] {$T_t$};
@@ -148,34 +150,27 @@ Since the Lotus DB supposedly contains little to "no" errors, maybe we should al
 
 The fact that Lotus doesn't contain many error is that each molecule present in the database, was isolated and analysed with either NMR or X-ray crystallography. Moreover, the latter techniques need to have a high amount of chemical extract so the probability that a compound is not present in the organism is close to 0 if not 0. However, not all entries in the database are made with these techniques so that is why we still need to account for that error in the model. 
 
-\section{Ideas scratch}
-	\begin{blockarray}{cccc}
-		& $L_{sm} = NA$ & $L_{sm} = 1$ \\
-		\begin{block}{c(ccc)}
-			$x_{sm}=0$ & $1$ & $0$  \\
-			$x_{sm}=1$ & $1-R_{sm}$ & $R_{sm}$ \\
-		\end{block}
-	\end{blockarray}
-
-
-	With $x_{sm}$ a molecule truly present or not present in a specific species. $L_{sm}$ the presence or absence of a molecule in a species that is present or not in the Lotus database. Finally, $R_{sm}$ the research effort made for that specific molecule. $R_{sm}$ being a function of the number of papers made on a specific molecule or species : $f(n_s, n_m)$. 
-
 
 \section{Formulation}
-We seek to infer the presence or absence of $M$ metabolites in tissue $T$ in $S$ species. We denote by $x_{smt}$ whether metabolite $m=1,\ldots,M$ is present ($x_{smt}=1$) or absent ($x_{smt}=0$) in tissue $t = 1, \ldots T$ species $s=1,\ldots,S$. We denote $\overrightarrow{x_{st}} = (x_{st1}, \ldots, x_{stM})$ the vector of molecules present in a tissue $T$ of a specific species $S$. 
+We seek to infer the presence or absence of $M$ metabolites in tissue $T$ in $S$ species. We denote by $x_{smt}$ whether metabolite $m=1,\ldots,M$ is present ($x_{smt}=1$) or absent ($x_{smt}=0$) in tissue $t = 1, \ldots T$ in species $s=1,\ldots,S$. We denote $\vec{x_{st}} = (x_{st1}, \ldots, x_{stM})$ the vector of molecules present in a tissue $T$ of a specific species $S$. 
 
-Let us further denote $\overrightarrow{x_s} = (\overrightarrow{x_{s1}}, \ldots , \overrightarrow{x_{sT}}) = (x_{s11}, \ldots, x_{s1M}, x_{s21}, \ldots, x_{sTM})$ the vector of presence/absence of all molecules across all tissues for species $s$. 
+Let us further denote $\vec{x_s} = (\vec{x_{s1}}, \ldots , \vec{x_{sT}}) = (x_{s11}, \ldots, x_{s1M}, x_{s21}, \ldots, x_{sTM})$ the vector of presence/absence of all molecules across all tissues for species $s$. 
 
-We have two origins of data, mass spectrometry data and Lotus database. We denote $d_{sj}$ the $j^{ \text th}$ mass spectrometry run for species $s$. We further denote $\overrightarrow{L_s}$ all molecules assigned to species $s$ in the LOTUS database. Finally we define $R$, a function representing the research effort produced for either a species $s$ or a specific molecule $m$. We also define $\overrightarrow{\epsilon_j}$ a vector of error that is specific for a mass-spectrometry run. 
+We have two origins of data, mass spectrometry data and the Lotus database. We denote $d_{sj}$ the $j^{ \text th}$ mass spectrometry run for species $s$ and $\vec{L_s}$ all molecules assigned to species $s$ present in the LOTUS database. Finally we define $R$, a function representing the research effort produced for either a species $s$ or a specific molecule $m$. We also define $\vec{\epsilon_j}$ a vector of error that is specific for each mass-spectrometry run. 
 
+A DAG of the model can be seen in \cref{fig:DAG_model}. $\vec{\mu}$ being the vector of the average presence/absence of each molecule across all species and $\vec{\alpha}$ represents the vector of all known measures of covariates between species and molecules. 
+
+Since the tissue specific origin of a molecule is not known in the LOTUS database \cite{rutzLOTUSInitiativeOpen2022}, we denote $$P(\vec{L_S} | \vec{x_s}, R) = P(\vec{L_s} | \vec{\xi_s}, \vec{R}), $$ with $\vec{\xi_s} = (\xi_{s1}, \ldots, \xi_{sM} )$ the vector of presence/absence of all molecules $M$ in species $s$. Furthermore, $\xi_{sm} = min(1, \sum_{t}^{T} x_{smt})$ the minimum between $1$ and the sum of presence or absence of a molecule across all tissues. 
+
+\begin{figure}
 \begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-	\node[main] (1) {$\overrightarrow{\boldmath{x_s}}$};
-	\node[main] (2) [above left of=1] {$\overrightarrow{\mu}$};
-	\node[main] (3) [above right of=1] {$\overrightarrow{\alpha}$};
-	\node[draw, thick] (4) [below right of=1] {$d_{sj}$};
-	\node[draw] (5) [below left of=1] {$\overrightarrow{L_s}$};
-	\node[main] (6) [above right of=4] {$\overrightarrow{\epsilon_j}$};
-	\node[main] (7) [above left of=5] {$R$};
+	\node[main] (1) {$\vec{\boldmath{x_s}}$};
+	\node[main] (2) [above left of=1] {$\vec{\mu}$};
+	\node[main] (3) [above right of=1] {$\vec{\alpha}$};
+	\node[draw] (4) [below right of=1] {$d_{sj}$};
+	\node[draw] (5) [below left of=1] {$\vec{L_s}$};
+	\node[main] (6) [above right of=4] {$\vec{\epsilon_j}$};
+	\node[main] (7) [above left of=5] {$\vec{R}$};
 	
 	\draw[->] (2) -- (1);
 	\draw[->] (3) -- (1);
@@ -184,8 +179,38 @@ We have two origins of data, mass spectrometry data and Lotus database. We denot
 	\draw[->] (6) -- (4);
 	\draw[->] (7) -- (5);
 \end{tikzpicture} 
+\caption{Potential DAG of the model.}
+\label{fig:DAG_model}
+\end{figure}
+
+We can also denote $\vec{R} = (R_{11}, \ldots, R_{1M}, R_{21}, \ldots, R_{SM})$ the vector of \textit{research effort} of all molecules across all species. 
+
+The probability of having a molecule present in the LOTUS database not only depends on the presence/absence of that molecule in a species but also on the research effort done for a specific molecule or species. We thus have $R_{sm} = f(n_s, n_m)$ with $R_{sm} \in [0,1]$ and where $n_s$ and $n_m$ are the number of scientific papers that relate respectively the species and the molecules of interest. We thus have the following matrix : \\
+
+\begin{blockarray}{cccc}
+	& $L_{sm} = NA$ & $L_{sm} = 1$ \\
+	\begin{block}{c(ccc)}
+		$x_{sm}=0$ & $1$ & $0$  \\
+		$x_{sm}=1$ & $1-R_{sm}$ & $R_{sm}$ \\
+	\end{block}
+\end{blockarray}
+
+Tissue of origin is usually known in mass spectrometry analysis. From \cref{fig:DAG_model}, we have, $P(d_{sj} | \vec{x_s}, \vec{\epsilon_j}) = P(d_{sj} | \vec{x_{st(d_{sj})}}, \vec{\epsilon_j}) $ where $t(d_{sj})$ reflects the tissue from which mass spectrometry run $j$ in species $s$ was sampled. 
+
+We thus have: 
+
+\begin{equation}
+	P(\d, \x, \boldsymbol \mu, \boldsymbol \alpha )  = P(\boldsymbol{\mu})P(\boldsymbol{\alpha}) \prod_{s=1}^{S} P(\vec{x_s} | \boldsymbol{\mu}, \boldsymbol{\alpha}) \prod_{j=1}^{J} P(d_{sj} | \vec{x_{st(d_{sj})}}, \vec{\epsilon_j})
+\end{equation}
+
+Similarly, for LOTUS database we have :
+
+\begin{equation}
+	P(\L, \x, \boldsymbol \mu, \boldsymbol \alpha ) = P(\boldsymbol{\mu})P(\boldsymbol{\alpha}) P(\R) \prod_{s=1}^{S} P(\vec{x_s} | \boldsymbol{\mu}, \boldsymbol{\alpha}) P(L_s | \vec{x_s}, \R)
+\end{equation}
 
 
-
+\bibliographystyle{unsrturl}
+\bibliography{/Users/Marco/BibTex/BibTex}
 
 \end{document}

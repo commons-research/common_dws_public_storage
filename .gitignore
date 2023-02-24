@@ -1,2 +1,4 @@
 .DS_Store
 docs/.DS_Store
+docs/anticipated_lotus/model/Metabolites*
+!docs/anticipated_lotus/model/Metabolites.pdf
