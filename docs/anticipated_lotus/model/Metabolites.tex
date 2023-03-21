@@ -25,7 +25,9 @@
 \def\R{{\bf R}}
 \def\dd{\mathrm{d}}
 
-
+\def\btau{\boldsymbol{\tau}}
+\def\M{{\cal M}}
+\def\bmu{\boldsymbol{\mu}}
 \linespread{1.25}
 
 
@@ -137,6 +139,28 @@
 	\end{equation*}
 
 
+
+
+
+\section{v2}
+We seek to infer the presence or absence of metabolites in group of samples compartmentalized by an arbitrary number of discrete axis such as e.g. species, tissue or environmental conditions. Let $\btau = \{\tau_1, \ldots, \tau_T\}$  denote the set of $T$ axis of compartmentalization and let, without loss of generality, $\tau_1=\M$ be the axis of metabolites. For any compartment $c$, let $\tau_t(c) = 1, \ldots, n_t$ indicate the compartment index along axis $\tau_t$ with $\tau_\M(c) = \tau_1(c)$ indicating the metabolite of that compartment.
+
+Let $x_{c}$ denote the presence ($x_c=1$) or absence ($x_c=0$) of a metabolite $\tau_\M(c)$ in compartment $c$ and let $\x=(x_1, \ldots, x_C)$ be the full vector $x_c$ across all compartments $c=1, \ldots, C$.
+
+We will assume that similarities across any of the axis of compartmentalization is reflected in the patterns of presences and absences in $\x$. For instance, closely related species may share a similar set of metabolites and  metabolites related in their synthesis may share a similar distribution across species. To model such similarities, we assume that the probability $\P(x_c=1|\bmu_c, \epsilon_c)$ with which metabolite $\tau_\M(c)=m$ is present in compartment $c$ is given by
+
+\begin{equation}
+	\logit \P(x_c=1|\bmu_c, \epsilon_c) = \sum_{t=1}^{T} \mu_t + \epsilon_{c}
+\end{equation}
+
+where $\bmu_c=(\mu_1, \ldots, \mu_T)$ is a vector of axis specific intercepts and $\epsilon_{c}$ is normally distributed with mean 0 and co-variance
+
+\begin{equation}
+	\cov(\epsilon_c, \epsilon_{c'}) = \sum_t \beta^{(\tau_t)}_{\tau_t(c)} + \sum_t \beta^{(\tau_t)}_{\tau_t(c')} + \sum_f \alpha_f \sigma_f\Big(\tau_{\tau(f)}(c), \tau_{\tau(f)}(c')\Big).
+\end{equation}
+
+
+Here, the $\beta^{\tau_t}_{\tau_t(c)}$ are intercepts specific for the compartment index $\tau_t(c)$ along axis $\tau_t$, the $\sigma_{f}, f=1, \ldots, F,$ are known covariances between entries along axis $\tau(f)$ and the $\alpha_f$ are positive scalars.
 
 \bibliographystyle{unsrturl}
 \bibliography{/Users/Marco/BibTex/BibTex}
