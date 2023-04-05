@@ -85,27 +85,27 @@
 %
 % 	A DAG of the model can be seen in \cref{fig:DAG_model}.
 %
-% 	\begin{figure}
-% 		\centering
-% 		\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-% 			\node[main] (1) {$\vec{\boldmath{x_s}}$};
-% 			\node[main] (2) [above left of=1] {$\vec{\mu}$};
-% 			\node[main] (3) [above right of=1] {$\vec{\alpha}$};
-% 			\node[draw] (4) [below right of=1] {$d_{sj}$};
-% 			\node[draw] (5) [below left of=1] {$\vec{L_s}$};
-% 			\node[main] (6) [above right of=4] {$\vec{\epsilon_j}$};
-% 			\node[main] (7) [above left of=5] {$\vec{R}$};
-%
-% 			\draw[->] (2) -- (1);
-% 			\draw[->] (3) -- (1);
-% 			\draw[->] (1) -- (4);
-% 			\draw[->] (1) -- (5);
-% 			\draw[->] (6) -- (4);
-% 			\draw[->] (7) -- (5);
-% 		\end{tikzpicture}
-% 		\caption{Potential DAG of the model.}
-% 		\label{fig:DAG_model}
-% 	\end{figure}
+ 	\begin{figure}
+ 		\centering
+ 		\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+ 			\node[main] (1) {$\vec{\boldmath{x_s}}$};
+ 			\node[main] (2) [above left of=1] {$\vec{\mu}$};
+ 			\node[main] (3) [above right of=1] {$\vec{\alpha}$};
+ 			\node[draw] (4) [below right of=1] {$d_{sj}$};
+ 			\node[draw] (5) [below left of=1] {$\vec{L_s}$};
+ 			\node[main] (6) [above right of=4] {$\vec{\epsilon_j}$};
+ 			\node[main] (7) [above left of=5] {$\vec{R}$};
+
+ 			\draw[->] (2) -- (1);
+ 			\draw[->] (3) -- (1);
+ 			\draw[->] (1) -- (4);
+ 			\draw[->] (1) -- (5);
+ 			\draw[->] (6) -- (4);
+ 			\draw[->] (7) -- (5);
+ 		\end{tikzpicture}
+ 		\caption{Potential DAG of the model.}
+ 		\label{fig:DAG_model}
+ 	\end{figure}
 %
 %
 % 	\subsection{LOTUS database}
@@ -199,7 +199,7 @@ with positives scalars $\gamma$ and $\delta$.
 
 \begin{itemize}
  \item $\mu_{ti} \sim \N(0, \sigma^2_\mu), t=1, \ldots, T, i=1\ldots, n_t$ with $\sigma^2_\mu=1$
- \item $\alpha^{(t)}_i \sim \Exp(\lambda_\alpha), t=1, \ldots, T, i=1\ldots, n_t$
+ \item $\alpha^{(t)}_f \sim \Exp(\lambda_\alpha), t=1, \ldots, T, f=1\ldots, F_t$
  \item $\beta^{(t)}_i \sim \Exp(\lambda_\beta), t=1, \ldots, T, i=1\ldots, n_t$
  \item $\gamma \sim \Exp(\lambda_\gamma)$
  \item $\delta \sim \Exp(\lambda_\delta)$
