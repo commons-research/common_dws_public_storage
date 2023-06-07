@@ -1,0 +1,160 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
+\usepackage{url}
+\usepackage[paper=a4paper,marginparwidth=0mm,marginparsep=0mm,margin=20.5mm,includemp]{geometry}
+\usepackage{tikz}
+\usepackage{blkarray}
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,menucolor=blue,runcolor=blue,urlcolor=black]{hyperref} % For hyperlinks in the PDF
+\usepackage[capitalise, noabbrev]{cleveref}
+
+%Math symbols
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Poisson}{Poisson}
+\DeclareMathOperator{\Multinom}{Multinom}
+\DeclareMathOperator{\logit}{logit}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Ind}{I}
+\def\P{\mathbb{P}}
+\def\E{\mathbb{E}}
+
+\def\x{\boldsymbol{x}}
+
+\def\btau{\boldsymbol{\tau}}
+\def\bmu{\boldsymbol{\mu}}
+\def\bxi{\boldsymbol{\xi}}
+\def\bLambda{\boldsymbol{\Lambda}}
+\def\bP{\boldsymbol{P}}
+
+
+
+\def\C{{\cal C}}
+\def\E{{\cal E}}
+\def\I{{\cal I}}
+\def\N{{\cal N}}
+\def\M{{\cal M}}
+\def\R{{\cal R}}
+\def\T{{\cal T}}
+\def\X{{\cal X}}
+\def\Y{{\cal Y}}
+\def\Z{{\cal Z}}
+
+\linespread{1.25}
+
+
+%opening
+\title{Inferring the presence of metabolites}
+
+\begin{document}
+
+\maketitle
+
+\section{Markov Random Field}
+We seek to infer the presence or absence of metabolites in a group of samples compartmentalized by several discrete dimensions such as e.g. species, tissue or environmental conditions. We assume that the pattern of presence and absence of these metabolites is modulated by similarities within each dimensions. For instance, closely related species may share a similar set of metabolites and  metabolites related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a Markov Random Field approach.
+
+Let $D$ denote the total number of dimensions, of which, without loss of generality, the first shall be the metabolite. Each dimension $d=1, \ldots, D$ consist of a set $\E_d$ of discrete entries (e.g. individual species along the species dimension). We model similarities between the entries of dimension $t$ using a Markov process along a known tree $\T_d$ consisting of $\N_d = \E_d \cup \R_d \cup \I_d$ nodes, of which the entries $\E_d$ are leaves, connected to the set of roots $\R_d$ through a set $\I_d$ of internal nodes; $\E_d \cap \R_d = \varnothing$, $\E_d \cap \I_d = \varnothing$ and $\R_d \cap \I_d = \varnothing$. For every node $n \in \N_d, n \notin \R_d$ that is not a root, let $p(n) \in \N_d$ denote its parent node and $b(n) \geq 0$ the length of the branch connecting it to its parent.
+
+Let $\X$ denote a Markov Random Field of which each variable $x \in \X$ represents a combination of nodes from each of the $D$ dimensions and indicates the presence($x=1$) or absence ($x=0$) of metabolite for that combination of nodes. Let $\delta_d(x) \in \N_d$ reflect the node of $x$ in dimension $d$ with $\delta_1(x)$ indicating the metabolite of $x$, and let $\delta(x)=(\delta_1(x), \ldots, \delta_D(x))$. We only consider two sets of variables: 1) the set $\Y$ of variables representing an entry in each dimension such that for a variable $y\in\Y$, $\delta_d(y) \in \E_d$ for all $d=1, \ldots, D$, and 2) the set $\Z$ of variables representing leaves in all dimensions except one such that for a variable $z \in \Z$, $\delta_k(z) \in \I_k$ and $\delta_d(z) \in \E_d$ for all $d \neq k$. We then have $\X = \Y \cup \Z$ and $\Y \cap \Z = \varnothing$.
+
+We suppose that the joint density of $\X$ can be factorized over a set of cliques $\C$. Each clique $c \in \C$ consist of a set of variables $x_1, x_2, \ldots \in \X$ that represent the same leaves in all but one dimension $k$. Specifically, for all $x \in c$, $\delta_d(x) \in \E_d$ for all $d \neq k$ and $\delta_k(x) \in \N_k$, and for all $x_i, x_j \in c$, $\delta_{-k}(x_i) = \delta_{-k}(x_j)$, where $\delta_{-k}(x)$ denotes the vector of nodes of $x$ in all dimensions but $k$. For such a clique, we will refer to the dimension $\nu(c) = k$ as its \emph{variable} dimension and will denote by $\delta_{-\nu(c)}(c)$ the vector of nodes in the \emph{fixed} dimensions. By definition, $\delta_{-\nu(c)}(c)=\delta_{-\nu(c)}(x)$ for every $x \in c$.
+
+We will further denote by $\C_k \subset \C$ the subset of cliques that share the variable dimension $k$, i.e. $\nu(c)=k$ for all $c \in \C_k$. Note that each clique is in exactly one subset ($\C_k \cap \C_d = \varnothing$ for all $k \neq d$) and cliques of the same subset do not share any variables ($c_1 \cap c_2 = \varnothing$ for all $c_1, c_2 \in C_k$). However, each variable $x \in \Y$ will be part of exactly one clique from each subset: the clique $c \in \C_k$ for which $\delta_{-k}(c) = \delta_{-k}(x)$. In contrast, each variable $x \in \Z$ will be part of exactly one clique: the clique $c \in \C$ for which $\delta_{-\nu(c)}(c) = \delta_{-\nu(c)}(x)$ and $\delta_{\nu(c)}(x) \in \I_{\nu(c)}$.
+
+The joint density of $\X$ factorizes as
+\begin{equation*}
+ \P(\X) = \prod_{d=1}^D \prod_{c \in \C_d} \phi(c),
+\end{equation*}
+
+where
+we model the clique functions $\phi(c)$ using a Markov model along tree $\T_d$. Let
+
+\begin{equation*}
+\bLambda_c =
+ \begin{pmatrix}
+  -\mu_{c1} & \mu_{c1}\\
+  \mu_{c0} & -\mu_{c0}\\
+ \end{pmatrix}
+\end{equation*}
+
+be the rate matrix for changes between states 0 and 1 along the tree. For each node $n \in \N_d, n \notin \R_d$ that is not a root, the transition probabilities between parent node $p(n)$ and $n$ are then given by
+
+\begin{equation*}
+ \bP(n) = \exp(\bLambda_c b(n)).
+\end{equation*}
+
+We assume the root state probabilities are given by the stationary distribution of the Markov chain:
+\begin{equation*}
+ \bP_{\infty} = \left(\frac{\mu_{c0}}{\mu_{c0} + \mu_{c1}}, \frac{\mu_{c1}}{\mu_{c0} + \mu_{c1}}\right).
+\end{equation*}
+
+
+The clique function $\phi(c)$
+\begin{equation*}
+\phi(c) = \prod_{x \in c, }\Big( \Ind(x \in \R_{\nu(c)})[\bP_{\infty}]_x + \Ind(x \notin \R_{\nu(c)}) [\bP(\delta_{\nu(c)}(x))]_{p_{c}(x), x} \Big)
+\end{equation*}
+
+where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{\nu(c)}$ to indicate whether the node in the variable dimension of $c$ of $x$ is a root and $p_{c}(x)$ to identify the variable $z \in c$ for which $\delta_{\nu(c)}(z) = p(\delta_{\nu(c)}(x))$.
+
+
+
+
+
+\subsection{Emission probabilities}
+
+We consider several different types of data to inform about $\x$. This data may be of different dimensionality, e.g. may only discriminate along a subset of the axes or at a higher scale along some axes. For a particular data set $d=1, \ldots, D$, let $\bxi_d=\{\xi_{d1}, \ldots, \xi_{du}\}$ denote the sets of distinguished compartments. We then define the presence of ($\x(\xi_{du})=1$) or absence ($\x(\xi_{du})=0$) in set $\xi_{du}, u=1\ldots,U,$ as
+
+\begin{equation*}
+ \x(\xi_{du}) = \min \left(1, \sum_{c \in \xi_{du}} x_c \right).
+\end{equation*}
+
+
+\subsubsection{LOTUS}
+
+%\cite{rutzLOTUSInitiativeOpen2022}
+ The LOTUS database  lists known occurrences of metabolites in species. Let $L_{ms} = 1$ denote a known occurrence of metabolite $m$ in species $s$, while $L_{ms}=0$ denotes that no evidence for such an occurrence has been reported, either because the metabolite $m$ is truly absent in species $s$ or because of a lack of research effort.
+
+ Let us denote by $R_{sm}$ the probability of discovery of metabolite $m$ in species $s$ such that
+ \begin{equation*}
+  \P(L_{ms}|\x(\xi(m,s)), R_{ms}) = \begin{cases}
+                             0 \quad &\mathrm{if\ } \x(\xi(m,s))=0 \mathrm{\ and\ } L_{ms} = 1,\\
+                             1 \quad &\mathrm{if\ } \x(\xi(m,s))=0 \mathrm{\ and\ } L_{ms} = 0,\\
+                             R_{ms} \quad &\mathrm{if\ } \x(\xi(m,s))=1 \mathrm{\ and\ } L_{ms} = 1,\\
+                             1- R_{ms} \quad &\mathrm{if\ } \x(\xi(m,s))=1 \mathrm{\ and\ } L_{ms} = 0,
+                            \end{cases}
+ \end{equation*}
+
+ where $\xi(m,s)$ is the set of compartments relevant for metabolite $m$ and species $s$, i.e. all compartments $c$ for which $\tau_\M(c)=m$ and $\tau_\S(c)=s$.
+
+ To quantify the research effort $R_{ms}$ of a particular entry $L_{ms}$, we will rely on two measures, the total number of relevant papers published for metabolite $m$ ($P_m$) and for species $s$ ($Q_s$), such that
+
+ \begin{equation*}
+ R_{ms} = 1 - e^{-\gamma P_m - \delta Q_s}
+ \end{equation*}
+with positives scalars $\gamma$ and $\delta$.
+
+
+\subsection{Prior distributions}
+
+\begin{itemize}
+ \item $\mu_{ti} \sim \N(0, \sigma^2_\mu), t=1, \ldots, T, i=1\ldots, n_t$ with $\sigma^2_\mu=1$
+ \item $\alpha^{(t)}_i \sim \Exp(\lambda_\alpha), t=1, \ldots, T, i=1\ldots, n_t$
+ \item $\beta^{(t)}_i \sim \Exp(\lambda_\beta), t=1, \ldots, T, i=1\ldots, n_t$
+ \item $\gamma \sim \Exp(\lambda_\gamma)$
+ \item $\delta \sim \Exp(\lambda_\delta)$
+\end{itemize}
+
+
+\subsection{Simulations}
+
+\begin{itemize}
+ \item Simulate $P_m$ and $Q_s$ from a Poisson distribution
+ \item Simulate $\sigma_{tf}$ using a Wishart distribution (?)
+\end{itemize}
+
+
+
+%\bibliographystyle{unsrturl}
+%\bibliography{/Users/Marco/BibTex/BibTex}
+
+\end{document}
