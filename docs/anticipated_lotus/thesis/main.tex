@@ -41,14 +41,15 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{mathpazo} % Use the Palatino font by default
 
-\usepackage[backend=biber,style=numeric-comp,sorting=none, maxbibnames=99]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage[backend=bibtex,style=numeric,sorting=none, maxbibnames=99]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
-\addbibresource{/Users/Marco/BibTex/BibTex.bib} % The filename of the bibliography
+%\addbibresource{~/BibTex/BibTex.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
 \usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
 \usepackage{tikz}
+
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -77,7 +78,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \subject{Biological Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 \university{\href{https://www.unifr.ch/}{University of Fribourg}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{https://www.unifr.ch/bio/en/}{Department Biology}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\department{\href{https://www.unifr.ch/bio/en/}{Department of Biology}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{https://www.unifr.ch/bio/en/groups/wegmann/}{Wegmann Group} \& \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS Lab}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
 \faculty{\href{https://www.unifr.ch/scimed/en/}{Faculty of Science and Medicine}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
@@ -90,16 +91,41 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 
 %----------------------------------------------------------------------------------------
 %	MATH STUFF
-
+\usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
 \DeclareMathOperator{\Poisson}{Poisson}
 \DeclareMathOperator{\Multinom}{Multinom}
 \DeclareMathOperator{\logit}{logit}
 \DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Ind}{I}
+\def\P{\mathbb{P}}
+\def\E{\mathbb{E}}
+
+\def\x{\boldsymbol{x}}
+
+\def\btau{\boldsymbol{\tau}}
+\def\bmu{\boldsymbol{\mu}}
+\def\bxi{\boldsymbol{\xi}}
+\def\bLambda{\boldsymbol{\Lambda}}
+\def\bP{\boldsymbol{P}}
+
+
+
+\def\Ccal{{\cal C}}
+\def\E{{\cal E}}
+\def\I{{\cal I}}
+\def\N{{\cal N}}
+\def\M{{\cal M}}
+\def\R{{\cal R}}
+\def\T{{\cal T}}
+\def\X{{\cal X}}
+\def\Y{{\cal Y}}
+\def\Z{{\cal Z}}
+
 %----------------------------------------------------------------------------------------
 
 \linespread{1.2}
-
 \begin{document}
+
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
@@ -189,7 +215,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 %	ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
 
-\begin{abstract}
+\begin{abstract}\label{sec:abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
 \end{abstract}
@@ -198,7 +224,7 @@ The Thesis Abstract is written here (and usually kept to just this page). The pa
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 
-\begin{acknowledgements}
+\begin{acknowledgements}\label{sec:acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
 \end{acknowledgements}
@@ -217,7 +243,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
-\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+\begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
 
 \textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
 \textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
@@ -241,7 +267,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
-\begin{symbols}{lll} % Include a list of Symbols (a three column table)
+\begin{symbols}{lll}\label{sec:symbols} % Include a list of Symbols (a three column table)
 
 $a$ & distance & \si{\meter} \\
 $P$ & power & \si{\watt} (\si{\joule\per\second}) \\
@@ -270,13 +296,100 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-\include{Chapters/1_introduction}
-\include{Chapters/2_litterature_review} 
-\include{Chapters/3_methods}
-\include{Chapters/4_results} 
-\include{Chapters/5_discussion} 
-\include{Chapters/6_conclusion}
+%\include{Chapters/1_introduction}
+%\include{Chapters/2_litterature_review} 
+%\include{Chapters/3_methods}
+%\include{Chapters/4_results} 
+%\include{Chapters/5_discussion} 
+%\include{Chapters/6_conclusion}
 
+\chapter{Introduction}\label{chap:intro}
+
+\section{Natural Products: Definition and Roles}\label{sec:NP def and roles}
+Natural Products (NPs) are chemical entities biosynthesized by living organisms. Many NPs are metabolites, which can be placed along a specialization gradient from core metabolites that play essential functions and are found in a wide range of organisms to specialized metabolites which are much more restricted across the tree of life.
+
+\section{The Importance of Natural Products in Therapeutics and Ecosystem Functioning}
+Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
+
+\section{The LOTUS Database and Current Efforts}
+Some effort have been made to anticipate metabolic networks or occurrences of molecules in selected taxa. A major such resource is the LOTUS database \cite{rutzLOTUSInitiativeOpen2022} developed and maintained by the \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS lab}, which currently lists 750'000 thousand occurrences of natural products. However, so far, no model has been proposed to predict their occurrence across the tree of life.
+
+\section{Project Description and Objectives}
+The goal of this project is to develop such a model and to train it using large-scale metabolomics and other occurrence data.
+
+\chapter{Literature Review}
+
+
+\chapter{Methodology}
+\section{Approach I : Random Markov Field}\label{sec:random markov field}
+To model such similarities, we adopt a Markov Random Field approach \cite{sherringtonSolvableModelSpinGlass1975}.
+
+Let $D$ denote the total number of dimensions, of which, without loss of generality, the first shall be the metabolite. Each dimension $d=1, \ldots, D$ consist of a set $\E_d$ of discrete entries (e.g. individual species along the species dimension). We model similarities between the entries of dimension $d$ using a Markov process along a known tree $\T_d$ consisting of $\N_d = \E_d \cup \R_d \cup \I_d$ nodes, of which the entries $\E_d$ are leaves, connected to the set of roots $\R_d$ through a set $\I_d$ of internal nodes; $\E_d \cap \R_d = \varnothing$, $\E_d \cap \I_d = \varnothing$ and $\R_d \cap \I_d = \varnothing$. For every node $n \in \N_d, n \notin \R_d$ that is not a root, let $p(n) \in \N_d$ denote its parent node and $b(n) \geq 0$ the length of the branch connecting it to its parent.
+
+Let $\X$ denote a Markov Random Field of which each variable $x \in \X$ represents a combination of nodes from each of the $D$ dimensions and indicates the presence($x=1$) or absence ($x=0$) of metabolite for that combination of nodes. Let $\delta_d(x) \in \N_d$ reflect the node of $x$ in dimension $d$ with $\delta_1(x)$ indicating the metabolite of $x$, and let $\delta(x)=(\delta_1(x), \ldots, \delta_D(x))$. We only consider two sets of variables: 1) the set $\Y$ of variables representing an entry in each dimension such that for a variable $y\in\Y$, $\delta_d(y) \in \E_d$ for all $d=1, \ldots, D$, and 2) the set $\Z$ of variables representing leaves in all dimensions except one such that for a variable $z \in \Z$, $\delta_k(z) \in \I_k$ and $\delta_d(z) \in \E_d$ for all $d \neq k$. We then have $\X = \Y \cup \Z$ and $\Y \cap \Z = \varnothing$.
+
+We suppose that the joint density of $\X$ can be factorized over a set of cliques $\Ccal$. Each clique $c \in \Ccal$ consist of a set of variables $x_1, x_2, \ldots \in \X$ that represent the same leaves in all but one dimension $k$. Specifically, for all $x \in c$, $\delta_d(x) \in \E_d$ for all $d \neq k$ and $\delta_k(x) \in \N_k$, and for all $x_i, x_j \in c$, $\delta_{-k}(x_i) = \delta_{-k}(x_j)$, where $\delta_{-k}(x)$ denotes the vector of nodes of $x$ in all dimensions but $k$. For such a clique, we will refer to the dimension $\nu(c) = k$ as its \emph{variable} dimension and will denote by $\delta_{-\nu(c)}(c)$ the vector of nodes in the \emph{fixed} dimensions. By definition, $\delta_{-\nu(c)}(c)=\delta_{-\nu(c)}(x)$ for every $x \in c$.
+
+We will further denote by $\Ccal_k \subset \Ccal$ the subset of cliques that share the variable dimension $k$, i.e. $\nu(c)=k$ for all $c \in \Ccal_k$. Note that each clique is in exactly one subset ($\Ccal_k \cap \Ccal_d = \varnothing$ for all $k \neq d$) and cliques of the same subset do not share any variables ($c_1 \cap c_2 = \varnothing$ for all $c_1, c_2 \in C_k$). However, each variable $x \in \Y$ will be part of exactly one clique from each subset: the clique $c \in \Ccal_k$ for which $\delta_{-k}(c) = \delta_{-k}(x)$. In contrast, each variable $x \in \Z$ will be part of exactly one clique: the clique $c \in \Ccal$ for which $\delta_{-\nu(c)}(c) = \delta_{-\nu(c)}(x)$ and $\delta_{\nu(c)}(x) \in \I_{\nu(c)}$.
+
+The joint density of $\X$ factorizes as
+\begin{equation}
+	\P(\X) = \prod_{d=1}^D \prod_{c \in \Ccal_d} \phi(c),
+\end{equation}
+
+where
+we model the clique functions $\phi(c)$ using a Markov model along tree $\T_d$. Let
+
+\begin{equation}
+	\bLambda_c =
+	\begin{pmatrix}
+		-\mu_{c1} & \mu_{c1}\\
+		\mu_{c0} & -\mu_{c0}\\
+	\end{pmatrix}
+\end{equation}
+
+be the rate matrix for changes between states 0 and 1 along the tree. For each node $n \in \N_d, n \notin \R_d$ that is not a root, the transition probabilities between parent node $p(n)$ and $n$ are then given by
+
+\begin{equation}
+	\bP(n) = \exp(\bLambda_c b(n)).
+\end{equation}
+
+We assume the root state probabilities are given by the stationary distribution of the Markov chain:
+\begin{equation}
+	\bP_{\infty} = \left(\frac{\mu_{c0}}{\mu_{c0} + \mu_{c1}}, \frac{\mu_{c1}}{\mu_{c0} + \mu_{c1}}\right).
+\end{equation}
+
+
+The clique function $\phi(c)$
+\begin{equation}
+	\phi(c) = \prod_{x \in c, }\Big( \Ind(x \in \R_{\nu(c)})[\bP_{\infty}]_x + \Ind(x \notin \R_{\nu(c)}) [\bP(\delta_{\nu(c)}(x))]_{p_{c}(x), x} \Big)
+\end{equation}
+
+where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{\nu(c)}$ to indicate whether the node in the variable dimension of $c$ of $x$ is a root and $p_{c}(x)$ to identify the variable $z \in c$ for which $\delta_{\nu(c)}(z) = p(\delta_{\nu(c)}(x))$.
+
+
+
+\section{Approach II : Graph Convolution Neural Network (GraphSAGE)}
+
+\section{Approach III : Knowledge Graph Completion}
+
+\section{Data Preprocessing and Model Training}
+
+\chapter{Results and Discussion}
+
+\section{Random Markov Field}
+
+\section{Graph Convolution Neural Network (GraphSAGE)}
+
+\section{Knowledge Graph}
+
+\section{Challenges: Data Sparsity and Detection Uncertainty}
+
+
+\chapter{Applications and Implications}
+
+
+\chapter{Conclusion and Future Work}
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
@@ -286,15 +399,17 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\include{Appendices/AppendixA}
+%\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
+%\printbibliography
+\bibliographystyle{elsarticle-num}
+\bibliography{/Users/Marco/BibTex/BibTex}
 
-\printbibliography[title=References]
 
 %----------------------------------------------------------------------------------------
 
