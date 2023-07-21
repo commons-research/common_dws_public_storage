@@ -40,6 +40,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{mathpazo} % Use the Palatino font by default
+\usepackage{cite}
 
 %\usepackage[backend=bibtex,style=numeric,sorting=none, maxbibnames=99]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
@@ -123,7 +124,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 
 %----------------------------------------------------------------------------------------
 
-\linespread{1.2}
+\linespread{1.25}
 \begin{document}
 
 
@@ -306,23 +307,29 @@ $\omega$ & angular frequency & \si{\radian} \\
 \chapter{Introduction}\label{chap:intro}
 
 \section{Natural Products: Definition and Roles}\label{sec:NP def and roles}
-Natural Products (NPs) are chemical entities biosynthesized by living organisms. Many NPs are metabolites, which can be placed along a specialization gradient from core metabolites that play essential functions and are found in a wide range of organisms to specialized metabolites which are much more restricted across the tree of life.
+Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Many NPs are metabolites, which can be positioned along a specialization gradient from core metabolites, fulfilling essential functions and found in a wide range of organisms, to specialized metabolites, much more restricted across the tree of life. Natural Products research is a transdisciplinary field with interests spanning from fundamental structural aspects of naturally occurring molecular entities to their effects on living organisms and extending to the study of chemically mediated interactions within entire ecosystems. We will use \textit{Rutz et al.}'s in \cite{rutzLOTUSInitiativeOpen2022} definition of Natural Product \textit{as any chemical entity found in a living organism}, \textit{i.e.} a structure-organism pair. This pair holds an additional and fundamental element - a reference to the experimental evidence establishing the linkage between the chemical structure and the biological organism
 
 \section{The Importance of Natural Products in Therapeutics and Ecosystem Functioning}
-Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
+Unique in their chemical structures and functionalities, specialized metabolites serve as the cornerstone of today's therapeutic applications. Their relevance extends beyond human and veterinary medicine, touching on areas such as agriculture, the food industry, cosmetics, and an array of other sectors. Intrinsically linked to renewable resources, these natural products hold substantial value within the circular economy concept.
+
+The intricacies of their biological roles and structural characterization are crucial to fully grasp the functioning of ecosystems. These complexities influence a myriad of aspects, from the impact on individual organisms to the overall chemically mediated interactions within entire ecosystems. Despite their multifaceted nature, which presents significant challenges at the molecular level - particularly due to their powerful biological activities (privileged structures) and intricate synthetic accessibility the role of these metabolites is indispensable.
+
+Natural products have also contributed to the development of many foundational scientific concepts, including but not limited to stereochemistry, optical activity, regioselectivity, and chirality. Their diverse and complex nature continually inspires researchers, sparking the creation of innovative tools that can mimic natural processes to control bioregulation mechanisms and address practical challenges \cite{drasarGrowingImportanceNatural2019}.
+
+Even though they're complex and challenging to describe, the role of natural products in therapeutic uses and ecosystem functionality cannot be overstated. Current developments aim to unlock this potential more efficiently, emphasizing the ongoing advancements across all sectors associated with natural products.
 
 \section{The LOTUS Database and Current Efforts}
-Some effort have been made to anticipate metabolic networks or occurrences of molecules in selected taxa. A major such resource is the LOTUS database \cite{rutzLOTUSInitiativeOpen2022} developed and maintained by the \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS lab}, which currently lists 750'000 thousand occurrences of natural products. However, so far, no model has been proposed to predict their occurrence across the tree of life.
+In recent years, efforts have been made to anticipate metabolic networks or occurrences of molecules in selected taxa. A significant resource is the LOTUS database \cite{rutzLOTUSInitiativeOpen2022} developed and maintained by the \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS lab}, which currently lists over 750'000 occurrences of natural products. Despite this, no model has been proposed to predict their occurrence across the tree of life. The LOTUS initiative aims to address these shortcomings by consolidating and sharing structure-organism pair information via an open platform, providing transformative potential for natural products research and beyond. This process involves the harmonization, curation, validation, and open dissemination of referenced structure-organism pairs. Furthermore, LOTUS data's embedding into the vast Wikidata knowledge graph facilitates new biological and chemical insights. The contemporary bioinformatic capabilities offered by the LOTUS initiative have the potential to reshape knowledge management, analysis, and interpretation of data in natural products research.
 
 \section{Project Description and Objectives}
 The goal of this project is to develop such a model and to train it using large-scale metabolomics and other occurrence data.
 
-\chapter{Literature Review}
+%\chapter{Literature Review}
 
 
 \chapter{Methodology}
-\section{Approach I : Random Markov Field}\label{sec:random markov field}
-To model such similarities, we adopt a Markov Random Field approach \cite{sherringtonSolvableModelSpinGlass1975}.
+\section{Random Markov Field}\label{sec:methods:random markov field}
+We seek to infer the presence or absence of metabolites in a group of samples compartmentalized by several discrete dimensions such as e.g. species, tissue or environmental conditions. We assume that the pattern of presence and absence of these metabolites is modulated by similarities within each dimensions. For instance, closely related species may share a similar set of metabolites and  metabolites related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a Markov Random Field approach \cite{sherringtonSolvableModelSpinGlass1975, kindermannMarkovRandomFields1980}.
 
 Let $D$ denote the total number of dimensions, of which, without loss of generality, the first shall be the metabolite. Each dimension $d=1, \ldots, D$ consist of a set $\E_d$ of discrete entries (e.g. individual species along the species dimension). We model similarities between the entries of dimension $d$ using a Markov process along a known tree $\T_d$ consisting of $\N_d = \E_d \cup \R_d \cup \I_d$ nodes, of which the entries $\E_d$ are leaves, connected to the set of roots $\R_d$ through a set $\I_d$ of internal nodes; $\E_d \cap \R_d = \varnothing$, $\E_d \cap \I_d = \varnothing$ and $\R_d \cap \I_d = \varnothing$. For every node $n \in \N_d, n \notin \R_d$ that is not a root, let $p(n) \in \N_d$ denote its parent node and $b(n) \geq 0$ the length of the branch connecting it to its parent.
 
@@ -367,11 +374,39 @@ The clique function $\phi(c)$
 
 where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{\nu(c)}$ to indicate whether the node in the variable dimension of $c$ of $x$ is a root and $p_{c}(x)$ to identify the variable $z \in c$ for which $\delta_{\nu(c)}(z) = p(\delta_{\nu(c)}(x))$.
 
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+		\node[main] (1) {$\boldmath{x}$};
+		\node[draw] (4) [below right of=1] {$d_{sj}$};
+		\node[draw] (5) [below left of=1] {$\vec{L_s}$};
+		\node[main] (6) [above right of=4] {$\vec{\epsilon_j}$};
+		\node[main] (7) [above left of=5] {$\vec{R}$};
+		
+		\draw[->] (1) -- (4);
+		\draw[->] (1) -- (5);
+		\draw[->] (6) -- (4);
+		\draw[->] (7) -- (5);
+	\end{tikzpicture}
+	\caption{Potential DAG of the model.}
+	\label{fig:DAG_model}
+\end{figure}
+
+\section{Graph Convolution Neural Network (GraphSAGE)}\label{sec:methods:HinSAGE}
+GraphSAGE \cite{hamiltonInductiveRepresentationLearning2017} is an inductive method for learning representations of nodes in graph-structured data. The objective of GraphSAGE is to generate a low-dimensional vector representation for each node in a graph that concisely encapsulates the node's structural and feature information. The central contribution of this method is its capacity for inductive learning, allowing for the generation of embeddings for unseen nodes or even entire unseen graphs, based on the trained model, contrasting it from transductive methods which can only generate embeddings for nodes seen during training.
+
+The architecture of GraphSAGE consists of a series of differentiable aggregator functions which operate in a neighborhood around each node. In the GraphSAGE framework, the learning process occurs in two major steps:
+
+1. **Sampling**: In this phase, a fixed-size neighborhood of each node is sampled. The notion of a 'neighborhood' in this context refers to the set of nodes directly connected to a given node. By limiting the sample size, GraphSAGE ensures that the computational complexity of the subsequent aggregation step remains manageable, even in large-scale graph structures.
+
+2. **Aggregation**: This step involves the aggregation of features from the nodes sampled in the previous step. These features are combined to generate embeddings for the target nodes. The aggregation function may take a number of forms, such as mean, pooling, or Long Short-Term Memory (LSTM) functions, each of which collapses the multi-node feature information into a single vector representation.
+
+By iteratively applying these sampling and aggregation steps across a sequence of layers (corresponding to increasing graph hops), GraphSAGE aggregates information from an expanding neighborhood. The resulting vector embeddings thus encapsulate information about each node's local graph structure and associated feature information.
+
+The flexibility of GraphSAGE allows it to be applied to a wide range of graph-structured data, and its inductive learning capability makes it well-suited to dynamic environments where graph structures may evolve over time or where embeddings for entirely new graphs need to be generated. This represents a significant advantage over traditional transductive graph embedding techniques.
 
 
-\section{Approach II : Graph Convolution Neural Network (GraphSAGE)}
-
-\section{Approach III : Knowledge Graph Completion}
+\section{Knowledge Graph Completion}
 
 \section{Data Preprocessing and Model Training}
 
@@ -390,6 +425,7 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 
 
 \chapter{Conclusion and Future Work}
+
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
@@ -407,7 +443,8 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 %\printbibliography
-\bibliographystyle{elsarticle-num}
+\renewcommand{\bibname}{References}
+\bibliographystyle{unsrturl}
 \bibliography{/Users/Marco/BibTex/BibTex}
 
 
