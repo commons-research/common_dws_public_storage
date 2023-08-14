@@ -50,6 +50,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 
 \usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
 \usepackage{tikz}
+\usepackage{booktabs}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -312,7 +313,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Many NPs are metabolites, which can be positioned along a specialization gradient from core metabolites, fulfilling essential functions and found in a wide range of organisms, to specialized metabolites, much more restricted across the tree of life. Natural Products research is a transdisciplinary field with interests spanning from fundamental structural aspects of naturally occurring molecular entities to their effects on living organisms and extending to the study of chemically mediated interactions within entire ecosystems. We will use \textit{Rutz et al.}'s in \cite{rutzLOTUSInitiativeOpen2022} definition of Natural Product \textit{as any chemical entity found in a living organism}, \textit{i.e.} a structure-organism pair. This pair holds an additional and fundamental element - a reference to the experimental evidence establishing the linkage between the chemical structure and the biological organism
 
 \section{The Importance of Natural Products in Therapeutics and Ecosystem Functioning}
-Unique in their chemical structures and functionalities, specialized metabolites serve as the cornerstone of today's therapeutic applications. Their relevance extends beyond human and veterinary medicine, touching on areas such as agriculture, the food industry, cosmetics, and an array of other sectors. Intrinsically linked to renewable resources, these natural products hold substantial value within the circular economy concept.
+Unique in their chemical structures and functionalities, specialized metabolites serve as the cornerstone of today's therapeutic applications \cite{harveyReemergenceNaturalProducts2015}. Their relevance extends beyond human and veterinary medicine, touching on areas such as agriculture \cite{yanImpactProspectNatural2018}, the food industry \cite{gonzalez-manzanoApplicationsNaturalProducts2021}, cosmetics \cite{liuNaturalProductsCosmetics2022}, and an array of other sectors. Intrinsically linked to renewable resources, these natural products hold substantial value within the circular economy concept.
 
 The intricacies of their biological roles and structural characterization are crucial to fully grasp the functioning of ecosystems. These complexities influence a myriad of aspects, from the impact on individual organisms to the overall chemically mediated interactions within entire ecosystems. Despite their multifaceted nature, which presents significant challenges at the molecular level - particularly due to their powerful biological activities (privileged structures) and intricate synthetic accessibility the role of these metabolites is indispensable.
 
@@ -531,7 +532,7 @@ The LOTUS database was aggregated to include only unique pairs of molecules and 
 
 Graphs were systematically constructed for both the training and testing subsets using the software library NetworkX v3.1 \cite{SciPyProceedings_11}. In these graphs, individual nodes were designated to represent each molecule and species. When a specific species-molecule pair was identified in the LOTUS database, a directed edge was drawn between the two corresponding nodes. This procedure led to the creation of a bipartite graph, with directed edges labeled as "has" from species to molecules and "present in" from molecules to species.
 
-The species' features were defined by extracting their phylogenetic information through the GBIF API \cite{GBIF, GbifPygbif2023}, an approach that ensured consistency with accepted taxonomical data. Molecules' features were composed of their classification data from Classyfire \cite{djoumboufeunangClassyFireAutomatedChemical2016} and their Morgan Fingerprint \cite{rogersExtendedConnectivityFingerprints2010}, encoded using a 128-bit representation and a radius of 2.
+The species' features were defined by extracting their phylogenetic information through the GBIF API \cite{GBIF, GbifPygbif2023}. Molecules' features were composed of their classification data from Classyfire \cite{djoumboufeunangClassyFireAutomatedChemical2016} and their Morgan Fingerprint \cite{rogersExtendedConnectivityFingerprints2010}, encoded using a 128-bit representation and a radius of 2.
 
 In the preprocessing stage, features corresponding to both species characteristics and molecules' Classyfire properties were transformed through binary encoding. This transformation was essential to represent these categorical attributes as numerical values, thus making them suitable as features for the nodes within the graph. In the case of the molecules, two different sets of features, namely the binary-encoded Classyfire attributes and the Morgan Fingerprint, were concatenated to form a unified feature vector.
 
@@ -541,6 +542,7 @@ The HinSAGE models were configured with two layers, comprising 1024 neurons in e
 
 Furthermore, the HinSAGE models were implemented with a mean aggregator function, which served to combine the features of the neighboring nodes, thus generating a representative feature vector for each target node. A dropout rate of 0.3 was applied to mitigate the risk of overfitting, and "elu" and "selu" activation functions were utilized in the respective layers. These activation functions were chosen for their properties in mitigating vanishing gradient problems, thereby aiding the convergence of the model during the training process.
 
+All codes are available on \href{https://github.com/anticipated-lotus/GNN}{Github}
 
 
 \chapter{Results and Discussion}
@@ -549,9 +551,9 @@ Before working on our data, we decided to simulate some of our data to see if we
 
 \section{Random Markov Field}
 
-\section{Graph Convolution Neural Network (GraphSAGE)}
+\section{HinSAGE}
 
-\section{Challenges: Data Sparsity and Detection Uncertainty}
+%\section{Challenges: Data Sparsity and Detection Uncertainty}
 
 
 \chapter{Applications and Implications}
