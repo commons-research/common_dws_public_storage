@@ -23,7 +23,7 @@
 %----------------------------------------------------------------------------------------
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
-%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
 english, % ngerman for German
 singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 %draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
@@ -220,7 +220,11 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 
 \begin{abstract}\label{sec:abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+Natural Products (NPs) are chemical entities biosynthesized by living organisms. Many NPs are metabolites, which can be placed along a specialization gradient from core metabolites that play essential functions and are found in a wide range of organisms to specialized metabolites which are much more restricted across the tree of life.
+
+Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
+
+Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -238,21 +242,21 @@ The acknowledgments and the people to thank go here, don't forget to include you
 
 \tableofcontents % Prints the main table of contents
 
-\listoffigures % Prints the list of figures
+%\listoffigures % Prints the list of figures
 
-\listoftables % Prints the list of tables
+%\listoftables % Prints the list of tables
 
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
-
-\begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
-
-\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
-\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
-\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
-
-\end{abbreviations}
+%
+%\begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
+%
+%\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
+%\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
+%\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
+%
+%\end{abbreviations}
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
@@ -310,7 +314,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \chapter{Introduction}\label{chap:intro}
 
 \section{Natural Products: Definition and Roles}\label{sec:NP def and roles}
-Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Many NPs are metabolites, which can be positioned along a specialization gradient from core metabolites, fulfilling essential functions and found in a wide range of organisms, to specialized metabolites, much more restricted across the tree of life. Natural Products research is a transdisciplinary field with interests spanning from fundamental structural aspects of naturally occurring molecular entities to their effects on living organisms and extending to the study of chemically mediated interactions within entire ecosystems. We will use \textit{Rutz et al.}'s in \cite{rutzLOTUSInitiativeOpen2022} definition of Natural Product \textit{as any chemical entity found in a living organism}, \textit{i.e.} a structure-organism pair. This pair holds an additional and fundamental element - a reference to the experimental evidence establishing the linkage between the chemical structure and the biological organism
+Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Many NPs are metabolites, which can be positioned along a specialization gradient from core metabolites, fulfilling essential functions and found in a wide range of organisms, to specialized metabolites, much more restricted across the tree of life. Natural Products research is a transdisciplinary field with interests spanning from fundamental structural aspects of naturally occurring molecular entities to their effects on living organisms and extending to the study of chemically mediated interactions within entire ecosystems. We will use \textit{Rutz et al.}'s in definition of Natural Product \textit{as any chemical entity found in a living organism}, \textit{i.e.} a structure-organism pair \cite{rutzLOTUSInitiativeOpen2022}. This pair holds an additional and fundamental element - a reference to the experimental evidence establishing the linkage between the chemical structure and the biological organism
 
 \section{The Importance of Natural Products in Therapeutics and Ecosystem Functioning}
 Unique in their chemical structures and functionalities, specialized metabolites serve as the cornerstone of today's therapeutic applications \cite{harveyReemergenceNaturalProducts2015}. Their relevance extends beyond human and veterinary medicine, touching on areas such as agriculture \cite{yanImpactProspectNatural2018}, the food industry \cite{gonzalez-manzanoApplicationsNaturalProducts2021}, cosmetics \cite{liuNaturalProductsCosmetics2022}, and an array of other sectors. Intrinsically linked to renewable resources, these natural products hold substantial value within the circular economy concept.
@@ -331,18 +335,19 @@ The goal of this project is to develop such a model and to train it using large-
 
 
 \chapter{Theoretical introduction}\label{chap:Theoretical introduction}
-TODO : add references !!!
-Graphs serve as an ideal model for systems characterized by interdependent components, with nodes representing individual components and edges representing their interactions. For instance, within a biochemical context, a graph might represent the intricate network of molecules within an organism, with each node signifying a different molecule and each edge capturing their interactions or reactions.
+Graphs serve as an ideal model for systems characterized by interdependent components, with nodes representing individual components and edges representing their interactions \cite{trudeauIntroductionGraphTheory1993}. For instance, within a biochemical context, a graph might represent the intricate network of molecules within an organism, with each node signifying a different molecule and each edge capturing their interactions or reactions.
 
-Often, these nodes carry specific attributes. In our work, these might include attributes such as the molecule's atomic structure, size, or charge. However, the acquisition of comprehensive attribute data can be challenging due to obstacles in data collection, inherent complexity, or privacy concerns. To mitigate this, graph-based semi-supervised learning, also known as node classification, is employed to predict missing attributes (i.e., labels y) for some nodes given known attributes (i.e., features x). This strategy has been effective in a myriad of applications, including predicting molecular functions and categorization of substances.
+Often, these nodes carry specific attributes. In our work, these might include attributes such as the molecule's atomic structure, size, or charge. However, the acquisition of comprehensive attribute data can be challenging due to obstacles in data collection, inherent complexity, or, in some cases, privacy concerns. To mitigate this, graph-based semi-supervised learning, also known as node classification, is employed to predict missing attributes (i.e., labels y) for some nodes given known attributes (i.e., features x). This strategy has been effective in a myriad of applications, including predicting molecular functions and categorization of substances \cite{NIPS2016_390e9825, liDeeperInsightsGraph2018}.
 
-Graph neural networks (GNNs), particularly a variant called GraphSAGE, have been frequently employed for semi-supervised learning on these molecular networks. Initially, GNNs synthesize the features and graph structure in the vicinity of each node into a single vector representation. Subsequently, this representation is individually used for the classification of each node. The benefits of using GNNs include automatic differentiation enabling end-to-end training and straightforward sub-sampling schemes for handling extensive networks. However, the use of GNNs hinges on the assumption that node labels are conditionally independent given all features. Moreover, these networks do not leverage correlations between training and testing labels during inference, and due to the complexities of their transformations and aggregation functions, the derived models can be challenging to interpret.
+Link prediction is a fundamental task in graph theory, aiming to forecast the likelihood of a potential relationship or edge between two nodes within a network. In the context of social networks, as highlighted by Liben-Nowell and Kleinberg \cite{liben-nowellLinkPredictionProblem2003}, the challenge is to determine which interactions are likely to emerge in the future based on the current network topology. The underlying hypothesis is that the inherent structure of the network contains valuable information about future interactions. Various measures of node "proximity" or similarity within the network can be employed to make these predictions, and some nuanced measures have been found to outperform more direct ones \cite{zhangLinkPredictionBased2018}.
 
-Alternatively, collective classification (CC) provides an interpretable approach, utilizing graphical models that directly exploit label correlation for prediction. One such model used within our research is Markov networks also known as Markov random field (RMF). RMFs model the joint distribution of all node labels within a conditional random field and predict an unknown label with its marginal probabilities. This method allows for the leveraging of label correlation during inference, which involves conditioning on the training labels. However, the increased interpretability and convenience of collective classification come at a price. The models are learned by maximizing the joint likelihood, rendering end-to-end training extremely difficult. This, in turn, restricts the capacity and versatility of the model \cite{jiaGraphBeliefPropagation2021}.
+Graph neural networks (GNNs) \cite{wuGraphNeuralNetworks2022} have been frequently employed for semi-supervised learning or for link predictions, also in the context of molecular networks \cite{oyetundeBoostGAPFILLImprovingFidelity2017}. Initially, GNNs synthesize the features and graph structure in the vicinity of each node into a single vector representation. Subsequently, this representation is individually used for the classification of each node. The benefits of using GNNs include automatic differentiation enabling end-to-end training and straightforward sub-sampling schemes for handling extensive networks. However, the use of GNNs hinges on the assumption that node labels are conditionally independent given all features. Moreover, these networks do not leverage correlations between training and testing labels during inference, and due to the complexities of their transformations and aggregation functions, the derived models can be challenging to interpret.
+
+Alternatively, collective classification (CC) \cite{senCollectiveClassificationNetwork2008} provides an interpretable approach, utilizing graphical models that directly exploit label correlation for prediction. One such model used within our research is Markov networks also known as Markov random field (RMF). RMFs model the joint distribution of all node labels within a conditional random field and predict an unknown label with its marginal probabilities. This method allows for the leveraging of label correlation during inference, which involves conditioning on the training labels. However, the increased interpretability and convenience of collective classification come at a price. The models are learned by maximizing the joint likelihood, rendering end-to-end training extremely difficult. This, in turn, restricts the capacity and versatility of the model \cite{jiaGraphBeliefPropagation2021}.
 
 Our research did not initially utilize a graph-based approach. We started our work using more traditional, naive methods that treated our data as a simple collection of independent observations rather than recognizing the inherent interconnectedness of the molecular structures and interactions within organisms. This initial approach, while more straightforward, failed to fully capture the intricate complexity and interconnected nature of our dataset, a key characteristic of biological systems.
 
-However, recognizing the limitations of such naive methods, we transitioned to the use of graphical models, specifically graph neural networks and collective classification techniques. This shift in our modelling paradigm has significantly enhanced our ability to predict the molecules present in any organism on Earth, allowing for the more effective use of both the Markov random field approach and GraphSAGE. By treating our data as a graph, we've been better equipped to capture the nuanced relationships and dependencies between different molecular entities and their attributes.
+However, recognizing the limitations of such naive methods, we transitioned to the use of graphical models, specifically graph neural networks and collective classification techniques. This shift in our modelling paradigm has significantly enhanced our ability to predict the molecules present in any organism on Earth, allowing for the more effective use of both the Markov random field approach and GNNs. By treating our data as a graph, we've been better equipped to capture the nuanced relationships and dependencies between different molecular entities and their attributes.
 
 \section{Naive approach}\label{sec:methods:Naive approach}
 Our objective is to infer the occurrence or absence of metabolites across a collection of samples, which are differentiated by $T$ discrete dimensions such as species, tissue type, and environmental conditions or any other arbitrary dimension. For any compartment $c$, let $\tau_t(c) = 1, \ldots, n_t$ indicate the compartment index along axis $t=1, \ldots, T$. For convenience, let us further denote by $\tau_\M(c)$ and $\tau_\S(c)$ the metabolite and species of that compartment.
@@ -386,7 +391,8 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 	
 	Let us denote by $R_{sm}$ the probability of discovery of metabolite $m$ in species $s$ such that
 	\begin{equation}\label{eq:prob lotus given x and Rsm}
-		\P(L_{ms}|\x(\xi(m,s)), R_{ms}) = \begin{cases}
+		\P(L_{ms}|\x(\xi(m,s)), R_{ms}) = 
+		\begin{cases}
 			0 \quad &\mathrm{if\ } \x(\xi(m,s))=0 \mathrm{\ and\ } L_{ms} = 1,\\
 			1 \quad &\mathrm{if\ } \x(\xi(m,s))=0 \mathrm{\ and\ } L_{ms} = 0,\\
 			R_{ms} \quad &\mathrm{if\ } \x(\xi(m,s))=1 \mathrm{\ and\ } L_{ms} = 1,\\
@@ -427,23 +433,6 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 	\end{figure}
 
 \section{Random Markov Field}\label{sec:methods:random markov field}
-\begin{figure}[!b]
-	\centering
-	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-		\node[main] (1) {$\boldmath{x}$};
-		\node[draw] (4) [below right of=1] {$d_{j}$};
-		\node[draw] (5) [below left of=1] {$L$};
-		\node[main] (6) [above right of=4] {$\epsilon_j$};
-		\node[main] (7) [above left of=5] {$R$};
-		
-		\draw[->] (1) -- (4);
-		\draw[->] (1) -- (5);
-		\draw[->] (6) -- (4);
-		\draw[->] (7) -- (5);
-	\end{tikzpicture}
-	\caption{DAG for the RMF model.}
-	\label{fig:DAG_model}
-\end{figure}
 
 As previously stated, our objective is to infer the occurrence or absence of metabolites across a collection of samples, which are differentiated by discrete dimensions such as species, tissue type, and environmental conditions or any other arbitrary dimension. We hypothesize that the distribution pattern of these metabolites is moderated by shared characteristics within each dimension. For instance, metabolites can exhibit a similar distribution across phylogenetically close species, or if their synthesis pathways are interrelated. To quantitatively represent such similarities, we use a Markov random field approach \cite{sherringtonSolvableModelSpinGlass1975, kindermannMarkovRandomFields1980}.
 
@@ -490,6 +479,23 @@ The clique function $\phi(c)$
 
 where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{\nu(c)}$ to indicate whether the node in the variable dimension of $c$ of $x$ is a root and $p_{c}(x)$ to identify the variable $z \in c$ for which $\delta_{\nu(c)}(z) = p(\delta_{\nu(c)}(x))$.
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+		\node[main] (1) {$\boldmath{x}$};
+		\node[draw] (4) [below right of=1] {$d_{j}$};
+		\node[draw] (5) [below left of=1] {$L$};
+		\node[main] (6) [above right of=4] {$\epsilon_j$};
+		\node[main] (7) [above left of=5] {$R$};
+		
+		\draw[->] (1) -- (4);
+		\draw[->] (1) -- (5);
+		\draw[->] (6) -- (4);
+		\draw[->] (7) -- (5);
+	\end{tikzpicture}
+	\caption{DAG for the RMF model.}
+	\label{fig:DAG_model}
+\end{figure}
 
 In \Cref{fig:DAG_model}, we illustrate a possible Directed Acyclic Graph (DAG) representation of the proposed model.
 
@@ -499,7 +505,7 @@ The probabilities of the data given $x$ were formulated employing the same model
 \section{Graph Convolution Neural Network (GraphSAGE)}\label{sec:theory:HinSAGE}
 The low-dimensional representation of nodes within large graphs plays a critical role in various domains of scientific research and industrial applications, such as bioinformatics, social networks, and content recommendation systems. The utilization of these embeddings has proven effective in diverse prediction tasks, including clustering, node classification, and link prediction. However, traditional methods for generating these embeddings have predominantly focused on the transductive setting, requiring all nodes to be present during training and thus limiting generalization to unseen nodes or entirely new subgraphs \cite{groverNode2vecScalableFeature2016, perozziDeepWalkOnlineLearning2014}.
 
-GraphSAGE (SAmple and aggreGatE) \cite{hamiltonInductiveRepresentationLearning2017} is presented as a solution to this challenge, offering a general inductive framework that leverages both node feature information and topological structure. Unlike transductive approaches, which rely on matrix factorization and are constrained to fixed graphs, GraphSAGE is designed to efficiently generate embeddings for previously unseen nodes.
+GraphSAGE (SAmple and aggreGatE) \cite{hamiltonInductiveRepresentationLearning2017} was presented as a solution to this challenge, offering a general inductive framework that leverages both node feature information and topological structure. Unlike transductive approaches, which rely on matrix factorization and are constrained to fixed graphs, GraphSAGE is designed to efficiently generate embeddings for previously unseen nodes.
 
 The novelty of GraphSAGE lies in its ability to learn a function that generates embeddings through the sampling and aggregation of features from a node's local neighbourhood. It utilizes a set of trainable aggregator functions that encapsulate information from different search depths (hops), or away from a given node. By simultaneously learning the topological structure and distribution of node features in the neighbourhood, GraphSAGE accommodates feature-rich graphs as well as graphs lacking specific node features.
 
@@ -507,8 +513,7 @@ The applicability of GraphSAGE extends beyond simple convolutions, embracing a f
 
 GraphSAGE is particularly well-suited for the task of predicting which molecule is present in which species due to its robust inductive learning framework that generalizes to unseen nodes and subgraphs. In the context of biological data, such as molecular structures and species interactions, GraphSAGE's ability to leverage both the topological structure and node feature information offers a powerful means to understand the complex relationships within and across molecular graphs. Its novel approach of sampling and aggregating features from a node's local neighbourhood enables the capture of intricate patterns and structural properties that can be essential in identifying molecular presence across species. Furthermore, the inductive nature of GraphSAGE allows for the efficient generalization across different organisms, facilitating the prediction in entirely new or evolving graphs.
 
-
-TODO : add that we will use HinSAGE and not GraphSAGE. 
+HinSAGE, a derivative of GraphSAGE, has been specifically designed to handle heterogeneous graphs, where nodes and edges can be of various types. Developed by CSIRO's Data61, HinSAGE adeptly extends the foundational principles of GraphSAGE to contexts where the graph's heterogeneity introduces additional complexities. Unlike homogeneous graphs where the relation between nodes is more uniform, heterogeneous graphs present varying relationships and patterns, which HinSAGE is explicitly tailored to capture. By learning distinct embeddings for different types of nodes and relations, HinSAGE can uncover nuanced relationships within complex networks. This makes HinSAGE especially valuable for tasks such as predicting links within a bipartite graph, where one set of nodes represents species and another molecules. HinSAGE's capability to seamlessly navigate the intricacies of such heterogeneous structures ensures a richer and more accurate representation of the connections, fostering improved predictive accuracy for link prediction tasks in biological contexts where species-molecule interactions need to be discerned.
 
 \chapter{Methods}\label{chap:Methods}
 \section{Naive model}
@@ -525,7 +530,7 @@ This systematic approach resulted in the production of a simulated $x$ and a cor
 All codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
  
 \section{Random Markov Field}
-Due to time constraints of the thesis, test and simulation for this model were not performed.
+Due to time constraints of the thesis, test and simulation for this model were not performed. Code is available on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket}.
 
 \section{HinSAGE}\label{sec:methods:HinSAGE}
 The LOTUS database was aggregated to include only unique pairs of molecules and species. Once aggregated, the data was randomly partitioned into two subsets: 70\% allocated for training and 30\% for testing, adhering to common practices in machine learning and data analysis.
@@ -536,22 +541,53 @@ The species' features were defined by extracting their phylogenetic information 
 
 In the preprocessing stage, features corresponding to both species characteristics and molecules' Classyfire properties were transformed through binary encoding. This transformation was essential to represent these categorical attributes as numerical values, thus making them suitable as features for the nodes within the graph. In the case of the molecules, two different sets of features, namely the binary-encoded Classyfire attributes and the Morgan Fingerprint, were concatenated to form a unified feature vector.
 
-The model training was carried out using the Stellargraph library \cite{StellarGraphMachineLearning2018}. Two distinct models were trained to handle different relationships within the graph; one was tailored to the edges labeled "has" and the other to the edges described as "present in."
+The model training was carried out using the Stellargraph library \cite{StellarGraphMachineLearning2018}. Two distinct models were trained to handle different relationships within the graph; one was tailored to the edges labeled "has" and the other to the edges described as "present in".
 
 The HinSAGE models were configured with two layers, comprising 1024 neurons in each layer. The first layer was designed with a neighborhood sampling size of 3, enabling the model to encapsulate the local structural information, while the second layer utilized a sampling size of 1, thus focusing on immediate neighbors. By employing this hierarchical structure, the models could capture different scales of locality in the graph.
 
 Furthermore, the HinSAGE models were implemented with a mean aggregator function, which served to combine the features of the neighboring nodes, thus generating a representative feature vector for each target node. A dropout rate of 0.3 was applied to mitigate the risk of overfitting, and "elu" and "selu" activation functions were utilized in the respective layers. These activation functions were chosen for their properties in mitigating vanishing gradient problems, thereby aiding the convergence of the model during the training process.
 
-All codes are available on \href{https://github.com/anticipated-lotus/GNN}{Github}
+All codes are available on \href{https://github.com/anticipated-lotus/GNN}{Github}.
 
 
 \chapter{Results and Discussion}
 \section{Naive approach}
-Before working on our data, we decided to simulate some of our data to see if we could then estimate the parameters of our model based on that. Simulations were performed. We simulated 100 molecules and 10 species. MCMC was performed for estimating $\gamma$ and $\delta$. This worked nicely. Gibbs sampling for estimating $x$ worked well. Rest didn't work. 
+In the preliminary stages of our research, we recognized the necessity to understand the behaviour of our model prior to applying it to the actual dataset. To achieve this, we carried out a series of simulations to assess if the model's parameters could be accurately estimated based on these synthetic data.
+
+Specifically, we simulated 100 molecules and 10 species in alignment with the theoretical framework described by Equations \ref{eq:prob lotus given x and Rsm} and \ref{eq:research effort}.
+
+For the parameter estimation process, we employed Markov Chain Monte Carlo (MCMC) techniques to accurately estimate the parameters $\gamma$ and $\delta$. The results of this estimation process were consistent and close to our simulated values, demonstrating the effectiveness of the approach.
+
+Furthermore, we utilized Gibbs sampling as a specific tool within the MCMC framework to estimate the variable $x$. This method too yielded satisfactory results, corroborating the validity of our model in this aspect.
+
+However, the challenges encountered during the modelling and simulation process were primarily centred around the convergence of the axis-specific intercepts $\mu$. This crucial component, detailed in Equation \ref{eq:logit of X}, resisted precise estimation through our initially chosen techniques. During this period of reevaluation, the proposition of interpreting our data as a graph surfaced, adding a new dimension to our perspective. Persisting with our original data treatment no longer seemed intuitive. Given the inherent structure and relationships in our dataset, transitioning to a graph-based approach felt more logical and natural. As a result, the inability to accurately estimate $\mu$ and the allure of a graph-centric methodology prompted us to explore alternative models and techniques, seeking a better alignment with the intrinsic characteristics of our data.
+
+To reproduce our simulations, codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
 
 \section{Random Markov Field}
+Due to time constraints of the thesis, test and simulation for this model were not performed.
+
+However this could work since paper TODO $\ldots$
 
 \section{HinSAGE}
+After evaluating the models using unseen edge data, the performance metrics revealed differing accuracy levels for each model. Specifically, the model trained to predict the "present in" relationships exhibited an accuracy of 0.92. In contrast, the model aimed at predicting the "has" relationships demonstrated an accuracy of 0.8.
+
+It is important to note that the threshold for determining the presence or absence of metabolites was set at a probability value of 0.5. Consequently, probabilities exceeding this threshold were categorized as a presence, denoted as $x=1$, whereas values below this threshold were classified as an absence, represented as $x=0$.
+
+
+
+
+
+
+
+
+
+
+We then decided to try to anticipate the entire LOTUS database i.e. get the probability of any combination of species-molecule pair. This resulted in a TODO. 
+
+
+Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have not discovered yet.
+
 
 %\section{Challenges: Data Sparsity and Detection Uncertainty}
 
@@ -560,6 +596,12 @@ Before working on our data, we decided to simulate some of our data to see if we
 
 
 \chapter{Conclusion and Future Work}
+Question 1 : Do you want LOTUS anticipated ? 
+
+Question 2 : Do you want the true presence/absence ?
+
+
+Future work : Continue developing RMF. As shown in paper \cite{jiaGraphBeliefPropagation2021}, both model can work. 
 \section{Knowledge Graph Completion}
 Knowledge Graphs (KGs) provide a robust technique for the consolidation of diverse data and the modelling of complex interactions, crucial for areas like forecasting the natural products present in various species \cite{ehrlingerDefinitionKnowledgeGraphs2016}. 
 
