@@ -51,6 +51,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \usepackage{amstext, amsfonts, amsmath, amsbsy, amssymb}
 \usepackage{tikz}
 \usepackage{booktabs}
+\usepackage{pgfplots}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -224,7 +225,7 @@ Natural Products (NPs) are chemical entities biosynthesized by living organisms.
 
 Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
 
-Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life.
+Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life. The goal of this project is to develop such a model.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -335,7 +336,7 @@ The goal of this project is to develop such a model and to train it using large-
 
 
 \chapter{Theoretical introduction}\label{chap:Theoretical introduction}
-Graphs serve as an ideal model for systems characterized by interdependent components, with nodes representing individual components and edges representing their interactions \cite{trudeauIntroductionGraphTheory1993}. For instance, within a biochemical context, a graph might represent the intricate network of molecules within an organism, with each node signifying a different molecule and each edge capturing their interactions or reactions.
+In the domain of mathematical structures, a graph represents a compilation of entities, termed as vertices or nodes, and their interconnections, designated as edges or links. Vertices act as discrete points or units, while edges denote the relationships or associations between pairs of these points. Within the context of biology, for instance, a graph can depict the intricate web of interactions among proteins in a cellular system: each protein being represented by a node, and the physical or functional interactions between them signified by an edge \cite{trudeauIntroductionGraphTheory1993}. 
 
 Often, these nodes carry specific attributes. In our work, these might include attributes such as the molecule's atomic structure, size, or charge. However, the acquisition of comprehensive attribute data can be challenging due to obstacles in data collection, inherent complexity, or, in some cases, privacy concerns. To mitigate this, graph-based semi-supervised learning, also known as node classification, is employed to predict missing attributes (i.e., labels y) for some nodes given known attributes (i.e., features x). This strategy has been effective in a myriad of applications, including predicting molecular functions and categorization of substances \cite{NIPS2016_390e9825, liDeeperInsightsGraph2018}.
 
@@ -367,6 +368,58 @@ where $\bmu_c=(\mu^{(1)}_{\tau_1(c)}, \ldots, \mu^{(T)}_{\tau_T(c)})$ is a vecto
 \end{equation}
 
 Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the compartment index $\tau_t(c)$ along axis $t$, the $\sigma_{tf}, f=1, \ldots, F_t,$ are the $F_t$ known covariance matrices between entries along axis $t$, and the $\alpha_{tf}$ are positive scalars.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=middle,
+			xlabel=\(x\),
+			yticklabel style={
+				/pgf/number format/fixed,
+				/pgf/number format/precision=1
+			},
+			ytick={0,0.5,1},
+			xtick={-10,-5,0,5,10},
+			grid,
+			domain=-15:15,
+			samples=100,
+			ymax=1.2, % Adjusted y-axis to go a bit above 1
+			ymin=-0.2
+			]
+			\addplot[blue,thick] {1/(1+exp(-0.5*x))};
+			\addplot[dashed, black, thick] {1}; % Dashed horizontal line at y=1
+			\fill [black] (axis cs:2.5,0) circle (2pt);
+			\fill [red] (axis cs:1.5, 0) circle (1pt); 
+			\fill [red] (axis cs:3.5, 0) circle (1pt); 
+			\addplot[black, thin, dashed] coordinates {(2.5,-0.2) (2.5,1.2)};
+			\addplot[red, thin, dashed] coordinates {(1.5,-0.2) (1.5,1.2)};
+			\addplot[red, thin, dashed] coordinates {(3.5,-0.2) (3.5,1.2)};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Example of sigmoid function TODO}
+	\label{fig:sigmoid function}
+\end{figure}
+
+\usetikzlibrary{positioning}
+\begin{tikzpicture}[node distance=1.5cm]
+	% Nodes
+	\node[circle, draw] (A) {A};
+	\node[circle, draw, right=of A] (B) {B};
+	\node[circle, draw, right=of B] (C) {C};
+	\node[circle, draw, below=of A] (D) {D};
+	\node[circle, draw, below=of B] (E) {E};
+	\node[circle, draw, below=of C] (F) {F};
+	
+	% Edges
+	\draw (A) -- (B);
+	\draw (B) -- (C);
+	\draw (A) -- (D);
+	\draw (B) -- (E);
+	\draw (C) -- (F);
+	\draw (D) -- (E);
+	\draw (E) -- (F);
+\end{tikzpicture}
 	
 	\subsection{Emission probabilities}\label{subsec:emission probabilities}
 	
@@ -428,7 +481,7 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 			\draw[->] (6) -- (4);
 			\draw[->] (7) -- (5);
 		\end{tikzpicture}
-	\caption{DAG of the \textit{naive model}.}
+	\caption{DAG of the \textit{naive model}. $x$ represents the presence/absence of a molecule in a specific species. With $\mu$ the average presence along a specific axis, $\alpha$ and $\beta$ an axis specific intercept and a positive scalar respectively. $R$ represents the research effort given for $x$, $L$ is the occurrence of $x$ in the LOTUS database and $\epsilon_j$ the $j^{th}$ mass spectrometry run for a specific species. }
 	\label{fig:DAG naive model}
 	\end{figure}
 
@@ -493,7 +546,7 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 		\draw[->] (6) -- (4);
 		\draw[->] (7) -- (5);
 	\end{tikzpicture}
-	\caption{DAG for the RMF model.}
+	\caption{DAG for the RMF model. $x$ represents the presence/absence of a molecule in a specific species. $R$ represents the research effort given for $x$, $L$ is the occurrence of $x$ in the LOTUS database and $\epsilon_j$ the $j^{th}$ mass spectrometry run for a specific species.}
 	\label{fig:DAG_model}
 \end{figure}
 
@@ -530,7 +583,7 @@ This systematic approach resulted in the production of a simulated $x$ and a cor
 All codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
  
 \section{Random Markov Field}
-Due to time constraints of the thesis, test and simulation for this model were not performed. Code is available on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket}.
+Due to time constraints of the thesis, test and simulation for this model were not performed. Code is available both on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket} and on \href{https://github.com/anticipated-lotus/metabolite_inference}{GitHub}.
 
 \section{HinSAGE}\label{sec:methods:HinSAGE}
 The LOTUS database was aggregated to include only unique pairs of molecules and species. Once aggregated, the data was randomly partitioned into two subsets: 70\% allocated for training and 30\% for testing, adhering to common practices in machine learning and data analysis.
@@ -583,10 +636,10 @@ It is important to note that the threshold for determining the presence or absen
 
 
 
-We then decided to try to anticipate the entire LOTUS database i.e. get the probability of any combination of species-molecule pair. This resulted in a TODO. 
+TODO We then decided to try to anticipate the entire LOTUS database i.e. get the probability of any combination of species-molecule pair. This resulted in a $\ldots$ 
 
 
-Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have not discovered yet.
+Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
 
 
 %\section{Challenges: Data Sparsity and Detection Uncertainty}
