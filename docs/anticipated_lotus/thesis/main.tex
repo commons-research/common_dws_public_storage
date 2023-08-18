@@ -52,6 +52,8 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \usepackage{tikz}
 \usepackage{booktabs}
 \usepackage{pgfplots}
+\usepackage{caption}
+\usepackage{subcaption}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -225,7 +227,7 @@ Natural Products (NPs) are chemical entities biosynthesized by living organisms.
 
 Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
 
-Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life. The goal of this project is to develop such a model.
+Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life. The goal of this project is to develop such a model. TODO
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -234,7 +236,7 @@ Some efforts have been made to anticipate metabolic networks or the occurrences 
 
 \begin{acknowledgements}\label{sec:acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots TODO
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -251,13 +253,18 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 %
-%\begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
-%
-%\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
-%\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
-%\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
-%
-%\end{abbreviations}
+\begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
+	
+\textbf{CC}  & \textbf{C}ollective \textbf{C}lassification \\
+\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
+\textbf{GCN(s)} & \textbf{G}raph \textbf{C}onvolutional \textbf{N}etwork(s) \\
+\textbf{GNN(s)} & \textbf{G}raph \textbf{N}eural \textbf{N}etwork(s) \\
+\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
+\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
+
+
+
+\end{abbreviations}
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
@@ -397,32 +404,13 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 			\addplot[red, thin, dashed] coordinates {(3.5,-0.2) (3.5,1.2)};
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Example of sigmoid function TODO}
-	\label{fig:sigmoid function}
+	\caption{Illustration of the proposed model on a logistic function given by \Cref{eq:logit of X}. The black vertical line at $x=2.5$ denotes the mean presence of a metabolite in the system. Flanking this, the two red dashed lines depict potential shifts in this average presence due to the influence of covariates, denoted as $\epsilon_c$ in \Cref{eq:logit of X}.}
+	\label{fig: example sigmoid function}
 \end{figure}
 
-\usetikzlibrary{positioning}
-\begin{tikzpicture}[node distance=1.5cm]
-	% Nodes
-	\node[circle, draw] (A) {A};
-	\node[circle, draw, right=of A] (B) {B};
-	\node[circle, draw, right=of B] (C) {C};
-	\node[circle, draw, below=of A] (D) {D};
-	\node[circle, draw, below=of B] (E) {E};
-	\node[circle, draw, below=of C] (F) {F};
-	
-	% Edges
-	\draw (A) -- (B);
-	\draw (B) -- (C);
-	\draw (A) -- (D);
-	\draw (B) -- (E);
-	\draw (C) -- (F);
-	\draw (D) -- (E);
-	\draw (E) -- (F);
-\end{tikzpicture}
+In \Cref{fig: example sigmoid function}, a graphical representation illustrates the probabilistic association of a metabolite's presence within a particular species, predicated upon its mean prevalence across a taxonomic spectrum (denoted by the black vertical line at $x=2.5$). Consider, for example, a metabolite ubiquitously observed across various taxa. If a distinct clade within the phylogenetic tree conspicuously lacks this metabolite, the likelihood of its occurrence in species phylogenetically proximate to this clade diminishes — as indicated by the leftmost red line.
 	
 	\subsection{Emission probabilities}\label{subsec:emission probabilities}
-	
 	We consider several different types of data to inform about $\x$. This data may be of different dimensionality, e.g. may only discriminate along a subset of the axes or at a higher scale along some axes. For a particular data set $d=1, \ldots, D$, let $\bxi_d=\{\xi_{d1}, \ldots, \xi_{du}\}$ denote the sets of distinguished compartments. We then define the presence of ($\x(\xi_{du})=1$) or absence ($\x(\xi_{du})=0$) in set $\xi_{du}, u=1\ldots,U,$ as
 	
 	\begin{equation}
@@ -435,7 +423,7 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 	\subsubsection{Mass spectrometry}
 	 Let $\bd _{sj}=(d_{sj1}, \ldots, d_{sjM})$ be the presence-absence vector of each metabolite $m$ obtained with mass-spectrometry run $j=1,\ldots,J_s$ performed on species $s$. Assuming a false-positive and false-negative error rates $\epsilon_{01}$ and $\epsilon_{10}$, respectively, we have
 	
-	\begin{equation}
+	\begin{equation}\label{eq:mass spec error rate}
 		\P(\bd_{sj}|\x, \epsilon_{01}, \epsilon_{10}) = \prod_m \left[ x_{sm}\left(\epsilon_{10}^{1-d_{sjm}}(1-\epsilon_{10})^{d_{sjm}}\right) + (1-x_{sm})\left( \epsilon_{01}^{d_{sjm}}(1-\epsilon_{01})^{1-d_{sjm}}\right)\right]
 	\end{equation}
 	\subsubsection{LOTUS}
@@ -460,12 +448,12 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 	\begin{equation}\label{eq:research effort}
 		R_{ms} = 1 - e^{-\gamma P_m - \delta Q_s}
 	\end{equation}
+	
 	with positives scalars $\gamma$ and $\delta$. In \Cref{fig:DAG naive model} we show a  Directed Acyclic Graph (DAG) of the proposed model. 
-
-
-	\begin{figure}
-	\centering
-	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+	
+	\begin{figure}[t]
+		\centering
+		\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
 			\node[main] (1) {$\boldmath{x}$};
 			\node[main] (2) [above left of=1] {$\mu$};
 			\node[main] (3) [above right of=1] {$\alpha, \beta$};
@@ -473,7 +461,7 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 			\node[draw] (5) [below left of=1] {$L$};
 			\node[main] (6) [above right of=4] {$\epsilon_j$};
 			\node[main] (7) [above left of=5] {$R$};
-	
+			
 			\draw[->] (2) -- (1);
 			\draw[->] (3) -- (1);
 			\draw[->] (1) -- (4);
@@ -481,9 +469,10 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 			\draw[->] (6) -- (4);
 			\draw[->] (7) -- (5);
 		\end{tikzpicture}
-	\caption{DAG of the \textit{naive model}. $x$ represents the presence/absence of a molecule in a specific species. With $\mu$ the average presence along a specific axis, $\alpha$ and $\beta$ an axis specific intercept and a positive scalar respectively. $R$ represents the research effort given for $x$, $L$ is the occurrence of $x$ in the LOTUS database and $\epsilon_j$ the $j^{th}$ mass spectrometry run for a specific species. }
-	\label{fig:DAG naive model}
+		\caption{In the Directed Acyclic Graph (DAG) representing the \textit{naive model}, the variable $x$ denotes the binary state of a molecule's presence or absence within a designated species. Herein, $\mu$ signifies the mean presence along a specified axis. Both $\alpha$ and $\beta$ denote the axis-specific intercept and a positive scalar constant, respectively. The parameter $R$ stands for the dedicated research effort pertaining to $x$ while $L$ is indicative of the frequency of $x$ within the LOTUS database. The term $d_j$ characterizes the $j^{th}$ iteration of mass spectrometry executed for the particular species. Finally, $\epsilon_j$ quantifies the affiliated error rates, as elaborated in \Cref{eq:mass spec error rate}. }
+		\label{fig:DAG naive model}
 	\end{figure}
+
 
 \section{Random Markov Field}\label{sec:methods:random markov field}
 
@@ -534,6 +523,86 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 
 \begin{figure}[h]
 	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=2]
+			% Define nodes
+			\node[fill=black, circle, draw] (center) at (1,1) {}; % Central node
+			\node[fill=gray, circle, draw] (top) at (1,2) {};     % Top node
+			\node[fill=gray, circle, draw] (bottom) at (1,0) {};  % Bottom node
+			\node[fill=gray, circle, draw] (left) at (0,1) {};   % Left node
+			\node[fill=gray, circle, draw] (right) at (2,1) {};  % Right node
+			\node[fill=white, circle, draw] (topleft) at (0,2) {};
+			\node[fill=white, circle, draw] (topright) at (2,2) {};
+			\node[fill=white, circle, draw] (bottomleft) at (0,0) {};
+			\node[fill=white, circle, draw] (bottomright) at (2,0) {};
+			
+			% Connect nodes
+			\draw (center) -- (top);
+			\draw (center) -- (bottom);
+			\draw (center) -- (left);
+			\draw (center) -- (right);
+			\draw (top) -- (topleft);
+			\draw (top) -- (topright);
+			\draw (bottom) -- (bottomleft);
+			\draw (bottom) -- (bottomright);
+			\draw (left) -- (topleft);
+			\draw (left) -- (bottomleft);
+			\draw (right) -- (topright);
+			\draw (right) -- (bottomright);
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:Ising model}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\begin{tikzpicture}[scale=2]
+			% Define nodes
+			\node[fill=white, circle, draw] (center) at (1,1) {};      % Central node
+			\node[fill=gray, circle, draw] (top) at (1,2) {};         % Top node
+			\node[fill=white, circle, draw] (bottom) at (1,0) {};      % Bottom node
+			\node[fill=gray, circle, draw] (left) at (0,1) {};        % Left node
+			\node[fill=white, circle, draw] (right) at (2,1) {};       % Right node
+			\node[fill=black, circle, draw] (topleft) at (0,2) {};
+			\node[fill=gray, circle, draw] (topright) at (2,2) {};
+			\node[fill=gray, circle, draw] (bottomleft) at (0,0) {};
+			\node[fill=gray, circle, draw] (bottomright) at (2,0) {};
+			
+			% Connect nodes with straight lines
+			\draw (center) -- (top);
+			\draw (center) -- (bottom);
+			\draw (center) -- (left);
+			\draw (center) -- (right);
+			\draw (top) -- (topleft);
+			\draw (top) -- (topright);
+			\draw (bottom) -- (bottomleft);
+			\draw (bottom) -- (bottomright);
+			\draw (left) -- (topleft);
+			\draw (left) -- (bottomleft);
+			\draw (right) -- (topright);
+			\draw (right) -- (bottomright);
+			
+			% Connect nodes with parabolic edges
+			\draw (topleft) .. controls (-0.4,1) .. (bottomleft);
+			\draw (topright) .. controls (2.4,1) .. (bottomright);
+			\draw (topleft) .. controls (1.2, 1.2) .. (bottomright);
+			\draw (topleft) .. controls (1, 2.4) .. (topright);
+			\draw (left) .. controls (0.5, 0.5) .. (bottomright);
+		\end{tikzpicture}
+		\caption{}
+		\label{fig: Ising model higher order}
+	\end{subfigure}
+	\caption{Representation of a Markov random field through an undirected graphical model where vertices depict arbitrary values and edges denote inter-nodes connectivity. \textbf{(a)} The Ising model \cite{isingBeitragZurTheorie1925} characterizes nearest-neighbour interactions. In this model, given the state of the grey nodes, the central black node becomes conditionally independent of all external nodes. \textbf{(b)} An advanced structural representation, incorporating higher-order interactions beyond the traditional Ising model. Analogously in our proposed model, interactions extend beyond immediate neighbours, encompassing higher-order relationships as described by the trees $\T$. The illustration was conceptualized based on insights and frameworks derived from \cite{MarkovRandomField} and \cite{acarMarkovRandomField2016}. }
+	\label{fig:MRF}
+\end{figure}
+
+\Cref{fig:MRF} shows MRF TODO
+
+\subsection{Data sources}
+The probabilities of the data given $x$ were formulated employing the same model as delineated in \Cref{subsec: data sources}.
+\begin{figure}[h]
+	\centering
 	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
 		\node[main] (1) {$\boldmath{x}$};
 		\node[draw] (4) [below right of=1] {$d_{j}$};
@@ -546,14 +615,12 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 		\draw[->] (6) -- (4);
 		\draw[->] (7) -- (5);
 	\end{tikzpicture}
-	\caption{DAG for the RMF model. $x$ represents the presence/absence of a molecule in a specific species. $R$ represents the research effort given for $x$, $L$ is the occurrence of $x$ in the LOTUS database and $\epsilon_j$ the $j^{th}$ mass spectrometry run for a specific species.}
+	\caption{In the Directed Acyclic Graph (DAG) for the RMF model, $x$ denotes the binary state of a molecule's presence or absence in a designated species. $R$ signifies the research effort allocated towards the determination of $x$. $L$ embodies the incidence of xx within the LOTUS database. The term $d_j$ is representative of the $j^{th}$ iteration of mass spectrometry performed on the specific species in question. Lastly, $\epsilon_j$ quantifies the associated error rates, as detailed in \Cref{eq:mass spec error rate}.}
 	\label{fig:DAG_model}
 \end{figure}
 
-In \Cref{fig:DAG_model}, we illustrate a possible Directed Acyclic Graph (DAG) representation of the proposed model.
+In \Cref{fig:DAG_model}, we illustrate the Directed Acyclic Graph (DAG) representation of the proposed model.
 
-\subsection{Data sources}
-The probabilities of the data given $x$ were formulated employing the same model as delineated in \Cref{subsec: data sources}.
 
 \section{Graph Convolution Neural Network (GraphSAGE)}\label{sec:theory:HinSAGE}
 The low-dimensional representation of nodes within large graphs plays a critical role in various domains of scientific research and industrial applications, such as bioinformatics, social networks, and content recommendation systems. The utilization of these embeddings has proven effective in diverse prediction tasks, including clustering, node classification, and link prediction. However, traditional methods for generating these embeddings have predominantly focused on the transductive setting, requiring all nodes to be present during training and thus limiting generalization to unseen nodes or entirely new subgraphs \cite{groverNode2vecScalableFeature2016, perozziDeepWalkOnlineLearning2014}.
@@ -645,7 +712,7 @@ Limitations: Sampling negatives edges is sampling only edges that do not exist y
 %\section{Challenges: Data Sparsity and Detection Uncertainty}
 
 
-\chapter{Applications and Implications}
+%\chapter{Applications and Implications}
 
 
 \chapter{Conclusion and Future Work}
@@ -654,7 +721,8 @@ Question 1 : Do you want LOTUS anticipated ?
 Question 2 : Do you want the true presence/absence ?
 
 
-Future work : Continue developing RMF. As shown in paper \cite{jiaGraphBeliefPropagation2021}, both model can work. 
+Future work : Continue developing RMF. As shown in paper \cite{jiaGraphBeliefPropagation2021}, both model can work. Restart HinSAGE and include all phylogenies. Include mass spectrometry runs in all models. Knowledge graph completion. Add more data coming from knowledge graph completion. explain what it is. Insist on continuing on MRF since it has great potential. 
+
 \section{Knowledge Graph Completion}
 Knowledge Graphs (KGs) provide a robust technique for the consolidation of diverse data and the modelling of complex interactions, crucial for areas like forecasting the natural products present in various species \cite{ehrlingerDefinitionKnowledgeGraphs2016}. 
 
