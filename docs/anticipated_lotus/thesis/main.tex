@@ -259,6 +259,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
 \textbf{GCN(s)} & \textbf{G}raph \textbf{C}onvolutional \textbf{N}etwork(s) \\
 \textbf{GNN(s)} & \textbf{G}raph \textbf{N}eural \textbf{N}etwork(s) \\
+\textbf{(k)PCA} & (kernel) \textbf{P}rincipal \textbf{C}omponent \textbf{A}nalysis \\
 \textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
 \textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
 
@@ -469,7 +470,7 @@ In \Cref{fig: example sigmoid function}, a graphical representation illustrates 
 			\draw[->] (6) -- (4);
 			\draw[->] (7) -- (5);
 		\end{tikzpicture}
-		\caption{In the Directed Acyclic Graph (DAG) representing the \textit{naive model}, the variable $x$ denotes the binary state of a molecule's presence or absence within a designated species. Herein, $\mu$ signifies the mean presence along a specified axis. Both $\alpha$ and $\beta$ denote the axis-specific intercept and a positive scalar constant, respectively. The parameter $R$ stands for the dedicated research effort pertaining to $x$ while $L$ is indicative of the frequency of $x$ within the LOTUS database. The term $d_j$ characterizes the $j^{th}$ iteration of mass spectrometry executed for the particular species. Finally, $\epsilon_j$ quantifies the affiliated error rates, as elaborated in \Cref{eq:mass spec error rate}. }
+		\caption{In the Directed Acyclic Graph (DAG) representing the \textit{naive model}, the variable $x$ denotes the binary state of a molecule's presence or absence within a designated species. Herein, $\mu$ signifies the mean presence along a specified axis. Both $\alpha$ and $\beta$ denote the axis-specific intercept and a positive scalar constant, respectively. The parameter $R$ stands for the dedicated research effort given to find $x$ while $L$ is indicative of the presence/absence of $x$ within the LOTUS database. The term $d_j$ characterizes the $j^{th}$ iteration of mass spectrometry executed for the particular species. Finally, $\epsilon_j$ quantifies the affiliated error rates, as elaborated in \Cref{eq:mass spec error rate}. }
 		\label{fig:DAG naive model}
 	\end{figure}
 
@@ -593,11 +594,11 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 		\caption{}
 		\label{fig: Ising model higher order}
 	\end{subfigure}
-	\caption{Representation of a Markov random field through an undirected graphical model where vertices depict arbitrary values and edges denote inter-nodes connectivity. \textbf{(a)} The Ising model \cite{isingBeitragZurTheorie1925} characterizes nearest-neighbour interactions. In this model, given the state of the grey nodes, the central black node becomes conditionally independent of all external nodes. \textbf{(b)} An advanced structural representation, incorporating higher-order interactions beyond the traditional Ising model. Analogously in our proposed model, interactions extend beyond immediate neighbours, encompassing higher-order relationships as described by the trees $\T$. The illustration was conceptualized based on insights and frameworks derived from \cite{MarkovRandomField} and \cite{acarMarkovRandomField2016}. }
+	\caption{Representation of a Markov random field through an undirected graphical model where vertices depict arbitrary values and edges denote inter-nodes connectivity. \textbf{(a)} The Ising model \cite{isingBeitragZurTheorie1925} characterizes nearest-neighbour interactions. In this model, given the state of the grey nodes, the central black node becomes conditionally independent of all external nodes. \textbf{(b)} An \textit{advanced} structural representation, incorporating higher-order interactions beyond the traditional Ising model. Analogously in our proposed model, interactions extend beyond immediate neighbours, encompassing higher-order relationships as described by the trees $\T$. The illustration was conceptualized based on insights and frameworks derived from \cite{MarkovRandomField} and \cite{acarMarkovRandomField2016}. }
 	\label{fig:MRF}
 \end{figure}
 
-\Cref{fig:MRF} shows MRF TODO
+In \Cref{fig:MRF}, a prototypical representation of a Markov Random Field is depicted. The Ising model, as illustrated in \Cref{fig:Ising model}, operates under the premise that a node's state is solely contingent upon its immediate neighbours. Contrarily, our proposed model, akin to the structure presented in \Cref{fig: Ising model higher order}, embodies intricate relationships reminiscent of phylogenetic interconnections. Within our framework, the state of a given node is not merely influenced by its proximal counterparts within the phylogeny, but also by the relational distances encompassing those neighbours.
 
 \subsection{Data sources}
 The probabilities of the data given $x$ were formulated employing the same model as delineated in \Cref{subsec: data sources}.
@@ -618,7 +619,6 @@ The probabilities of the data given $x$ were formulated employing the same model
 	\caption{In the Directed Acyclic Graph (DAG) for the RMF model, $x$ denotes the binary state of a molecule's presence or absence in a designated species. $R$ signifies the research effort allocated towards the determination of $x$. $L$ embodies the incidence of xx within the LOTUS database. The term $d_j$ is representative of the $j^{th}$ iteration of mass spectrometry performed on the specific species in question. Lastly, $\epsilon_j$ quantifies the associated error rates, as detailed in \Cref{eq:mass spec error rate}.}
 	\label{fig:DAG_model}
 \end{figure}
-
 In \Cref{fig:DAG_model}, we illustrate the Directed Acyclic Graph (DAG) representation of the proposed model.
 
 
@@ -633,7 +633,7 @@ The applicability of GraphSAGE extends beyond simple convolutions, embracing a f
 
 GraphSAGE is particularly well-suited for the task of predicting which molecule is present in which species due to its robust inductive learning framework that generalizes to unseen nodes and subgraphs. In the context of biological data, such as molecular structures and species interactions, GraphSAGE's ability to leverage both the topological structure and node feature information offers a powerful means to understand the complex relationships within and across molecular graphs. Its novel approach of sampling and aggregating features from a node's local neighbourhood enables the capture of intricate patterns and structural properties that can be essential in identifying molecular presence across species. Furthermore, the inductive nature of GraphSAGE allows for the efficient generalization across different organisms, facilitating the prediction in entirely new or evolving graphs.
 
-HinSAGE, a derivative of GraphSAGE, has been specifically designed to handle heterogeneous graphs, where nodes and edges can be of various types. Developed by CSIRO's Data61, HinSAGE adeptly extends the foundational principles of GraphSAGE to contexts where the graph's heterogeneity introduces additional complexities. Unlike homogeneous graphs where the relation between nodes is more uniform, heterogeneous graphs present varying relationships and patterns, which HinSAGE is explicitly tailored to capture. By learning distinct embeddings for different types of nodes and relations, HinSAGE can uncover nuanced relationships within complex networks. This makes HinSAGE especially valuable for tasks such as predicting links within a bipartite graph, where one set of nodes represents species and another molecules. HinSAGE's capability to seamlessly navigate the intricacies of such heterogeneous structures ensures a richer and more accurate representation of the connections, fostering improved predictive accuracy for link prediction tasks in biological contexts where species-molecule interactions need to be discerned.
+HinSAGE \cite{StellarGraphMachineLearning2018}, a derivative of GraphSAGE, has been specifically designed to handle heterogeneous graphs, where nodes and edges can be of various types. Developed by CSIRO's Data61, HinSAGE adeptly extends the foundational principles of GraphSAGE to contexts where the graph's heterogeneity introduces additional complexities. Unlike homogeneous graphs where the relation between nodes is more uniform, heterogeneous graphs present varying relationships and patterns, which HinSAGE is explicitly tailored to capture. By learning distinct embeddings for different types of nodes and relations, HinSAGE can uncover nuanced relationships within complex networks. This makes HinSAGE especially valuable for tasks such as predicting links within a bipartite graph, where one set of nodes represents species and another molecules. HinSAGE's capability to seamlessly navigate the intricacies of such heterogeneous structures ensures a richer and more accurate representation of the connections, fostering improved predictive accuracy for link prediction tasks in biological contexts where species-molecule interactions need to be discerned.
 
 \chapter{Methods}\label{chap:Methods}
 \section{Naive model}
@@ -650,7 +650,7 @@ This systematic approach resulted in the production of a simulated $x$ and a cor
 All codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
  
 \section{Random Markov Field}
-Due to time constraints of the thesis, test and simulation for this model were not performed. Code is available both on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket} and on \href{https://github.com/anticipated-lotus/metabolite_inference}{GitHub}.
+Due to time constraints of the thesis, test and simulation for this model were not performed. Code is available both on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket} and \href{https://github.com/anticipated-lotus/metabolite_inference}{GitHub}.
 
 \section{HinSAGE}\label{sec:methods:HinSAGE}
 The LOTUS database was aggregated to include only unique pairs of molecules and species. Once aggregated, the data was randomly partitioned into two subsets: 70\% allocated for training and 30\% for testing, adhering to common practices in machine learning and data analysis.
@@ -665,9 +665,9 @@ The model training was carried out using the Stellargraph library \cite{StellarG
 
 The HinSAGE models were configured with two layers, comprising 1024 neurons in each layer. The first layer was designed with a neighborhood sampling size of 3, enabling the model to encapsulate the local structural information, while the second layer utilized a sampling size of 1, thus focusing on immediate neighbors. By employing this hierarchical structure, the models could capture different scales of locality in the graph.
 
-Furthermore, the HinSAGE models were implemented with a mean aggregator function, which served to combine the features of the neighboring nodes, thus generating a representative feature vector for each target node. A dropout rate of 0.3 was applied to mitigate the risk of overfitting, and "elu" and "selu" activation functions were utilized in the respective layers. These activation functions were chosen for their properties in mitigating vanishing gradient problems, thereby aiding the convergence of the model during the training process.
+Furthermore, the HinSAGE models were implemented with a mean aggregator function, which served to combine the features of the neighboring nodes, thus generating a representative feature vector for each target node. A dropout rate of 0.3 was applied to mitigate the risk of overfitting, and "elu" and "selu" activation functions were utilized in the respective layers. These activation functions were chosen for their properties in mitigating vanishing gradient problems, thereby aiding the convergence of the model during the training process. 
 
-All codes are available on \href{https://github.com/anticipated-lotus/GNN}{Github}.
+We moved forward with an objective to predict the entire scope of the LOTUS database, specifically targeting the probability for every possible species-molecule combination. This analysis covered a total of $5.45 \cdot 10^9$ pairs. All codes are available on \href{https://github.com/anticipated-lotus/GNN}{Github}.
 
 
 \chapter{Results and Discussion}
@@ -678,7 +678,7 @@ Specifically, we simulated 100 molecules and 10 species in alignment with the th
 
 For the parameter estimation process, we employed Markov Chain Monte Carlo (MCMC) techniques to accurately estimate the parameters $\gamma$ and $\delta$. The results of this estimation process were consistent and close to our simulated values, demonstrating the effectiveness of the approach.
 
-Furthermore, we utilized Gibbs sampling as a specific tool within the MCMC framework to estimate the variable $x$. This method too yielded satisfactory results, corroborating the validity of our model in this aspect.
+Furthermore, we utilized Gibbs sampling to estimate the variable $x$. This method too yielded satisfactory results, corroborating the validity of our model in this aspect.
 
 However, the challenges encountered during the modelling and simulation process were primarily centred around the convergence of the axis-specific intercepts $\mu$. This crucial component, detailed in Equation \ref{eq:logit of X}, resisted precise estimation through our initially chosen techniques. During this period of reevaluation, the proposition of interpreting our data as a graph surfaced, adding a new dimension to our perspective. Persisting with our original data treatment no longer seemed intuitive. Given the inherent structure and relationships in our dataset, transitioning to a graph-based approach felt more logical and natural. As a result, the inability to accurately estimate $\mu$ and the allure of a graph-centric methodology prompted us to explore alternative models and techniques, seeking a better alignment with the intrinsic characteristics of our data.
 
@@ -687,26 +687,66 @@ To reproduce our simulations, codes are available on \href{https://github.com/co
 \section{Random Markov Field}
 Due to time constraints of the thesis, test and simulation for this model were not performed.
 
-However this could work since paper TODO $\ldots$
+However this could work since paper TODO 
 
 \section{HinSAGE}
 After evaluating the models using unseen edge data, the performance metrics revealed differing accuracy levels for each model. Specifically, the model trained to predict the "present in" relationships exhibited an accuracy of 0.92. In contrast, the model aimed at predicting the "has" relationships demonstrated an accuracy of 0.8.
 
 It is important to note that the threshold for determining the presence or absence of metabolites was set at a probability value of 0.5. Consequently, probabilities exceeding this threshold were categorized as a presence, denoted as $x=1$, whereas values below this threshold were classified as an absence, represented as $x=0$.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figure/kPCA}
+	\label{fig: kPCA}
+	\caption{TODO}
+\end{figure}
+
+Upon completion of the predictive analysis for the entirety of the LOTUS database, we systematically sampled a dozen species from each primary biological domain, excluding Archaea. Each of these species was associated with $148,190$ probability values. Subsequent to this, a kernel Principal Component Analysis (kPCA) was executed to discern potential variance across the domains. Given the high-dimensional nature of our dataset, kernel Principal Component Analysis (kPCA) emerged as the preferred method over traditional PCA. kPCA's strength lies in its adeptness at managing vast data dimensions and its capacity to capture non-linear relationships between features, something the linear assumptions of PCA might overlook. This inherent capability ensures that kPCA not only reduces data dimensions but also preserves the most salient and intricate relationships within the data.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figure/cholesterol_plot}
+	\caption{TODO}
+	\label{fig: hist cholesterol}
+\end{figure}
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figure/erythromycin_plot}
+	\caption{TODO}
+	\label{fig: hist erythromycin}
+\end{figure}
 
 
+\begin{table}[h]
+	\centering
+	\caption{Top 10 probabilities of Erythromycin. TODO}
+	\begin{tabular}{lr}
+		\toprule
+		Species & Probability \\
+		\midrule
+		Streptomyces diastaticus & 0.9896 \\
+		Streptomyces & 0.9934 \\
+		Micromonospora & 0.9896 \\
+		Streptomyces argillaceus & 0.9926 \\
+		Streptomyces fradiae & 0.9928 \\
+		Streptomyces antibioticus & 0.9917 \\
+		Streptomyces setonii & 0.9897 \\
+		Streptomyces halstedii & 0.9891 \\
+		Streptomyces ansochromogenes & 0.9898 \\
+		Streptomyces diastatochromogenes & 0.9900 \\
+		\bottomrule
+	\end{tabular}
+	\label{table: Erythromycin top scores}
+\end{table}
 
 
+TODO Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
 
-TODO We then decided to try to anticipate the entire LOTUS database i.e. get the probability of any combination of species-molecule pair. This resulted in a $\ldots$ 
+Cholesterol is expected everywhere \cite{o2013merck, international1987iarc} 
 
-
-Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
 
 
 %\section{Challenges: Data Sparsity and Detection Uncertainty}
