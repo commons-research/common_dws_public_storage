@@ -398,8 +398,8 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 			\addplot[blue,thick] {1/(1+exp(-0.5*x))};
 			\addplot[dashed, black, thick] {1}; % Dashed horizontal line at y=1
 			\fill [black] (axis cs:2.5,0) circle (2pt);
-			\fill [red] (axis cs:1.5, 0) circle (1pt); 
-			\fill [red] (axis cs:3.5, 0) circle (1pt); 
+			\fill [red] (axis cs:1.5, 0) circle (1.5pt); 
+			\fill [red] (axis cs:3.5, 0) circle (1.5pt); 
 			\addplot[black, thin, dashed] coordinates {(2.5,-0.2) (2.5,1.2)};
 			\addplot[red, thin, dashed] coordinates {(1.5,-0.2) (1.5,1.2)};
 			\addplot[red, thin, dashed] coordinates {(3.5,-0.2) (3.5,1.2)};
@@ -697,13 +697,16 @@ It is important to note that the threshold for determining the presence or absen
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{figure/kPCA}
-	\label{fig: kPCA}
-	\caption{TODO}
+	\caption{kPCA visualization of sampled species across primary biological domains. The second principal component distinguishes between domains, with potential influences from our GNN's molecular pattern recognition or biases within the LOTUS database.}
+	\label{fig:kPCA}
 \end{figure}
 
-Upon completion of the predictive analysis for the entirety of the LOTUS database, we systematically sampled a dozen species from each primary biological domain, excluding Archaea. Each of these species was associated with $148,190$ probability values. Subsequent to this, a kernel Principal Component Analysis (kPCA) was executed to discern potential variance across the domains. Given the high-dimensional nature of our dataset, kernel Principal Component Analysis (kPCA) emerged as the preferred method over traditional PCA. kPCA's strength lies in its adeptness at managing vast data dimensions and its capacity to capture non-linear relationships between features, something the linear assumptions of PCA might overlook. This inherent capability ensures that kPCA not only reduces data dimensions but also preserves the most salient and intricate relationships within the data.
+Upon completion of the predictive analysis for the entirety of the LOTUS database, we sampled a dozen species from each primary biological domain, excluding Archaea. Each of these species was associated with $148'190$ probability values. Subsequent to this, a kernel Principal Component Analysis (kPCA) was executed to discern potential variance across the domains. Given the high-dimensional nature of our dataset, kernel Principal Component Analysis (kPCA) emerged as the preferred method over traditional PCA. kPCA's strength lies in its adeptness at managing vast data dimensions and its capacity to capture non-linear relationships between features, something the linear assumptions of PCA might overlook. This inherent capability ensures that kPCA not only reduces data dimensions but also preserves the most salient and intricate relationships within the data.
 
+Upon examination of \Cref{fig:kPCA}, a discernible differentiation between the biological domains is evident, notably facilitated by the second principal component. Two hypotheses have been posited to elucidate these observed variances. Firstly, our Graph Neural Network (GNN) might be adept at distinguishing between the domains, thereby faithfully rendering the molecular signatures inherent to each. Alternatively, the kPCA may predominantly be reflecting the molecular biases inherent within the LOTUS database. Given that the LOTUS database structures its data in a molecule-species-paper triad, it stands to reason that a preponderance of extensively researched molecules, meriting scholarly publication, are intrinsically specific to particular domains. This contention finds resonance in \textit{Rutz et al.} \cite{rutzLOTUSInitiativeOpen2022}, which delineates that a substantive majority (exceeding 90\%) of molecules catalogued in LOTUS exhibit domain specificity. Such inherent biases could feasibly account for the observed patterns in the kPCA results. A more granular investigation is requisite to substantiate either of the aforementioned hypotheses.
 
+\Cref{fig: hist cholesterol,fig: hist erythromycin} show examples of distributions of probabilities of all the species against cholesterol and erythromycin respectively. 
+ 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{figure/cholesterol_plot}
@@ -711,6 +714,9 @@ Upon completion of the predictive analysis for the entirety of the LOTUS databas
 	\label{fig: hist cholesterol}
 \end{figure}
 
+According to \cite{o2013merck, international1987iarc}, cholesterol is present everywhere. Our algorithm clearly shows that the majority of species should contain cholesterol. The fact that this works is due to the inherent functioning of GraphSAGE. Indeed since cholesterol is present a lot in the LOTUS database (522 different species) this means that in our graph, cholesterol has many edges, then this means that the algorithm is able to "understand" the context of cholesterol and have a good predictive value. 
+
+However, the algorithm does not need to have many papers. For example erythromycin has only 8 edges. However those edges are extremely local : they are all linked to bacteria and those bacteria are from the Actinobacteria phylum. The algorithm will then predict that most of the species don't have erythromycin (as seen in \Cref{fig: hist erythromycin}) but the ones it predicts to have are all very close to the Actinobacteria phylum (as we can see in \Cref{table: Erythromycin top scores}). 
 
 \begin{figure}[h]
 	\centering
@@ -719,6 +725,7 @@ Upon completion of the predictive analysis for the entirety of the LOTUS databas
 	\label{fig: hist erythromycin}
 \end{figure}
 
+On the other hand, TODO: show image of probability of water across all species. 
 
 \begin{table}[h]
 	\centering
@@ -744,8 +751,6 @@ Upon completion of the predictive analysis for the entirety of the LOTUS databas
 
 
 TODO Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
-
-Cholesterol is expected everywhere \cite{o2013merck, international1987iarc} 
 
 
 
