@@ -223,11 +223,13 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 
 \begin{abstract}\label{sec:abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+TODO 
+
 Natural Products (NPs) are chemical entities biosynthesized by living organisms. Many NPs are metabolites, which can be placed along a specialization gradient from core metabolites that play essential functions and are found in a wide range of organisms to specialized metabolites which are much more restricted across the tree of life.
 
 Specialized metabolites display particular chemical structures and exhibit specific roles and constitute the major part of the current human therapeutic arsenal. Furthermore, their structural characterization and the elucidation of their biological roles are increasingly recognized as fundamental to understanding ecosystems functioning. Their description, however, is not an easy task. Indeed, specialized metabolites are characterized by several levels of complexity. At the scale of a single molecule, their structural complexity explains both their potent biological activities (privileged structures) and their complicated synthetic accessibility. At the organism level, specialized metabolites are found within complex mixtures of extremely diverse chemical classes spanning large dynamic ranges.
 
-Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life. The goal of this project is to develop such a model. TODO
+Some efforts have been made to anticipate metabolic networks or the occurrences of molecules in selected taxa. However, no model has been proposed to predict their occurrence across the tree of life. The goal of this project is to develop such a model. 
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -701,11 +703,9 @@ It is important to note that the threshold for determining the presence or absen
 	\label{fig:kPCA}
 \end{figure}
 
-Upon completion of the predictive analysis for the entirety of the LOTUS database, we sampled a dozen species from each primary biological domain, excluding Archaea. Each of these species was associated with $148'190$ probability values. Subsequent to this, a kernel Principal Component Analysis (kPCA) was executed to discern potential variance across the domains. Given the high-dimensional nature of our dataset, kernel Principal Component Analysis (kPCA) emerged as the preferred method over traditional PCA. kPCA's strength lies in its adeptness at managing vast data dimensions and its capacity to capture non-linear relationships between features, something the linear assumptions of PCA might overlook. This inherent capability ensures that kPCA not only reduces data dimensions but also preserves the most salient and intricate relationships within the data.
+After predicting the entirety of the LOTUS database, we randomly sampled a dozen species from each primary biological domain, excluding Archaea. Each of these species was associated with $148'190$ probability values. Subsequent to this, a kernel Principal Component Analysis (kPCA) was executed to discern potential variance across the domains. Given the high-dimensional nature of our dataset, kernel Principal Component Analysis (kPCA) emerged as the preferred method over traditional PCA. kPCA's strength lies in its adeptness at managing vast data dimensions and its capacity to capture non-linear relationships between features, something the linear assumptions of PCA might overlook. This inherent capability ensures that kPCA not only reduces data dimensions but also preserves the most salient and intricate relationships within the data.
 
-Upon examination of \Cref{fig:kPCA}, a discernible differentiation between the biological domains is evident, notably facilitated by the second principal component. Two hypotheses have been posited to elucidate these observed variances. Firstly, our Graph Neural Network (GNN) might be adept at distinguishing between the domains, thereby faithfully rendering the molecular signatures inherent to each. Alternatively, the kPCA may predominantly be reflecting the molecular biases inherent within the LOTUS database. Given that the LOTUS database structures its data in a molecule-species-paper triad, it stands to reason that a preponderance of extensively researched molecules, meriting scholarly publication, are intrinsically specific to particular domains. This contention finds resonance in \textit{Rutz et al.} \cite{rutzLOTUSInitiativeOpen2022}, which delineates that a substantive majority (exceeding 90\%) of molecules catalogued in LOTUS exhibit domain specificity. Such inherent biases could feasibly account for the observed patterns in the kPCA results. A more granular investigation is requisite to substantiate either of the aforementioned hypotheses.
-
-\Cref{fig: hist cholesterol,fig: hist erythromycin} show examples of distributions of probabilities of all the species against cholesterol and erythromycin respectively. 
+Upon examination of \Cref{fig:kPCA}, a discernible differentiation between the biological domains is evident. Two hypotheses have been posited to elucidate these observed variances. Firstly, our Graph Neural Network (GNN) might be adept at distinguishing between the domains, thereby faithfully rendering the molecular signatures inherent to each. Alternatively, the kPCA may predominantly be reflecting the molecular biases inherent within the LOTUS database. Given that the LOTUS database structures its data in a molecule-species-paper triad, it stands to reason that a preponderance of extensively researched molecules, meriting scholarly publication, are intrinsically specific to particular domains. This contention finds resonance in \textit{Rutz et al.} \cite{rutzLOTUSInitiativeOpen2022}, which delineates that a substantive majority (exceeding 90\%) of molecules catalogued in LOTUS exhibit domain specificity. Such inherent biases could feasibly account for the observed patterns in the kPCA results. A more granular investigation is requisite to substantiate either of the aforementioned hypotheses.
  
 \begin{figure}[h]
 	\centering
@@ -714,9 +714,9 @@ Upon examination of \Cref{fig:kPCA}, a discernible differentiation between the b
 	\label{fig: hist cholesterol}
 \end{figure}
 
-According to \cite{o2013merck, international1987iarc}, cholesterol is present everywhere. Our algorithm clearly shows that the majority of species should contain cholesterol. The fact that this works is due to the inherent functioning of GraphSAGE. Indeed since cholesterol is present a lot in the LOTUS database (522 different species) this means that in our graph, cholesterol has many edges, then this means that the algorithm is able to "understand" the context of cholesterol and have a good predictive value. 
+In \Cref{fig: hist cholesterol,fig: hist erythromycin}, we present the probability distributions of cholesterol and erythromycin presence across the species present in LOTUS. Based on the literature \cite{o2013merck, international1987iarc}, cholesterol is ubiquitously found. The predictions of our algorithm align with this notion, indicating a prevalent cholesterol presence in most species. This predictive consistency is attributed to the mechanics of GraphSAGE. Given that cholesterol is associated with a significant 522 species in the LOTUS database, the algorithm effectively capitalizes on this trend to offer insightful predictions.
 
-However, the algorithm does not need to have many papers. For example erythromycin has only 8 edges. However those edges are extremely local : they are all linked to bacteria and those bacteria are from the Actinobacteria phylum. The algorithm will then predict that most of the species don't have erythromycin (as seen in \Cref{fig: hist erythromycin}) but the ones it predicts to have are all very close to the Actinobacteria phylum (as we can see in \Cref{table: Erythromycin top scores}). 
+Conversely, erythromycin's representation in the database is comparatively limited, being connected to merely eight species. Notably, these connections predominantly pertain to bacteria from the Actinobacteria phylum. As a result, our model tends to predict a restricted occurrence of erythromycin across species, as visualized in \Cref{fig: hist erythromycin}. Yet, when it anticipates its presence, the accuracy is commendable. Key genera such as Streptomyces are correctly identified, with minor discrepancies like Micromonospora, as detailed in \Cref{table: Erythromycin top scores}. This showcases the GraphSAGE's capability in discerning potential associations between molecules and species, even in scenarios of sparse data. 
 
 \begin{figure}[h]
 	\centering
@@ -725,32 +725,54 @@ However, the algorithm does not need to have many papers. For example erythromyc
 	\label{fig: hist erythromycin}
 \end{figure}
 
-On the other hand, TODO: show image of probability of water across all species. 
+TODO: Even though GraphSAGE is able to make sensitive predictions, its ability to predict the occurrence of molecules in species has its limits. Indeed, for example, looking \textit{Streptomyces diastaticus} in \Cref{table: Erythromycin top scores}, no information about its production was found in the litterature, to the exception of \cite{graham23SRibosomalRibonucleic1979} where they show that \textit{Streptomyces diastaticus} might even be sensitive to erythromycin. No evidence has been found for the presence of erythromycin in \textit{Streptomyces drozdowiczii}. Potential presence in Streptomyces achromogenes \cite{moosawiComputationalPredictionProperties2010}.
+
+In order to validate our model, one would need to analyse by mass spectrometry the different species highlighted by our model. 
+
 
 \begin{table}[h]
 	\centering
-	\caption{Top 10 probabilities of Erythromycin. TODO}
+	\caption{Erythromycin was originally discovered in \textit{Saccharopolyspora erythraea } \cite{beranIsolationErythromycinNoxide1991}. Here we show the top 10 species that could contain erythromycin and that are not present in LOTUS.}
 	\begin{tabular}{lr}
 		\toprule
 		Species & Probability \\
 		\midrule
-		Streptomyces diastaticus & 0.9896 \\
-		Streptomyces & 0.9934 \\
-		Micromonospora & 0.9896 \\
-		Streptomyces argillaceus & 0.9926 \\
-		Streptomyces fradiae & 0.9928 \\
-		Streptomyces antibioticus & 0.9917 \\
-		Streptomyces setonii & 0.9897 \\
-		Streptomyces halstedii & 0.9891 \\
+		Streptomyces diastaticus & 0.9944 \\
+		Streptomyces drozdowiczii & 0.9939 \\
+		Streptomyces antibioticus & 0.9928 \\
+		Micromonospora & 0.9927 \\
+		Streptomyces achromogenes & 0.9924 \\
+		Streptomyces griseus & 0.9919 \\
+		Streptomyces griseosporeus & 0.9912 \\
+		Streptomyces albogriseolus & 0.9906 \\
+		Streptomyces varsoviensis & 0.9899 \\
 		Streptomyces ansochromogenes & 0.9898 \\
-		Streptomyces diastatochromogenes & 0.9900 \\
 		\bottomrule
 	\end{tabular}
 	\label{table: Erythromycin top scores}
 \end{table}
 
+An other potential problem is the strong bias towards specialized metabolites. Indeed, in LOTUS there are only 6 different occurrences of water. Moreover, looking at 
 
-TODO Limitations: Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{figure/water}
+	\caption{TODO}
+	\label{fig: water probabilites}
+\end{figure}
+
+TODO: show image of probability of water across all species. --> continue on disadvantages showing water and its weak predictability. 
+
+
+
+TODO Limitations: 
+\begin{itemize}
+	\item  Sampling negatives edges is sampling only edges that do not exist yet. However this may lead to problems since by sampling negative edges, we might sample an edge that we may have but has not been discovered yet. 
+	\item GraphSAGE does not take into account phylogenetic distances. 
+	\item we do not take into account the research effort. This creates a big bias.
+\end{itemize}
+
+
 
 
 
