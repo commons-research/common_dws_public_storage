@@ -8,6 +8,6 @@ docs/.DS_Store
 !/docs/anticipated_lotus/thesis/main.pdf
 !/docs/anticipated_lotus/thesis/main.tex
 !/docs/anticipated_lotus/thesis/MastersDoctoralThesis.cls
-!/docs/anticipated_lotus/thesis/figure/cholesterol_plot.png
-!/docs/anticipated_lotus/thesis/figure/erythromycin_plot.png
+!/docs/anticipated_lotus/thesis/figure/cholesterol.png
+!/docs/anticipated_lotus/thesis/figure/erythromycin.png
 !/docs/anticipated_lotus/thesis/figure/kPCA.png
