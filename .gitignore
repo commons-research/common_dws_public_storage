@@ -4,7 +4,7 @@ docs/.DS_Store
 !/docs/anticipated_lotus/model/Metabolites.pdf
 !/docs/anticipated_lotus/model/Metabolites.tex
 /docs/anticipated_lotus/model/move_to_dendron.sh
-/docs/anticipated_lotus/thesis/**
+docs/anticipated_lotus/thesis/**
 !/docs/anticipated_lotus/thesis/main.pdf
 !/docs/anticipated_lotus/thesis/main.tex
 !/docs/anticipated_lotus/thesis/MastersDoctoralThesis.cls
