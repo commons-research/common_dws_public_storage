@@ -54,6 +54,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \usepackage{pgfplots}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{easyReview}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -259,6 +260,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \textbf{GCN(s)} & \textbf{G}raph \textbf{C}onvolutional \textbf{N}etwork(s) \\
 \textbf{GNN(s)} & \textbf{G}raph \textbf{N}eural \textbf{N}etwork(s) \\
 \textbf{(k)PCA} & (kernel) \textbf{P}rincipal \textbf{C}omponent \textbf{A}nalysis \\
+\textbf{MS} & \textbf{M}ass \textbf{S}pectrometry \\
 \textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
 \textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
 
@@ -327,17 +329,26 @@ Natural Products (NPs) are chemical entities biosynthesized by living organisms 
 \section{The Importance of Natural Products in Therapeutics and Ecosystem Functioning}
 Specialised metabolites form the basis of current therapeutic treatments because of their distinct chemical structures and activities \cite{harveyReemergenceNaturalProducts2015}. They are relevant to a variety of industries, including agriculture \cite{yanImpactProspectNatural2018}, the food industry \cite{gonzalez-manzanoApplicationsNaturalProducts2021}, cosmetics \cite{liuNaturalProductsCosmetics2022}, and a variety of other fields, in addition to human and veterinary medicine. These natural goods are inextricably related to renewable resources and add great value in our economy.
 
-Understanding the complexities of their biological functions and structural characteristics is essential to understanding how ecosystems work. These complexities influence a variety of aspects, from the impact on individual organisms to the overall chemically mediated interactions within entire ecosystems. Despite their multifaceted nature, the role of these metabolites can not be overstated.
+Understanding the complexities of their biological functions and structural characteristics is essential to understanding how ecosystems work. These complexities influence a variety of aspects, from the impact on individual organisms to the overall chemically mediated interactions within the entire ecosystem.
 
 Numerous fundamental scientific ideas, such as stereochemistry, optical activity, regioselectivity, and chirality, have also been influenced by natural products. Researchers are always motivated by their diversity and complexity, which leads to the development of cutting-edge tools that can replicate natural processes to manage bioregulation mechanisms and solve practical problems  \cite{drasarGrowingImportanceNatural2019}.
 
 Even though they're complex and challenging to describe, the role of natural products in therapeutic uses and ecosystem functionality cannot be overstated. Current developments aim to unlock this potential more efficiently, emphasizing the ongoing advancements across all sectors associated with natural products.
 
 \section{The LOTUS Database and Current Efforts}
-In recent years, efforts have been made to anticipate metabolic networks or occurrences of molecules in selected taxa. A significant resource is the LOTUS database \cite{rutzLOTUSInitiativeOpen2022} developed and maintained by the \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS lab}, which currently lists over 750'000 occurrences of natural products. The LOTUS initiative aims to consolidate and share structure-organism pair information via an open platform, providing transformative potential for natural products research and beyond. This process involves the harmonization, curation, validation, and open dissemination of referenced structure-organism pairs. Furthermore, LOTUS data's embedding into the vast Wikidata knowledge graph facilitates new biological and chemical insights. The contemporary bioinformatic capabilities offered by the LOTUS initiative have the potential to reshape knowledge management, analysis, and interpretation of data in natural products research. Despite this, no model has been proposed to predict occurrence of structure-organism pairs across the tree of life.
+In recent years, efforts have been made to anticipate metabolic networks or occurrences of molecules in selected taxa. A significant resource is the LOTUS database \cite{rutzLOTUSInitiativeOpen2022} developed and maintained by the \href{https://www.unifr.ch/bio/en/groups/allard/}{COMMONS lab}, which currently lists over 438'072 occurrences of natural products in selected taxa. The LOTUS initiative aims to consolidate and share structure-organism pair information via an open platform, providing transformative potential for natural products research and beyond. This process involves the harmonization, curation, validation, and open dissemination of referenced structure-organism pairs. Furthermore, LOTUS data's embedding into the vast Wikidata knowledge graph facilitates new biological and chemical insights. The contemporary bioinformatic capabilities offered by the LOTUS initiative have the potential to reshape knowledge management, analysis, and interpretation of data in natural products research. Despite this, no model has been proposed to predict occurrence of structure-organism pairs across the tree of life.
 
 \section{Project Description and Objectives}
 The goal of this project is to develop such a model and to train it using large-scale metabolomics and other occurrence data.
+
+For this research, we consider two primary sources of information : 1) The LOTUS database, which catalogues presence-only attestations of discrete metabolites inherent to specific taxa, as corroborated by peer-reviewed scientific literature. 2) Data derived from mass spectrometry (MS) analyses.
+
+The strict data integrity of LOTUS is what gives it its inherent value. This is mainly attributable to the actual extraction and characterization of chemicals from particular living entities, which guarantees unmatched data authenticity. Despite its accuracy, the methodological framework supporting LOTUS requires a lot of effort and resources. Currently, just 0.008\% of all potential occurrences in the database are represented by the 438,072 occurrences that have been archived in LOTUS. A thorough knowledge of the genuine presence or absence matrix of molecules across the evolutionary spectrum is still difficult given the pace of academic research.
+
+In contrast, mass spectrometry (MS) provides a quicker and more practical approach of molecular detection. However, this increased effectiveness comes with built-in restrictions. In particular, MS shows limitations when trying to identify molecules with previously unidentified structural configurations. Furthermore, when compared to techniques that rely on actual molecule separation, MS's resolution and fidelity are noticeably reduced; in contrast, the latter need careful compound extraction and characterisation, whereas MS primarily function as a detection mechanism.
+
+By integrating these two sources of information and using an appropriate model, it may be feasible to anticipate the complete chemical composition of organisms across the tree of life. 
+
 
 %\chapter{Literature Review}
 
@@ -599,7 +610,7 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 
 In \Cref{fig:MRF}, a prototypical representation of a Markov Random Field is depicted. The Ising model, as illustrated in \Cref{fig:Ising model}, operates under the premise that a node's state is solely contingent upon its immediate neighbours. Contrarily, our proposed model, akin to the structure presented in \Cref{fig: Ising model higher order}, embodies intricate relationships reminiscent of phylogenetic interconnections. Within our framework, the state of a given node is not merely influenced by its proximal counterparts within the phylogeny, but also by the relational distances encompassing those neighbours.
 
-\subsection{Data sources}
+\subsection{Data sources}\label{subsec:data source RMF}
 The probabilities of the data given $x$ were formulated employing the same model as delineated in \Cref{subsec: data sources}.
 \begin{figure}[h]
 	\centering
@@ -676,9 +687,7 @@ For the parameter estimation process, we employed Markov Chain Monte Carlo (MCMC
 
 Furthermore, we utilized Gibbs sampling to estimate the variable $x$. This method too yielded satisfactory results, corroborating the validity of our model in this aspect.
 
-However, the challenges encountered during the modelling and simulation process were primarily centred around the convergence of the axis-specific intercepts $\mu$. This crucial component, detailed in Equation \ref{eq:logit of X}, resisted precise estimation through our initially chosen techniques. During this period of reevaluation, the proposition of interpreting our data as a graph surfaced, adding a new dimension to our perspective. Persisting with our original data treatment no longer seemed intuitive. Given the inherent structure and relationships in our dataset, transitioning to a graph-based approach felt more logical and natural. As a result, the inability to accurately estimate $\mu$ and the allure of a graph-centric methodology prompted us to explore alternative models and techniques, seeking a better alignment with the intrinsic characteristics of our data.
-
-To reproduce our simulations, codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
+However, the challenges encountered during the modelling and simulation process were primarily centred around the convergence of the axis-specific intercepts $\mu$. This crucial component, detailed in Equation \ref{eq:logit of X}, resisted precise estimation through our initially chosen techniques. During this period of reevaluation, the proposition of interpreting our data as a graph surfaced, adding a new dimension to our perspective. Persisting with our original data treatment no longer seemed intuitive. Given the inherent structure and relationships in our dataset, transitioning to a graph-based approach felt more logical and natural. As a result, the inability to accurately estimate $\mu$ and the allure of a graph-centric methodology prompted us to explore alternative models and techniques, seeking a better alignment with the intrinsic characteristics of our data. To reproduce our simulations, codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
 
 \section{Random Markov Field}
 Due to time constraints of the thesis, test and simulation for this model were not performed. However this could work since paper TODO 
@@ -706,7 +715,7 @@ A definite distinction between the biological domains can be seen by looking at 
 	\label{fig: hist cholesterol}
 \end{figure}
 
-In \Cref{fig: hist cholesterol,fig: hist erythromycin}, we present the probability distributions of cholesterol and erythromycin presence across the species present in LOTUS. Based on the literature \cite{o2013merck, international1987iarc}, cholesterol is ubiquitously found. The predictions of our algorithm align with this notion, indicating a prevalent cholesterol presence in most species. This predictive consistency is attributed to the mechanics of GraphSAGE. Given that cholesterol is associated with a significant 522 species in the LOTUS database, the algorithm effectively capitalizes on this trend to offer insightful predictions.
+In \Cref{fig: hist cholesterol,fig: hist erythromycin}, we present the probability distributions of cholesterol and erythromycin presence across the species present in LOTUS. Based on the literature \cite{o2013merck, international1979iarc}, cholesterol is ubiquitously found. The predictions of our algorithm align with this notion, indicating a prevalent cholesterol presence in most species. This predictive consistency is attributed to the mechanics of GraphSAGE. Given that cholesterol is associated with a significant 522 species in the LOTUS database, the algorithm effectively capitalizes on this trend to offer insightful predictions.
 
 Conversely, erythromycin's representation in the database is comparatively limited, being connected to merely eight species. Notably, these connections predominantly pertain to bacteria from the Actinobacteria phylum. As a result, our model tends to predict a restricted occurrence of erythromycin across species, as visualized in \Cref{fig: hist erythromycin}. Yet, when it anticipates its presence, the accuracy is commendable. Key genera such as Streptomyces are correctly identified, with minor discrepancies like Micromonospora, as detailed in \Cref{table: Erythromycin top scores}. This showcases the GraphSAGE's capability in discerning potential associations between molecules and species, even in scenarios of sparse data. 
 
@@ -754,10 +763,42 @@ Additional complexities exist that limit the effectiveness of our model. In the 
 	\label{fig: water probabilities}
 \end{figure}
 
-Lastly, the current model configuration does not factor in the research effort, as delineated in \Cref{eq:prob lotus given x and Rsm}. This oversight could foster biases, potentially equating molecules with extensive documentation in a specific species to less characterized molecules in relatively unknown species.
+Lastly, the current model configuration does not factor in the research effort, as delineated in \Cref{eq:prob lotus given x and Rsm}. This omission could lead to biases, potentially comparing molecules with considerable documentation in a given species to ones with less characterization in a relatively unknown species.
 
 
 \chapter{Conclusion and Future Work}
+In the course of our research, we have demonstrated the feasibility of devising a model to predict the chemical compositions of organisms spanning the tree of life. By employing a framework that perceives phylogenies and molecules as graphs, we have been able to make superior predictions compared to rudimentary models.
+
+The application of a Graph Neural Network (GNN) employing the GraphSAGE technique has proven effective as an initial strategy. Notably, this rudimentary implementation already yields reliable results for well-characterized metabolites. Nonetheless, several challenges emerged. Foremost among these is the technical issue of overlooking phylogenetic distances, which consequently diminishes the amount of available data. Additionally, the methodology employed for encoding molecular features, specifically the straightforward concatenation of Classyfire classification and Morgan fingerprint, may not be the ideal representation of the molecule's information.
+
+A significant constraint of the GNN is its inability to augment the density of a graph. Given the notable sparsity of the edges, the GNN, based solely on the existing data, cannot enhance graph density. This characteristic is intrinsic to graph completion; hence the conventional recommendation is to commence training neural networks on densely populated regions of a graph.
+
+From this arises a dichotomy of objectives: are we attempting to predict LOTUS, or are we genuinely aiming to discern the actual presence and absence of molecules throughout the tree of life? Our current GNN, we contend, addresses the former query. However, given the reasons highlighted earlier, particularly the intrinsic graph sparsity, this might not be the most pivotal question. Simply extrapolating LOTUS using this methodology would lead to predictions of manifestly extant edges without furnishing deeper insights. While augmenting the data in LOTUS or incorporating mass spectrometry data could offer potential solutions, they pose their own set of challenges, such as edge weighting and data integration.
+
+Contrastingly, given that both GNN and Markov Random Field (MRF) address analogous issues \cite{jiaGraphBeliefPropagation2021}, our hypothesis is that MRF could yield more robust outcomes. The inherent flexibility of MRF, allowing for multi-dimensional data integration, could potentially ameliorate the molecule encoding challenge we encountered with GNN. Envisioning a model that integrates species phylogenies, the existing Classyfire classification tree structure, and a tree for the Morgan fingerprint could be transformative. However, one anticipated hurdle is the designation of accurate distances within the molecular tree. Furthermore, the proposed MRF model could seamlessly incorporate mass spectrometry data, a task currently beyond the capabilities of the GNN. Crucially, within this MRF model, both LOTUS data and mass spectrometry data would be treated as noisy observations rather than absolute truths, which is a major deviation from the GNN approach.
+
+To conclude, our assertion is that further exploration and refinement of the MRF model could usher in significant advancements in metabolomics, ecology, and drug discovery. It is our aspiration that this research serves as a pioneering endeavor in this burgeoning domain of study.
+
+
+
+
+\newpage
+Through this work we have shown that it is possible to create a model for predicting the chemical composition of organisms across the tree of life. Our experiment showed that utilizing the natural way of thinking of phylogenies and molecules as graphs could allow for better predictions that a simple model. 
+
+The GNN approach using GraphSAGE allowed for a good first approach. This simple implementation can already give sensible results for well established metabolites. However many problems arise. First some technical problems arise. Indeed, phylogenetic distances were not taken into account. This reduces the information that we have available. Secondly, the encoding of the features of molecules might not be optimal. Indeed, the simple concatenation of Classyfire classification and Morgan fingerprint might not be the optimal way to encode information of the molecule. 
+
+Also, the GNN will not be able to densify a graph. Indeed, if the edges are very sparse (which is the case), the GNN will not be able to increase the density of the graph only by having been train on the current data. This is an inherent feature of graph completion and that is why is usually recommended to have highly dense regions on a graph and train the neural network on them to then complete the rest of the graph. 
+
+Two questions arise from these problems. Are we trying to anticipate LOTUS ? Or are we trying to determine the true presence AND absence of molecules across the tree of life ? 
+
+We believe, our current GNN is able to answer the first question however we don't believe that this first question is the most interesting one due to the argument made above about the sparsity of the graph. Indeed, anticipating LOTUS using this technique will result in anticipating the OBVIOUS possible existing edges but won't provide any more information. One could argue by updating LOTUS i.e. increasing the amount of information could densify the graph but that would be still to slow due to the immense sparsity of LOTUS. One could also argue to include mass spectrometry data but this would then require to weigh edges coming from MS and edges from LOTUS. Furthermore since the GNN is trains negatives edges on none existing edges, it is only able to predict the presence and not the absence of a pair. 
+
+In contrast, since both GNN and Markov Random field are both approaches to a same problem \cite{jiaGraphBeliefPropagation2021}, we believe that our MRF could lead to significantly better results. Indeed, the model can take into account as many dimensions as it wants. This means that it could solve the previous problem of concatenation of features in the molecules. In fact, one could imagine the model containing three trees : the species phylogenies, the tree-like structure of the Classyfire classification (already exists) and a tree for the Morgan fingerprint were the molecules have been classified using Neighbour-Joining or Unweighted Pair Group Method with Arithmetic Mean (UPGMA). One problem could arise however: each branch in the tree should have a distance. This is trivial for species, but it might be more difficult to imagine for molecules. This model could also take into account the research effort (as stated in \Cref{subsec:data source RMF}). The model would also be able to integrate easily mass spectrometry data, thing that the GNN is not able to do yet. Moreover, in this model we treat LOTUS data and mass spectrometry data as noisy observation of $\X$ whereas in the GNN we consider them as a ground truth (which is a strong assumption that could lead to problems). 
+
+In short, we believe that is worth spending time developing the MRF and this could lead to great advances in the world of metabolomics, ecology and drug discovery. We hope that this work was able to set the first mile stone in this field of research. 
+
+
+\newpage
 Question 1 : Do you want LOTUS anticipated ? 
 
 Question 2 : Do you want the true presence/absence ?
