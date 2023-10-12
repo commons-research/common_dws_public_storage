@@ -126,6 +126,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \def\X{{\cal X}}
 \def\Y{{\cal Y}}
 \def\Z{{\cal Z}}
+\def\D{{\cal D}}
 
 
 %----------------------------------------------------------------------------------------
@@ -227,7 +228,7 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 This study is centered on Natural Products (NPs) - specific chemicals synthesized by living organisms. These NPs hold significant importance in various domains, notably medicine, agriculture, and ecology. A primary resource for our research is the LOTUS database, which catalogues a vast array of NPs. Yet, a gap exists: there are no existing model to predict the occurrence of these NPs across different species.
 
-In our initial strategy, the occurrence of natural products was viewed as a collection of observations and their associated variables. Although simple, this strategy immediately showed its shortcomings when dealing with the complex nature of Natural Products (NPs). We switched to an advanced graph-based method after seeing the necessity for a more thorough strategy to accurately represent the intricate interactions present in NPs. When considering species in a phylogeny or molecular pathways, the graph-based method perceives data as a network of connected entities, offering a far more logical and natural way of thinking. By employing this better methodology, we have developed a more effective approach for investigating the intricate world of Natural Products. We hope that this strategy will open up new research directions and possibly result in ground-breaking NP-related findings.
+In our initial strategy, the occurrence of natural products was viewed as a collection of observations and their associated variables. Although simple, this strategy immediately showed its limits when dealing with the complex nature of Natural Products (NPs). We switched to an advanced graph-based method after seeing the necessity for a more thorough strategy to accurately represent the intricate interactions present in NPs. When considering species in a phylogeny or molecular pathways, the graph-based method perceives data as a network of connected entities, offering a far more logical and natural way of thinking. By employing this better methodology, we have developed a more effective approach for investigating the intricate world of Natural Products. We hope that this strategy will open up new research directions and possibly result in ground-breaking NP-related findings.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -236,15 +237,15 @@ In our initial strategy, the occurrence of natural products was viewed as a coll
 
 \begin{acknowledgements}\label{sec:acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-First and foremost, I would like to extend my gratitude to my supervisors, Daniel Wegmann and Pierre-Marie Allard. Their endless support, guidance, and ability to inspire enthusiasm in me, particularly when introducing new facets of the project, has been paramount to my journey. Their ability to always find the right words to motivate me has been invaluable.
+First and foremost, I would like to extend my gratitude to my supervisors, Prof. Daniel Wegmann and Dr. Pierre-Marie Allard. Their endless support, guidance and ability to inspire enthusiasm in me, particularly when introducing new facets of the project, have been crucial to my thesis. Their ability to always find the right words to motivate me has been invaluable.
 
 I am really grateful to Maëlle Wannier and Axel Giottonini, who have been my constant support during this journey. Your unfailing support and aid during my studies forged our friendship, securing our status as friends for life. 
 
-I would also like to thank Yves Steiner. The endless litres of free coffee and jokes you brought every day at lunch were nothing short of joyful. On many difficult days, your consistent good mood has been a source of happiness. 
+I would also like to thank Yves Steiner. The endless litres of free coffee and jokes you brought every day at lunch were nothing but joy. On many difficult days, your consistent good mood has been a source of happiness. 
 
-To my roommate, Noémie Poli, and my ex-roommate, Gaël Vonlanthen: living with you both has been an adventure I will remember for the rest of my life. The memories we've had in our apartment are ones that I will hold close to my heart. 
+To my roommate Noémie Poli, and my ex-roommate, Gaël Vonlanthen: living with you both has been an adventure I will remember for the rest of my life. The memories we've shared in our apartment are ones that I will hold close to my heart. 
 
-To my ever-supportive girlfriend Noémie Salvador. I cannot explain how grateful I am into you. During my peaks of excitement, my moments of doubt, my never ending stress, you have been my safety net. Your immense support, patience and kindness have been invaluable. 
+To my ever-supportive girlfriend Noémie Salvador. I cannot explain how grateful I am to you. During my peaks of excitement, my moments of doubt, my never ending stress, you have been my safety net. Your immense support, patience and kindness have been invaluable. 
 
 Finally, I want to express my gratitude to my family who have been the basis of my academic journey. Their constant support throughout my education has served as the foundation for my goals in life.
 
@@ -340,10 +341,10 @@ Marco
 \chapter{Introduction}\label{chap:intro}
 
 \section{Natural Products: Definition and Roles}\label{sec:NP def and roles}
-Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Numerous NPs are metabolites, which can be arranged along a gradient of specialisation from core metabolites, which perform fundamental tasks and are present in a variety of organisms, to specialised metabolites, which are much more restricted across the tree of life. Natural product research is interested in the underlying structural features of naturally occurring molecular entities, their effects on living organisms, and even the study of chemically mediated interactions across entire ecosystems. Throught the course of this work, we will use \textit{Rutz et al.}'s in definition of Natural Product \textit{as any chemical entity found in a living organism} \cite{rutzLOTUSInitiativeOpen2022}.
+Natural Products (NPs) are chemical entities biosynthesized by living organisms \cite{AllNatural2007}. Numerous NPs are metabolites, which can be arranged along a gradient of specialisation from core metabolites, which perform fundamental tasks and are present in a variety of organisms, to specialised metabolites, which are much more restricted across the tree of life. Natural product research is interested in the underlying structural features of naturally occurring molecular entities, their effects on living organisms, and even the study of chemically mediated interactions across entire ecosystems. Through the course of this work, we will use \textit{Rutz et al.}'s in definition of Natural Product \textit{as any chemical entity found in a living organism} \cite{rutzLOTUSInitiativeOpen2022}.
 
 \section{The Importance of Natural Products}
-Specialised metabolites form the basis of current therapeutic treatments because of their distinct chemical structures and activities \cite{harveyReemergenceNaturalProducts2015}. They are relevant to a variety of industries, including agriculture \cite{yanImpactProspectNatural2018}, the food industry \cite{gonzalez-manzanoApplicationsNaturalProducts2021}, cosmetics \cite{liuNaturalProductsCosmetics2022}, and a variety of other fields, in addition to human and veterinary medicine. These natural goods are inextricably related to renewable resources and add great value in our economy.
+Because of their distinct chemical structures and activities, specialised metabolites form the basis of current therapeutic treatments  \cite{harveyReemergenceNaturalProducts2015}. They are relevant to a variety of industries, including agriculture \cite{yanImpactProspectNatural2018}, food industry \cite{gonzalez-manzanoApplicationsNaturalProducts2021}, cosmetics \cite{liuNaturalProductsCosmetics2022}, and a variety of other fields, in addition to human and veterinary medicine. These natural goods are inextricably related to renewable resources and add great value in our economy.
 
 Understanding the complexities of their biological functions and structural characteristics is essential to understanding how ecosystems work. These complexities influence a variety of aspects, from the impact on individual organisms to the overall chemically mediated interactions within an entire ecosystem.
 
@@ -361,7 +362,7 @@ For this research, we consider two primary sources of information : 1) The LOTUS
 
 LOTUS's inherent value is derived from its strict data integrity. Indeed, to be present in LOTUS, a compound must have been extracted and characterized from a living organism, ensuring unique data validity. Despite its accuracy, the methodological framework supporting LOTUS requires a lot of effort and resources. Currently, only 0.008\% of all potential occurrences in the database are represented by the 438'072 occurrences that have been archived in LOTUS.\footnote{Currently LOTUS has $36'800$ species, and $148'190$ molecules.} A thorough knowledge of the genuine presence or absence matrix of molecules across the evolutionary spectrum is still difficult given the pace of academic research.
 
-In contrast, mass spectrometry (MS) provides a quicker and more practical approach of molecular detection. However, this increased effectiveness comes with restrictions. In particular, MS shows limitations when trying to identify molecules with previously unidentified structural configurations. Furthermore, when compared to techniques that rely on actual molecule separation, MS's resolution and fidelity are noticeably reduced; in contrast, the latter need careful compound extraction and characterisation, whereas MS primarily function as a detection mechanism.
+In contrast, mass spectrometry (MS) provides a quicker and more practical approach of molecular detection. However, this increased effectiveness comes with restrictions. In particular, MS shows limitations when trying to identify molecules with previously unidentified structural configurations. Furthermore, when compared to techniques that rely on actual molecule separation, MS's resolution and fidelity are noticeably reduced.
 
 By integrating these two sources of information and using an appropriate model, it may be feasible to anticipate the complete chemical composition of organisms across the tree of life. 
 
@@ -379,9 +380,9 @@ In discrete mathematics \cite{johnsonbaughDiscreteMathematics2018}, a graph is a
 	\label{fig:mTOR}
 \end{figure}
 
-Often, these nodes carry specific attributes (also known as features). For example, nodes in a graph could represent cities around the world. The attributes of these cities might include population size, geographic location, or average temperature. However, obtaining these features can be challenging due to obstacles in data collection, inherent complexity, or, in some cases, privacy concerns. To mitigate this, graph-based semi-supervised learning, also known as node classification, is employed to predict missing labels for some nodes given known attributes (\textit{i.e.} features). This strategy has been effective in a myriad of applications, including predicting molecular functions and categorization of substances \cite{NIPS2016_390e9825, liDeeperInsightsGraph2018}.
+Often, these nodes carry specific attributes (also known as features). For example, nodes in a graph could represent cities around the world. The attributes of these cities might include population size, geographic location, or average temperature. However, obtaining these features can be challenging due to obstacles in data collection, inherent complexity, or, in some cases, privacy concerns \cite{jiaGraphBeliefPropagation2021}. To mitigate this, graph-based semi-supervised learning, also known as node classification, is employed to predict missing labels for some nodes given known attributes (\textit{i.e.} features). This strategy has been effective in a myriad of applications, including predicting molecular functions and categorization of substances \cite{NIPS2016_390e9825, liDeeperInsightsGraph2018}.
 
-Link prediction is also a fundamental task in graph theory, aiming to forecast the likelihood of a potential relationship or edge between two nodes within a network. In the context of social networks, as highlighted by Liben-Nowell and Kleinberg \cite{liben-nowellLinkPredictionProblem2003}, the challenge is to determine which interactions are likely to emerge in the future based on the current network topology. The underlying hypothesis is that the inherent structure of the network contains valuable information about future interactions. Various measures of node "proximity" or similarity within the network can be employed to make these predictions, and some nuanced measures have been found to outperform more direct ones \cite{zhangLinkPredictionBased2018}.
+Link prediction is also a fundamental task in graph theory, aiming to forecast the likelihood of a potential relationship or edge between two nodes within a network. In the context of social networks, as highlighted by Liben-Nowell and Kleinberg \cite{liben-nowellLinkPredictionProblem2003}, the challenge is to determine which interactions are likely to emerge in the future based on the current network topology. The underlying hypothesis is that the inherent structure of the network contains valuable information about future interactions. Various measures of node "proximity" or similarity within the network can be employed to make these predictions, and some nuanced measures (\textit{e.g.} SEAL developed by \cite{zhangLinkPredictionBased2018}) have been found to outperform more direct ones (\textit{e.g.} Adamic–Adar index \cite{adamicFriendsNeighborsWeb2003}).
 
 Graph neural networks (GNNs) \cite{wuGraphNeuralNetworks2022} have been frequently employed for semi-supervised learning or for link predictions, also in the context of molecular networks \cite{oyetundeBoostGAPFILLImprovingFidelity2017}. Initially, GNNs synthesize the features and graph structure in the vicinity of each node into a single vector representation. Then, this representation is individually used for the classification of each node. The benefits of using GNNs include automatic differentiation, enabling end-to-end training and straightforward sub-sampling schemes for handling extensive networks. However, the use of GNNs hinges on the assumption that node labels are conditionally independent given all features. Moreover, these networks do not leverage correlations between training and testing labels during inference, and due to the complexities of their transformations and aggregation functions, the derived models can be challenging to interpret.
 
@@ -389,10 +390,10 @@ Alternatively, collective classification (CC) \cite{senCollectiveClassificationN
 
 Our research did not initially utilize a graph-based approach. We started our work treating our data as a collection of observations and their covariates rather than recognizing the inherent graph-based structure of molecules and organsims. This initial approach, while more straightforward, failed to fully capture the intricate complexity and interconnected nature of our dataset, a key characteristic of biological systems.
 
-However, recognizing the limitations of such naive methods, we transitioned to the use of graphical models, specifically graph neural networks and collective classification techniques. By treating our data as a graph, we've been better equipped to capture the nuanced relationships and dependencies between species, molecules and their respective attributes.
+However, recognizing the limitations of such naive methods, we transitioned to the use of graphical models, specifically graph neural networks and collective classification techniques. By treating our data as a graph, we've been better equipped to capture the nuanced relationships and dependencies between species, molecules and their respective attributes. Even though the RMF model is currently our most developed model, implementation and simulation could not be performed due to time constraints of the thesis.  
 
 \section{Naive approach}\label{sec:methods:Naive approach}
-Our objective is to infer the occurrence or absence of metabolites across a collection of samples, which are differentiated by $T$ discrete dimensions such as species, tissue type, and environmental conditions or any other arbitrary dimension. For any compartment $c$, let $\tau_t(c) = 1, \ldots, n_t$ indicate the compartment index along axis $t=1, \ldots, T$. For convenience, let us further denote by $\tau_\M(c)$ and $\tau_S(c)$ the metabolite and species of that compartment.
+Our objective is to infer the presence or absence of metabolites across a collection of samples, which are differentiated by $T$ discrete dimensions such as species, tissue type, and environmental conditions or any other arbitrary dimension. For any compartment $c$, let $\tau_t(c) = 1, \ldots, n_t$ indicate the compartment index along axis $t=1, \ldots, T$. For convenience, let us further denote by $\tau_\M(c)$ and $\tau_S(c)$ the metabolite and species of that compartment.
 
 We denote $x_{c}$ the presence ($x_c=1$) or absence ($x_c=0$) of a metabolite $\tau_\M(c)$ in compartment $c$ and let $\x=(x_1, \ldots, x_C)$ be the full vector $x_c$ across all compartments $c=1, \ldots, C$ with $C=\prod_t n_t$.
 
@@ -442,7 +443,7 @@ Here, the $\beta^{(t)}_{\tau_t(c)}$ are positive intercepts specific for the com
 	\label{fig: example sigmoid function}
 \end{figure}
 
-In \Cref{fig: example sigmoid function}, a graphical representation illustrates the probabilistic association of a metabolite's presence within a particular species, predicated upon its mean prevalence across a phylogeny (denoted by the black vertical line at $x=2.5$). Consider, for example, a metabolite ubiquitously observed across various taxa. If a distinct clade within the phylogenetic tree lacks this metabolite, the likelihood of its occurrence in species phylogenetically proximate to this clade diminishes — as indicated by the leftmost red line.
+In \Cref{fig: example sigmoid function}, a graphical representation illustrates the probabilistic association of a metabolite's presence within a particular species, predicated upon its mean prevalence across a phylogeny (denoted by the black vertical line at $x=2.5$). Consider, for example, a metabolite ubiquitously observed across various taxa. If a distinct clade within the phylogenetic tree lacks this metabolite, the likelihood of its occurrence in species phylogenetically proximate to this clade diminishes — as indicated by the dashed leftmost red line.
 	
 	\subsection{Emission probabilities}\label{subsec:emission probabilities}
 	We consider several different types of data to inform about $\x$. This data may be of different dimensionality, e.g. may only discriminate along a subset of the axes or at a higher scale along some axes. For a particular data set $d=1, \ldots, D$, let $\bxi_d=\{\xi_{d1}, \ldots, \xi_{du}\}$ denote the sets of distinguished compartments. We then define the presence of ($\x(\xi_{du})=1$) or absence ($\x(\xi_{du})=0$) in set $\xi_{du}, u=1\ldots,U,$ as
@@ -452,14 +453,8 @@ In \Cref{fig: example sigmoid function}, a graphical representation illustrates 
 	\end{equation}
 
 	\subsection{Data sources}\label{subsec: data sources}
-	We consider two sets of data informative about $\x$: i) Presence-absence data obtained with mass-spectrometry and ii) presence-only reports of specific metabolites in specific species.
+	We consider two types of data informative about $\X$: i) presence-only reports of specific NPs in specific species as available through the LOTUS database and ii) presence-absence data obtained with mass-spectrometry (LC-MSMS).
 	
-	\subsubsection{Mass spectrometry}
-	 Let $\bd _{sj}=(d_{sj1}, \ldots, d_{sjM})$ be the presence-absence vector of each metabolite $m$ obtained with mass-spectrometry run $j=1,\ldots,J_s$ performed on species $s$. Assuming a false-positive and false-negative error rates $\epsilon_{01}$ and $\epsilon_{10}$, respectively, we have
-	
-	\begin{equation}\label{eq:mass spec error rate}
-		\P(\bd_{sj}|\x, \epsilon_{01}, \epsilon_{10}) = \prod_m \left[ x_{sm}\left(\epsilon_{10}^{1-d_{sjm}}(1-\epsilon_{10})^{d_{sjm}}\right) + (1-x_{sm})\left( \epsilon_{01}^{d_{sjm}}(1-\epsilon_{01})^{1-d_{sjm}}\right)\right]
-	\end{equation}
 	\subsubsection{LOTUS}
 	
 	As previously stated, LOTUS database \cite{rutzLOTUSInitiativeOpen2022} lists known occurrences of metabolites in species. Let $L_{ms} = 1$ denote a known occurrence of metabolite $m$ in species $s$, while $L_{ms}=0$ denotes that no evidence for such an occurrence has been reported, either because the metabolite $m$ is truly absent in species $s$ or because of a lack of research effort.
@@ -484,28 +479,37 @@ In \Cref{fig: example sigmoid function}, a graphical representation illustrates 
 	\end{equation}
 	
 	with positives scalars $\gamma$ and $\delta$. In \Cref{fig:DAG naive model} we show a  Directed Acyclic Graph (DAG) of the proposed model. 
-
+	
 	\begin{figure}[h]
-	\centering
-	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-		\node[main] (1) {$\boldmath{x}$};
-		\node[main] (2) [above left of=1] {$\mu$};
-		\node[main] (3) [above right of=1] {$\alpha, \beta$};
-		\node[draw] (4) [below right of=1] {$d_{j}$};
-		\node[draw] (5) [below left of=1] {$L$};
-		\node[main] (6) [above right of=4] {$\epsilon_j$};
-		\node[main] (7) [above left of=5] {$R$};
-		
-		\draw[->] (2) -- (1);
-		\draw[->] (3) -- (1);
-		\draw[->] (1) -- (4);
-		\draw[->] (1) -- (5);
-		\draw[->] (6) -- (4);
-		\draw[->] (7) -- (5);
-	\end{tikzpicture}
-	\caption{In the Directed Acyclic Graph (DAG) representing the \textit{naive model}, the variable $x$ denotes the binary state of a molecule's presence or absence within a designated species and, $\mu$ signifies the mean presence of the metabolite along a specified axis. Both $\alpha$ and $\beta$ denote the axis-specific intercept and a positive scalar constant, respectively. The parameter $R$ stands for the dedicated research effort given to find $x$ while $L$ indicates the presence or absence of $x$ within the LOTUS database. The term $d_j$ characterizes the $j^{th}$ iteration of mass spectrometry executed for the particular species. Finally, $\epsilon_j$ quantifies the affiliated error rates, as elaborated in \Cref{eq:mass spec error rate}. }
-	\label{fig:DAG naive model}
-\end{figure}
+		\centering
+		\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+			\node[main] (1) {$\boldmath{x}$};
+			\node[main] (2) [above left of=1] {$\mu$};
+			\node[main] (3) [above right of=1] {$\alpha, \beta$};
+			\node[draw] (4) [below right of=1] {$d_{j}$};
+			\node[draw] (5) [below left of=1] {$L$};
+			\node[main] (6) [above right of=4] {$\epsilon_j$};
+			\node[main] (7) [above left of=5] {$R$};
+			
+			\draw[->] (2) -- (1);
+			\draw[->] (3) -- (1);
+			\draw[->] (1) -- (4);
+			\draw[->] (1) -- (5);
+			\draw[->] (6) -- (4);
+			\draw[->] (7) -- (5);
+		\end{tikzpicture}
+		\caption{In the Directed Acyclic Graph (DAG) representing the \textit{naive model}, the variable $x$ denotes the binary state of a molecule's presence or absence within a designated species and, $\mu$ signifies the mean presence of the metabolite along a specified axis. Both $\alpha$ and $\beta$ denote the axis-specific intercept and a positive scalar constant, respectively. The parameter $R$ stands for the dedicated research effort given to find $x$ while $L$ indicates the presence or absence of $x$ within the LOTUS database. The term $d_j$ characterizes the $j^{th}$ iteration of mass spectrometry executed for the particular species. Finally, $\epsilon_j$ quantifies the affiliated error rates, as elaborated in \Cref{eq:mass spec error rate}. }
+		\label{fig:DAG naive model}
+	\end{figure}
+	
+	\subsubsection{Mass spectrometry}
+	Let $\bd _{sj}=(d_{sj1}, \ldots, d_{sjM})$ be the presence-absence vector of each metabolite $m$ obtained with mass-spectrometry run $j=1,\ldots,J_s$ performed on species $s$. Assuming a false-positive and false-negative error rates $\epsilon_{01}$ and $\epsilon_{10}$, respectively, we have
+	
+	\begin{equation}\label{eq:mass spec error rate}
+		\P(\bd_{sj}|\x, \epsilon_{01}, \epsilon_{10}) = \prod_m \left[ x_{sm}\left(\epsilon_{10}^{1-d_{sjm}}(1-\epsilon_{10})^{d_{sjm}}\right) + (1-x_{sm})\left( \epsilon_{01}^{d_{sjm}}(1-\epsilon_{01})^{1-d_{sjm}}\right)\right]
+	\end{equation}
+
+	
 
 \section{Random Markov Field}\label{sec:methods:random markov field}
 
@@ -554,9 +558,9 @@ The clique function $\phi(c)$
 
 where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{\nu(c)}$ to indicate whether the node in the variable dimension of $c$ of $x$ is a root and $p_{c}(x)$ to identify the variable $z \in c$ for which $\delta_{\nu(c)}(z) = p(\delta_{\nu(c)}(x))$.
 
-\begin{figure}[t!]
+\begin{figure}[h]
 	\centering
-	\begin{subfigure}[h]{0.49\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
 		\begin{tikzpicture}[scale=2]
 			% Define nodes
@@ -588,70 +592,85 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 		\label{fig:Ising model}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[h]{0.49\textwidth}
-		\centering
-		\begin{tikzpicture}[scale=2]
-			% Define nodes
-			\node[fill=white, circle, draw] (center) at (1,1) {};      % Central node
-			\node[fill=gray, circle, draw] (top) at (1,2) {};         % Top node
-			\node[fill=white, circle, draw] (bottom) at (1,0) {};      % Bottom node
-			\node[fill=gray, circle, draw] (left) at (0,1) {};        % Left node
-			\node[fill=white, circle, draw] (right) at (2,1) {};       % Right node
-			\node[fill=black, circle, draw] (topleft) at (0,2) {};
-			\node[fill=gray, circle, draw] (topright) at (2,2) {};
-			\node[fill=gray, circle, draw] (bottomleft) at (0,0) {};
-			\node[fill=gray, circle, draw] (bottomright) at (2,0) {};
-			
-			% Connect nodes with straight lines
-			\draw (center) -- (top);
-			\draw (center) -- (bottom);
-			\draw (center) -- (left);
-			\draw (center) -- (right);
-			\draw (top) -- (topleft);
-			\draw (top) -- (topright);
-			\draw (bottom) -- (bottomleft);
-			\draw (bottom) -- (bottomright);
-			\draw (left) -- (topleft);
-			\draw (left) -- (bottomleft);
-			\draw (right) -- (topright);
-			\draw (right) -- (bottomright);
-			
-			% Connect nodes with parabolic edges
-			\draw (topleft) .. controls (-0.4,1) .. (bottomleft);
-			\draw (topright) .. controls (2.4,1) .. (bottomright);
-			\draw (topleft) .. controls (1.2, 1.2) .. (bottomright);
-			\draw (topleft) .. controls (1, 2.4) .. (topright);
-			\draw (left) .. controls (0.5, 0.5) .. (bottomright);
-		\end{tikzpicture}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\hspace*{0.53cm}
+		\includegraphics[scale=0.035]{figure/methods}
+		%\begin{tikzpicture}[scale=2]
+		%	% Define nodes
+		%	\node[fill=white, circle, draw] (center) at (1,1) {};      % Central node
+		%	\node[fill=gray, circle, draw] (top) at (1,2) {};         % Top node
+		%	\node[fill=white, circle, draw] (bottom) at (1,0) {};      % Bottom node
+		%	\node[fill=gray, circle, draw] (left) at (0,1) {};        % Left node
+		%	\node[fill=white, circle, draw] (right) at (2,1) {};       % Right node
+		%	\node[fill=black, circle, draw] (topleft) at (0,2) {};
+		%	\node[fill=gray, circle, draw] (topright) at (2,2) {};
+		%	\node[fill=gray, circle, draw] (bottomleft) at (0,0) {};
+		%	\node[fill=gray, circle, draw] (bottomright) at (2,0) {};
+		%	
+		%	% Connect nodes with straight lines
+		%	\draw (center) -- (top);
+		%	\draw (center) -- (bottom);
+		%	\draw (center) -- (left);
+		%	\draw (center) -- (right);
+		%	\draw (top) -- (topleft);
+		%	\draw (top) -- (topright);
+		%	\draw (bottom) -- (bottomleft);
+		%	\draw (bottom) -- (bottomright);
+		%	\draw (left) -- (topleft);
+		%	\draw (left) -- (bottomleft);
+		%	\draw (right) -- (topright);
+		%	\draw (right) -- (bottomright);
+		%	
+		%	% Connect nodes with parabolic edges
+		%	\draw (topleft) .. controls (-0.4,1) .. (bottomleft);
+		%	\draw (topright) .. controls (2.4,1) .. (bottomright);
+		%	\draw (topleft) .. controls (1.2, 1.2) .. (bottomright);
+		%	\draw (topleft) .. controls (1, 2.4) .. (topright);
+		%	\draw (left) .. controls (0.5, 0.5) .. (bottomright);
+		%\end{tikzpicture}
 		\caption{}
 		\label{fig: Ising model higher order}
 	\end{subfigure}
-	\caption{Representation of a Markov random field through an undirected graphical model where vertices depict arbitrary values and edges denote inter-nodes connectivity. \textbf{(a)} The Ising model \cite{isingBeitragZurTheorie1925} characterizes nearest-neighbour interactions. In this model, given the state of the grey nodes, the central black node becomes conditionally independent of all external nodes. \textbf{(b)} An \textit{advanced} structural representation, incorporating higher-order interactions beyond the traditional Ising model. Analogously in our proposed model, interactions extend beyond immediate neighbours, encompassing higher-order relationships as described by the trees $\T$. The illustration was conceptualized based on insights and frameworks derived from \cite{MarkovRandomField} and \cite{acarMarkovRandomField2016}. }
+	\caption{Two examples of a Markov Random Field model. \textbf{(a)} The Ising model \cite{isingBeitragZurTheorie1925} characterizes nearest-neighbour interactions. In this model, given the state of the grey nodes, the central black node becomes conditionally independent of all external nodes. \textbf{(b)} An \textit{advanced} structural representation, incorporating higher-order interactions beyond the traditional Ising model. Analogously in our proposed model, interactions extend beyond immediate neighbours, encompassing higher-order relationships as described by the trees $\T$. Here, pink dots represent the roots $\R$, in white the internal nodes $\I$ and in black the leaves $\E$. The purple squares represent the $\Y$ and white squares the $\Z$ variables of our model. Dashed rectangles represent examples of cliques. This illustration was conceptualized based on insights and frameworks derived from \cite{MarkovRandomField} and \cite{acarMarkovRandomField2016}. }
 	\label{fig:MRF}
 \end{figure}
 
 \Cref{fig:MRF} shows two examples of simple Markov Random Field. The Ising model, as shown in \Cref{fig:Ising model} is based on the idea that a node's state depends only on its close neighbours \textit{i.e.} it is conditionally independent given the neighbours' states. On the other hand, our suggested model which resembles more to the structure show in \Cref{fig: Ising model higher order}, includes more complex connections within a graph. Indeed, we hypothesize that a node's state not only depends on its direct neighbours but also by remote connections and the architectural configurations of the trees $\T$.
 
 \subsection{Data sources}\label{subsec:data source RMF}
-The probabilities of the data given $x$ were formulated employing the same model as delineated in \Cref{subsec: data sources}. In \Cref{fig:DAG_model}, we illustrate the Directed Acyclic Graph (DAG) representation of the proposed model.
+We consider two types of data informative about $\X$: i) presence-only reports of specific NPs in specific species as available through the LOTUS database and ii) presence-absence data obtained with mass-spectrometry (LC-MSMS).
 
-\begin{figure}[h!]
-	\centering
-	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-		\node[main] (1) {$\boldmath{x}$};
-		\node[draw] (4) [below right of=1] {$d_{j}$};
-		\node[draw] (5) [below left of=1] {$L$};
-		\node[main] (6) [above right of=4] {$\epsilon_j$};
-		\node[main] (7) [above left of=5] {$R$};
-		
-		\draw[->] (1) -- (4);
-		\draw[->] (1) -- (5);
-		\draw[->] (6) -- (4);
-		\draw[->] (7) -- (5);
-	\end{tikzpicture}
-	\caption{In the Directed Acyclic Graph (DAG) for the RMF model, $x$ denotes the binary state of a molecule's presence or absence in a designated species. $R$ signifies the research effort allocated towards the determination of $x$. $L$ embodies the incidence of $x$ within the LOTUS database. The term $d_j$ is representative of the $j^{th}$ iteration of mass spectrometry performed on the specific species in question. Lastly, $\epsilon_j$ quantifies the associated error rates, as detailed in \Cref{eq:mass spec error rate}.}
-	\label{fig:DAG_model}
-\end{figure}
+\subsubsection{LOTUS}
+Let $L_{ms} = 1$ denote a known occurrence of metabolite $m$ in species $s$, while $L_{ms}=0$ denotes that no evidence for such an occurrence has been reported, either because the NP $m$ is truly absent in species $s$ or because of a lack of research effort.
+
+Let $x(m,s)$ denote the variable in $\X$ for NP $m$ and species $s$, which, in case $\X$ contains additional dimensions, is obtained by collapsing:
+\begin{equation}
+	x(m,s) = \min \left(1, \sum_{x \in \X} \Ind(\delta_1(x)=m) \Ind(\delta_2(x)=s) x \right).
+\end{equation}
+
+We will model the probability of $L_{ms}$ given $x(m,s)$ as a function of $R_{sm}$, the probability of discovery of NP $m$ in species $s$, such that
+\begin{equation}
+	\P(L_{ms}|\x(m,s), R_{ms}) =
+	\begin{cases}
+		0 \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 1,\\
+		1 \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 0,\\
+		R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 1,\\
+		1- R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
+	\end{cases}
+\end{equation}
+
+The probability of discovery $R_{ms}$ will be modelled as a function of the known total number of relevant papers published for metabolites $m$ ($P_m$) and for species $s$ ($Q_s$), such that
+\begin{equation}
+	R_{ms} = 1 - e^{-\gamma P_m - \delta Q_s}
+\end{equation}
+with positives scalars $\gamma$ and $\delta$.
+
+\subsubsection{Mass spectrometry}
+Ultra High Performance Liquid Chromatography coupled to fragmentation Mass Spectrometry (LC-MSMS) is the analytical workhorse for the molecular characterization of complex biological matrices. Coupled to computational mass spectrometry tools, such untargeted approaches allows to detect and putatively annotate thousands of NPs in a single run. These analysis are fundamental in our project as they will allow us to complete the currently patchy overview offered by LOTUS. However, the resulting data is complex and requires careful processing to be informative as it is high-dimensional, noisy and incomplete. We here propose a model that builds on previous work regarding the Liquid Chromatography (LC) process \cite{heymannAdvancedErrorModeling2023, wiczlingApplicationBayesianMultilevel2021}, the establishment of virtual mass spectrometers \cite{wandySilicoOptimizationMass2019, wandyViMMSFrameworkDevelop2022,wandySimulatedtorealBenchmarkingAcquisition2023} and the integration of LC and MS dimensions in the NP annotation process \cite{bachProbabilisticFrameworkIntegration2021, bachJointStructuralAnnotation2022}, yet is simpler and more streamlined to render it computationally feasible for the large scales considered here.
+
+Suppose $\D_i$ is an LC-MSMS profile obtained from a sample representing a specific vector $\bxi=(\xi_{i2}, \ldots, \xi_i{D}), \xi_{id} \in \E_d$ of leaves in all dimensions except NPs one, such as, for instance, a sample representing a specific tissue of a specific species. We will calculate the probability of the LC-MSMS data $\D_i$ given $\X$. Let $\x(\bxi_i) \subset \X$ denote a slice through $\X$ relevant for $\D_i$, \textit{i.e.} consisting of all variables that represent a leave in the metabolite dimension and the specific leaves $\bxi$ in each other dimension such that for all $x,x' \in \x(\bxi_i)$, $\delta_1(x) \in \N_1$, $\delta_1(x) \neq \delta_1(x')$ and $\delta_{d \neq 1}(x) =\delta_{d \neq 1}(x') = \xi_{id} \in \E_d$. We will develop an NPs-flavored \textbf{Vi}rtual \textbf{M}etabolomics \textbf{M}ass \textbf{S}pectrometer (\textbf{ViMMS}) building on the original implementation \cite{wandySilicoOptimizationMass2019}. It will be fed by an in silico spectral database of the last LOTUS contents (\href{https://doi.org/10.5281/zenodo.8287341}{ISDB-LOTUS}) and informed by prior expert knowledge regarding the classes of analytes lost in the reductionist and stochastic metabolomics approach here formed by \textit{extraction}, \textit{liquid chromatography} and \textit{mass spectrometry fragmentation} stages. The NPs-ViMMS will allow the generation of theoretical metabolomics datasets for any given input ($\D_i'$), these will be then be compared to experimental results ($\D_i$).
+
+To compare the resulting LC-MSMS profile $\D_i'$ to $\D_i$, we will then take advantage of \textbf{MEMO} (MS2 BasEd SaMple VectOrization), a method we recently established for the computationally efficient comparison of large sets of samples based on their LC-MSMS profiles \cite{gaudryMEMOMassSpectrometryBased2022}. The first step is to extract fragment ions and neutral losses from each MSMS spectrum binned from the detected features in so-called “documents” using Spec2Vec \cite{huberSpec2VecImprovedMass2021}. Then, for a given sample, all the documents created are aggregated based on word occurrences to form a fingerprint (a MEMO vector). The MEMO strategy exploits the advantages of LC, namely its separation power (thus simplifying the chemical complexity of the sample being analyzed and allowing resolution of isomerisms) while avoiding the disadvantages of RT-based alignment since MEMO vectors contain only mass spectrometry information. Here we'll implement a stochastic comparison of MEMO vectors $\M(\D_i')$ and $\M(\D_i)$ using a per entry error rate $\epsilon$ to be inferred from the data.
 
 
 \section{Graph Neural Network (GraphSAGE)}\label{sec:theory:HinSAGE}
@@ -669,7 +688,7 @@ HinSAGE \cite{StellarGraphMachineLearning2018}, a derivative of GraphSAGE, has b
 
 \chapter{Methods}\label{chap:Methods}
 \section{Naive model}
-Prior to the application our actual data, a series of simulations were executed to evaluate the feasibility of estimating the entire set of parameters from the information contained within our dataset. Specifically, the variables $\mu$ were generated by sampling from a normal distribution with mean value of $0$ and variance of $1$. Meanwhile, the parameters $\alpha$, $\beta$, $\gamma$, and $\delta$ were each modelled using distinct exponential distributions, where individual values for the rate parameter $\lambda$ were attributed to each. In order to replicate the observed phenomenon, the number of papers per entry in $x$ were synthetically constructed by drawing from a Poisson distribution. Additionally, the variables $\sigma$ were simulated by drawing from a Wishart distribution \cite{wishartGENERALISEDPRODUCTMOMENT1928}.
+Prior to the application of our actual data, a series of simulations were executed to evaluate the feasibility of estimating the entire set of parameters from the information contained within our dataset. Specifically, the variables $\mu$ were generated by sampling from a normal distribution with mean value of $0$ and variance of $1$. Meanwhile, the parameters $\alpha$, $\beta$, $\gamma$, and $\delta$ were each modelled using distinct exponential distributions, where individual values for the rate parameter $\lambda$ were attributed to each. In order to replicate the observed phenomenon, the number of papers per entry in $x$ were synthetically constructed by drawing from a Poisson distribution. Additionally, the variables $\sigma$ were simulated by drawing from a Wishart distribution \cite{wishartGENERALISEDPRODUCTMOMENT1928}.
 
 As elaborated in \Cref{sec:methods:Naive approach}, the simulation process was initiated by drawing probabilities that $x=1$ from the \textit{expit} function, as defined in \Cref{eq:logit of X}. 
 Samples were then drawn from a Bernoulli distribution, where the probability parameter was informed by the previous \textit{expit} function. The probabilities of LOTUS were constructed in accordance with \Cref{eq:prob lotus given x and Rsm,eq:research effort}. A condition was imposed such that if $x$ for any given pair was $0$, then the corresponding probability was explicitly set to $0$. This removed the possibility of having papers in the simulated LOTUS when the actual value of $x$ was $0$.
@@ -679,7 +698,7 @@ The probabilities of LOTUS were then employed as parameters for another Bernoull
 This systematic approach resulted in the production of a simulated $x$ and a corresponding simulated LOTUS. This led to the occurrence of certain pairs that appearing empty, even though the molecule was indeed present within the species. All codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
  
 \section{Random Markov Field}
-Due to time constraints of the thesis, test and simulation for this model were not performed. The beginning of the implementation is available on both \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket} and \href{https://github.com/anticipated-lotus/metabolite_inference}{GitHub}.
+Due to time constraints of the thesis, test and simulation for this model were not performed. The beginning of the implementation is available both on \href{https://bitbucket.org/wegmannlab/metabolite_inference/src/master/}{Bitbucket} and \href{https://github.com/anticipated-lotus/metabolite_inference}{GitHub}.
 
 \section{Graph Neural Network}\label{sec:methods:GNN}
 The LOTUS database was aggregated to include only unique pairs of molecules and species. Once aggregated, the data was randomly partitioned into two subsets: 70\% allocated for training and 30\% for testing.
@@ -712,7 +731,7 @@ Furthermore, we utilized Gibbs sampling to estimate the variable $x$. This metho
 However, the challenges encountered during the modelling and simulation process were primarily centred around the convergence of the axis-specific intercepts $\mu$. This crucial component, detailed in Equation \ref{eq:logit of X}, resisted precise estimation through our initially chosen techniques. During this period of reevaluation, the idea of seeing our data as a graph emerged, adding a new dimension to our perspective. Persisting with our original data treatment no longer seemed intuitive. Given the inherent structure and relationships in our dataset, transitioning to a graph-based approach felt more logical and natural. As a result, the inability to accurately estimate $\mu$ and the allure of a graph-centric methodology prompted us to explore alternative models and techniques, seeking a better alignment with the intrinsic characteristics of our data. To reproduce our simulations, codes are available on \href{https://github.com/commons-research/anticipated-lotus}{GitHub}.
 
 \section{Random Markov Field}
-Due to time constraints of the thesis, tests and simulations for this model were not performed.
+Due to time constraints of the thesis, implementation, tests and simulations for this model were not performed.
 
 \section{Graph Neural Network}
 Using unseen edge data to assess the models, the performance measures showed that each model had varying degrees of accuracy. Particularly, the 0.92 accuracy was demonstrated by the model that was trained to predict the "present in" relationships. The model that attempted to predict the "has" associations, in contrast, had an accuracy of 0.8.
@@ -722,13 +741,13 @@ It is important to note that a probability value of 0.5 was used as the cutoff f
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{figure/kPCA}
-	\caption{kPCA visualization of sampled species across primary biological domains. The second principal component distinguishes between domains, with potential influences from our GNN's molecular pattern recognition or biases within the LOTUS database. TODO}
+	\caption{kPCA visualization of sampled species across primary biological domains. Archaea were not sampled due to lack of data.}
 	\label{fig:kPCA}
 \end{figure}
 
 After predicting the entirety of the LOTUS database, we randomly sampled a dozen species from each primary biological domain, excluding Archaea \footnote{Due to an insufficient number of species.}. Each of these species was associated with $148'190$ probability values. A kernel Principal Component Analysis (kPCA) was then carried out to identify potential variance between the domains. Kernel Principal Component Analysis (kPCA), as opposed to classic Principal Component Analysis (PCA), became the preferred approach given the high-dimensionality of our dataset. The advantages of kPCA over PCA are its skill at handling large data dimensions and its ability to recognise non-linear correlations between features that PCA's linear assumptions might miss. This innate ability makes sure that kPCA keeps the most important and complex relationships within the data as well as reducing the dimensions of the data.
 
-A clear distinction between the biological domains can be seen by looking at \Cref{fig:kPCA}. To explain these observed variances, two hypotheses have been postulated. First, our  Graph Neural Network (GNN) may be capable of distinguishing the molecular signatures that are unique to each domain. Alternately, it is possible that the kPCA is mostly displaying the chemical biases included in the LOTUS database. Given that the LOTUS database organises its data according to triples of molecules-species-papers, it is reasonable to think that a majority of  researched molecules, meriting scholarly publication, are specific to particular domains i.e are specialized metabolites. This claim is supported by \textit{Rutz et al.} \cite{rutzLOTUSInitiativeOpen2022}, who note that a significant majority (more than 90\%) of the compounds included in LOTUS display domain specificity. The patterns in the kPCA results that have been found may be explained by such innate biases. Either of the previous hypothesis has to be supported by a more in-depth examination. However, based on the previous arguments, we believe that the second hypothesis may be more accurate.
+A clear distinction between the biological domains can be seen by looking at \Cref{fig:kPCA}. To explain these observed variances, two hypotheses have been postulated. First, our  Graph Neural Network (GNN) may be capable of distinguishing the molecular signatures that are unique to each domain. Alternatively, it is possible that the kPCA is mostly displaying the chemical biases included in the LOTUS database. Given that the LOTUS database organises its data according to triples of molecules-species-papers, it is reasonable to think that a majority of  researched molecules, meriting scholarly publication, are specific to particular domains i.e are specialized metabolites. This claim is supported by \textit{Rutz et al.} \cite{rutzLOTUSInitiativeOpen2022}, who note that a significant majority (more than 90\%) of the compounds included in LOTUS display domain specificity. The patterns in the kPCA results that have been found may be explained by such innate biases. Either of the previous hypothesis has to be supported by a more in-depth examination. However, based on the previous arguments, we believe that the second hypothesis may be more accurate.
  
 \begin{figure}[h]
 	\centering
@@ -739,7 +758,7 @@ A clear distinction between the biological domains can be seen by looking at \Cr
 
 In \Cref{fig: hist cholesterol,fig: hist erythromycin}, we present the probability distributions of cholesterol and erythromycin across the species present in LOTUS. Based on the literature \cite{o2013merck, international1979iarc}, cholesterol is ubiquitously found. The predictions of our algorithm align with this notion, indicating a prevalent cholesterol presence in most species. This predictive consistency is attributed to the mechanics of GraphSAGE. Given that cholesterol is related to 522 distinct species in the LOTUS database, the algorithm is expected to recognise the broad distribution of cholesterol across a diverse range of species, leading it to predict its prevalence in the majority of the additional species.
 
-Erythromycin, on the other hand, has a fairly low representation in the database, being linked to only eight species. In particular, these links primarily concern bacteria from the Actinobacteria phylum. As a result, our model tends to predict a low occurrence of erythromycin across species, as visualized in \Cref{fig: hist erythromycin}. However, the accuracy with which it anticipates its presence is noteworthy. Key genera such as Streptomyces are correctly identified, with minor discrepancies like Micromonospora, as detailed in \Cref{table: Erythromycin top scores}. This showcases the GraphSAGE's capability in discerning potential associations between molecules and species, even in scenarios of sparse data. 
+Erythromycin, on the other hand, has a fairly low representation in the database, being linked to only eight species. In particular, these links primarily concern bacteria from the Actinobacteria phylum. As a result, our model tends to predict a low occurrence of erythromycin across species, as visualized in \Cref{fig: hist erythromycin}. However, the accuracy with which it anticipates its presence is noteworthy. Key genera such as Streptomyces are correctly identified, with minor discrepancies like Micromonospora, as detailed in \Cref{table: Erythromycin top scores}. This highlights GraphSAGE's capability in discerning potential associations between molecules and species, even in scenarios of sparse data. 
 
 \begin{figure}[h]
 	\centering
@@ -748,7 +767,7 @@ Erythromycin, on the other hand, has a fairly low representation in the database
 	\label{fig: hist erythromycin}
 \end{figure}
 
-While GraphSAGE has shown notable abilities in making nuanced predictions, its proficiency in determining the occurrence of molecules in species has limitations. For instance, in the case of \textit{Streptomyces diastaticus} presented in \Cref{table: Erythromycin top scores}, a lack of documentation regarding its erythromycin production exists in the current literature. An exception lies in the findings of \cite{graham23SRibosomalRibonucleic1979}, which propose that the latter might even exhibit \textit{sensitivity} to erythromycin. A similar ambiguity exists in \textit{Streptomyces drozdowiczii}, with no documented evidence supporting the presence of erythromycin. Contrastingly, the potential presence of this molecule in \textit{Streptomyces achromogenes} is insinuated in the research presented by \cite{moosawiComputationalPredictionProperties2010}.
+While GraphSAGE has shown notable abilities in making nuanced predictions, its proficiency in determining the occurrence of molecules in species has limitations. For instance, in the case of \textit{Streptomyces diastaticus} presented in \Cref{table: Erythromycin top scores}, a lack of documentation regarding its erythromycin production exists in the current literature. An exception lies in the findings of \cite{graham23SRibosomalRibonucleic1979}, which propose that the latter might even exhibit \textit{sensitivity} to erythromycin. A similar ambiguity exists in \textit{Streptomyces drozdowiczii}, with no documented evidence supporting the presence of erythromycin. On the other hand, the potential presence of this molecule in \textit{Streptomyces achromogenes} is reported in the research presented by \cite{moosawiComputationalPredictionProperties2010}.
 
 A thorough analysis using mass spectrometry of the highlighted species becomes necessary to confirm the reliability and effectiveness of our approach. This could reveal new molecular species relationships and provide empirical support for the hypothesised associations presented in \Cref{table: Erythromycin top scores}.
 
@@ -781,7 +800,7 @@ Additional complexities exist that limit the effectiveness of our model. In the 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{figure/water}
-	\caption{Probability distribution of water across species in the LOTUS database. The species already associated with water were removed before the calculations. This visualization sheds light on a limitation of our model. It's a reasonable expectation that water is a ubiquitous component in a vast majority of species. However, with only six mentions of water in LOTUS, our predictions seem to fall short. Integrating mass spectrometry data within the model could mitigate this problem such discrepancies.}
+	\caption{Probability distribution of water across species in the LOTUS database. The species already associated with water were removed before the calculations. This visualization sheds light on a limitation of our model. It's a reasonable expectation that water is a ubiquitous component in a vast majority of species. However, with only six mentions of water in LOTUS, our predictions seem to fall short.}
 	\label{fig: water probabilities}
 \end{figure}
 
@@ -793,11 +812,11 @@ In the course of this work, we have demonstrated the viability of developing a m
 
 The application of a Graph Neural Network (GNN) employing the GraphSAGE technique has proven effective as an initial strategy. Notably, this modest implementation already yields reliable results for well-characterized metabolites. Nonetheless, several challenges emerged. Foremost among these is the technical issue of overlooking phylogenetic distances, which consequently ignores useful and available data. Additionally, the methodology employed for encoding molecular features, specifically the straightforward concatenation of Classyfire classification and Morgan fingerprint, may not be the ideal representation of the molecule's information.
 
-Another significant constraint of the GNN is its inability to augment the density of a graph. Given the notable sparsity of the edges in the bipartite graph, the GNN, based solely on current existing data, cannot enhance the graph density. This trait is inherent in the graph completion process, highlighting the common practise of first increasing the density of the graph, followed by training the GNN within this highly populated subgraph.
+Another significant constraint of the GNN is its inability to augment the density of a graph. Given the notable sparsity of the edges in the bipartite graph, the GNN, based solely on current existing data, cannot enhance the graph density. This trait is inherent to the graph completion process, highlighting the common practise of first increasing the density of the graph, followed by training the GNN within this highly populated subgraph.
 
 From this arise two questions: are we attempting to predict LOTUS, or are we aiming to discern the actual presence and absence ($x \in \{0;1\}$) of molecules in certain species ? We believe that our current GNN addresses the first question. However, given the reasons highlighted earlier, particularly the intrinsic graph sparsity, this might not be the most important question. Simply extrapolating LOTUS with this methodology would result in predictions of "obvious" edges without providing further insights. While augmenting the data in LOTUS or incorporating mass spectrometry data could offer potential solutions, they pose their own set of challenges. For example, integrating research effort and resolving the inherent difference in confidence data quality between LOTUS and mass spectrometry are important factors to take into account.
 
-In contrast, given that both GNN and Markov Random Field (MRF) address analogous issues \cite{jiaGraphBeliefPropagation2021}, our hypothesis is that MRF could yield more robust outcomes. The inherent flexibility of our model, allowing for multi-dimensional data integration, could potentially ameliorate the molecule encoding challenge we encountered with GNN. Indeed, given the current configuration of our model, the species phylogenies, the existing Classyfire classification tree, and a tree for the Morgan fingerprint could be integrated, forming three distinct trees. Furthermore, the proposed MRF model could easily include mass spectrometry data, a task that the GNN is now unable to handle. In addition, the model would interpret both LOTUS and mass spectrometry data as noisy observations of $x$, which the current GNN is also incapable of doing.
+In contrast, given that both GNN and Markov Random Field (MRF) address analogous issues \cite{jiaGraphBeliefPropagation2021}, our hypothesis is that MRF could yield more robust outcomes. The flexibility of our model, allowing for multi-dimensional data integration, could potentially ameliorate the molecule encoding challenge we encountered with GNN. Indeed, given the current configuration of our model, the species phylogenies, the existing Classyfire classification tree, and a tree for the Morgan fingerprint could be integrated, forming three distinct trees. Furthermore, the proposed MRF model could easily include mass spectrometry data, a task that the GNN is now unable to handle. In addition, the model would interpret both LOTUS and mass spectrometry data as noisy observations of $x$, which the current GNN is also incapable of doing.
 
 To conclude, we believe that the MRF model has the potential to outperform the current existing GNN. We hope that the development of such a model will catalyze advancements in metabolomics, ecology, and drug discovery. We want to believe that through this work, we have laid the foundations for future development of such a model.
 
